@@ -1,0 +1,260 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 12, 2019 at 07:55 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `chaingang`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `acties`
+--
+
+CREATE TABLE `acties` (
+  `actie_id` int(11) NOT NULL,
+  `actie_naam` varchar(255) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_prijs` int(11) NOT NULL,
+  `nieuwsbrief_id` int(11) NOT NULL,
+  `medewerker_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bestellingen`
+--
+
+CREATE TABLE `bestellingen` (
+  `bestelling_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `klant_id` int(11) NOT NULL,
+  `bestelling_bedrag` int(11) NOT NULL,
+  `bestelling_status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `klanten`
+--
+
+CREATE TABLE `klanten` (
+  `klant_id` int(11) NOT NULL,
+  `klant_voornaam` varchar(255) NOT NULL,
+  `klant_achternaam` varchar(255) NOT NULL,
+  `klant_email` varchar(255) NOT NULL,
+  `klant_telefoon` varchar(255) NOT NULL,
+  `klant_straat` varchar(255) NOT NULL,
+  `klant_huisnr` int(11) NOT NULL,
+  `klant_postcode` varchar(255) NOT NULL,
+  `klant_plaats` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medewerkers`
+--
+
+CREATE TABLE `medewerkers` (
+  `medewerker_id` int(11) NOT NULL,
+  `medewerker_voornaam` varchar(255) NOT NULL,
+  `medewerker_achternaam` varchar(255) NOT NULL,
+  `medewerker_email` varchar(255) NOT NULL,
+  `medewerker_telefoon` varchar(255) NOT NULL,
+  `medewerker_username` varchar(255) NOT NULL,
+  `medewerker_wachtwoord` varchar(255) NOT NULL,
+  `medewerker_rol` varchar(255) NOT NULL,
+  `medewerker_geslacht` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nieuwsbrief`
+--
+
+CREATE TABLE `nieuwsbrief` (
+  `nieuwsbrief_id` int(11) NOT NULL,
+  `nieuwsbrief_email` varchar(255) NOT NULL,
+  `klant_email` varchar(255) NOT NULL,
+  `klant_id` int(11) NOT NULL,
+  `klant_achternaam` varchar(255) NOT NULL,
+  `klant_geslacht` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `producten`
+--
+
+CREATE TABLE `producten` (
+  `product_id` int(11) NOT NULL,
+  `product_naam` varchar(255) NOT NULL,
+  `product_merk` varchar(255) NOT NULL,
+  `product_categorie` varchar(255) NOT NULL,
+  `product_prijs` int(11) NOT NULL,
+  `product_omschrijving` text NOT NULL,
+  `product_specificaties` varchar(255) NOT NULL,
+  `product_foto1` varchar(255) NOT NULL,
+  `product_foto2` varchar(255) NOT NULL,
+  `product_foto3` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `review_id` int(11) NOT NULL,
+  `review_titel` varchar(255) NOT NULL,
+  `review_beschrijving` text NOT NULL,
+  `review_rating` int(11) NOT NULL,
+  `review_date` date NOT NULL,
+  `klant_id` int(11) NOT NULL,
+  `bestelling_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_naam` varchar(255) NOT NULL,
+  `klant_voornaam` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `acties`
+--
+ALTER TABLE `acties`
+  ADD UNIQUE KEY `product_id` (`product_id`),
+  ADD UNIQUE KEY `product_prijs` (`product_prijs`),
+  ADD UNIQUE KEY `nieuwsbrief_id` (`nieuwsbrief_id`),
+  ADD UNIQUE KEY `medewerker_id` (`medewerker_id`);
+
+--
+-- Indexes for table `bestellingen`
+--
+ALTER TABLE `bestellingen`
+  ADD UNIQUE KEY `klant_id` (`klant_id`),
+  ADD UNIQUE KEY `product_id` (`product_id`),
+  ADD UNIQUE KEY `bestelling_id` (`bestelling_id`);
+
+--
+-- Indexes for table `klanten`
+--
+ALTER TABLE `klanten`
+  ADD UNIQUE KEY `klant_id` (`klant_id`,`klant_achternaam`,`klant_email`),
+  ADD UNIQUE KEY `klant_voornaam` (`klant_voornaam`),
+  ADD KEY `klant_achternaam` (`klant_achternaam`),
+  ADD KEY `klant_email` (`klant_email`);
+
+--
+-- Indexes for table `medewerkers`
+--
+ALTER TABLE `medewerkers`
+  ADD UNIQUE KEY `gebruiker_id` (`medewerker_id`),
+  ADD UNIQUE KEY `gebruiker_email` (`medewerker_email`);
+
+--
+-- Indexes for table `nieuwsbrief`
+--
+ALTER TABLE `nieuwsbrief`
+  ADD UNIQUE KEY `nieuwsbrief_id` (`nieuwsbrief_id`),
+  ADD UNIQUE KEY `klant_email` (`klant_email`),
+  ADD UNIQUE KEY `klant_id` (`klant_id`),
+  ADD UNIQUE KEY `klant_voornaam` (`klant_achternaam`),
+  ADD UNIQUE KEY `klant_geslacht` (`klant_geslacht`);
+
+--
+-- Indexes for table `producten`
+--
+ALTER TABLE `producten`
+  ADD UNIQUE KEY `product_id` (`product_id`),
+  ADD UNIQUE KEY `product_naam` (`product_naam`),
+  ADD UNIQUE KEY `product_prijs` (`product_prijs`);
+
+--
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD UNIQUE KEY `klant_id` (`klant_id`),
+  ADD UNIQUE KEY `review_id` (`review_id`),
+  ADD UNIQUE KEY `bestelling_id` (`bestelling_id`),
+  ADD UNIQUE KEY `product_id` (`product_id`),
+  ADD UNIQUE KEY `product_naam` (`product_naam`),
+  ADD UNIQUE KEY `klant_voornaam` (`klant_voornaam`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `acties`
+--
+ALTER TABLE `acties`
+  ADD CONSTRAINT `acties_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `producten` (`product_id`),
+  ADD CONSTRAINT `acties_ibfk_2` FOREIGN KEY (`product_prijs`) REFERENCES `producten` (`product_prijs`);
+
+--
+-- Constraints for table `bestellingen`
+--
+ALTER TABLE `bestellingen`
+  ADD CONSTRAINT `bestellingen_ibfk_1` FOREIGN KEY (`bestelling_id`) REFERENCES `reviews` (`bestelling_id`),
+  ADD CONSTRAINT `bestellingen_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `producten` (`product_id`);
+
+--
+-- Constraints for table `klanten`
+--
+ALTER TABLE `klanten`
+  ADD CONSTRAINT `klanten_ibfk_1` FOREIGN KEY (`klant_id`) REFERENCES `bestellingen` (`klant_id`),
+  ADD CONSTRAINT `klanten_ibfk_2` FOREIGN KEY (`klant_voornaam`) REFERENCES `reviews` (`klant_voornaam`),
+  ADD CONSTRAINT `klanten_ibfk_3` FOREIGN KEY (`klant_achternaam`) REFERENCES `nieuwsbrief` (`klant_achternaam`),
+  ADD CONSTRAINT `klanten_ibfk_4` FOREIGN KEY (`klant_email`) REFERENCES `nieuwsbrief` (`klant_email`);
+
+--
+-- Constraints for table `medewerkers`
+--
+ALTER TABLE `medewerkers`
+  ADD CONSTRAINT `medewerkers_ibfk_1` FOREIGN KEY (`medewerker_id`) REFERENCES `acties` (`medewerker_id`);
+
+--
+-- Constraints for table `nieuwsbrief`
+--
+ALTER TABLE `nieuwsbrief`
+  ADD CONSTRAINT `nieuwsbrief_ibfk_1` FOREIGN KEY (`klant_id`) REFERENCES `klanten` (`klant_id`),
+  ADD CONSTRAINT `nieuwsbrief_ibfk_2` FOREIGN KEY (`nieuwsbrief_id`) REFERENCES `acties` (`nieuwsbrief_id`);
+
+--
+-- Constraints for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `producten` (`product_id`),
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`product_naam`) REFERENCES `producten` (`product_naam`),
+  ADD CONSTRAINT `reviews_ibfk_3` FOREIGN KEY (`klant_id`) REFERENCES `klanten` (`klant_id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
