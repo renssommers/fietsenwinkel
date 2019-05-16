@@ -329,7 +329,7 @@
     .navbar{
         padding: 0px;
         background-color: transparent !important;
-        border-top: 2px solid #eeeeee;
+        // border-top: 2px solid red;
         border-bottom: 2px solid $baseColor;
         .navbar-brand{
             display: none;
@@ -403,10 +403,9 @@
         }
         .navbar-nav{
             li{
-                margin-right: 40px;
                 a{
-                    padding: 0px;
-                    line-height: 70px;
+                    padding: 15px 30px;
+                    border: 2px solid #09366C;
                     font-size: 14px;
                     text-transform: uppercase;
                     font-family: $mon;
@@ -418,6 +417,14 @@
                     }
                     i{
                         padding-left: 6px;
+                    }
+                    
+                    &:first-child{
+                        border-right: none;
+                    }
+
+                    &:last-child{
+                        border-left: none;
                     }
                 }
                 &:first-child{
@@ -502,7 +509,7 @@
 .carousel_menu_inner{
     .navbar{
         padding: 20px 0px 20px 0px;
-        border-bottom: none;
+        border-bottom: 2px solid #09366C;
         .navbar-brand{
             display: inline-block;
         }
