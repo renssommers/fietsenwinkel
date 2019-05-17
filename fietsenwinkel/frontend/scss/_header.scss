@@ -405,7 +405,9 @@
             li{
                 a{
                     padding: 15px 30px;
-                    border: 2px solid #09366C;
+                    margin-left: 10px;
+                    border: 1px solid #09366C;
+                    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.2);
                     font-size: 14px;
                     text-transform: uppercase;
                     font-family: $mon;
@@ -419,23 +421,17 @@
                         padding-left: 6px;
                     }
                     
-                    &:first-child{
-                        border-right: none;
-                    }
-
-                    &:last-child{
-                        border-left: none;
-                    }
                 }
                 &:first-child{
-                    margin-left: 60px;
+                    margin-left: 50px;
                 }
                 &:last-child{
                     margin-right: 0px;
                 }
                 &:hover, &.active{
                     a{
-                        color: $baseColor;
+                        border: 2px solid #09366C;
+                        color: #4599FB;
                     }    
                 }
                 &.submenu{
