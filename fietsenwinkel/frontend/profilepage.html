@@ -146,213 +146,98 @@
             </header>
         <!--================End Menu Area =================-->
         
-        <!--================Register Area =================-->
-        <section class="register_area p_100">
+        <!--================Categories Product Area =================-->
+        <section class="categories_product_main p_80">
             <div class="container">
-                <div class="register_inner">
-                    <div class="row">
-                        <div class="col-lg-7">
-                            <div class="billing_details">
-                                <h2 class="reg_title">Factuur gegevens</h2>
-                                <form class="billing_inner row">
-                                    <!-- <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="cun">Country <span>*</span></label>
-                                            <select class="selectpicker" id="cun">
-                                                <option>United State America (USA)</option>
-                                                <option>Bangladesh (BAN)</option>
-                                                <option>United State America (USA)</option>
-                                            </select>
+                <div class="col-lg-12" style="padding: 0; text-align:center;">
+                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold;"> Account </h1>
+                </div>
+                <div class="categories_main_inner">
+                    <div class="row row_disable">
+                        <div class="col-lg-9 float-md-right">
+                                <form>
+                                        <div class="col-lg-2" style="float:left;"> Geslacht* </div> 
+                                        <div class="col-lg-10" style="float: left;"> 
+                                                <select name="Geslacht">
+                                                        <option value="Selecteer">Selecteer</option>
+                                                        <option value="Man">Man</option>
+                                                        <option value="Vrouw">Vrouw</option>
+                                                </select>
+                                        <!-- <input type="text" name="Gebruikersnaam" value="Renssommers" style="width: 35%;"><br> -->
                                         </div>
-                                    </div> -->
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="name">Voornaam <span>*</span></label>
-                                            <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="last">Achternaam <span>*</span></label>
-                                            <input type="text" class="form-control" id="last" aria-describedby="last">
-                                        </div>
-                                    </div>
-                                    <!-- <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="cname">Company Name <span>*</span></label>
-                                            <select class="selectpicker" id="cname">
-                                                <option>United State America (USA)</option>
-                                                <option>Bangladesh (BAN)</option>
-                                                <option>United State America (USA)</option>
-                                            </select>
-                                        </div>
-                                    </div> -->
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="address">Straatnaam + huisnummer <span>*</span></label>
-                                            <input type="text" class="form-control" id="address" aria-describedby="address">
-                                            <!-- <input type="text" class="form-control" id="address2" aria-describedby="address"> -->
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <label for="address">Postcode <span>*</span></label>
-                                                <input type="text" class="form-control" id="address" aria-describedby="address">
-                                                <!-- <input type="text" class="form-control" id="address2" aria-describedby="address"> -->
-                                            </div>
-                                        </div>
-                                    <!-- <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="ctown">City / Town <span>*</span></label>
-                                            <select class="selectpicker" id="ctown">
-                                                <option>United State America (USA)</option>
-                                                <option>Bangladesh (BAN)</option>
-                                                <option>United State America (USA)</option>
-                                            </select>
-                                        </div>
-                                    </div> -->
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="email">E-mail <span>*</span></label>
-                                            <input type="email" class="form-control" id="email" aria-describedby="email">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="phone">Telefoonnummer <span>*</span></label>
-                                            <input type="text" class="form-control" id="phone" aria-describedby="phone">
-                                        </div>
-                                    </div>
-                                    <!-- <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <div class="creat_account">
-                                                <input type="checkbox" id="f-option" name="selector">
-                                                <label for="f-option">Ship to a different address?</label>
-                                                <div class="check"></div>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                    <!-- <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="cunt">Country <span>*</span></label>
-                                            <select class="selectpicker" id="cunt">
-                                                <option>United State America (USA)</option>
-                                                <option>Bangladesh (BAN)</option>
-                                                <option>United State America (USA)</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="name2">First Name <span>*</span></label>
-                                            <input type="text" class="form-control" id="name2" aria-describedby="name2" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="last2">Last Name <span>*</span></label>
-                                            <input type="text" class="form-control" id="last2" aria-describedby="last2">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="company">Company Name <span>*</span></label>
-                                            <input type="text" class="form-control" id="company" aria-describedby="company">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="city">City / Town <span>*</span></label>
-                                            <input type="text" class="form-control" id="city" aria-describedby="city">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="order">Order Notes <span>*</span></label>
-                                            <textarea class="form-control" id="order" rows="3"></textarea>
-                                        </div>
-                                    </div> -->
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="order_box_price">
-                                <h2 class="reg_title">Uw bestelling</h2>
-                                <div class="payment_list">
-                                    <div class="price_single_cost">
-                                        <h5>Mens Casual Shirt <span>€450</span></h5>
-                                        <h5>Verzendkosten <span>€14,99</span></h5>
-                                        <h4>Subtotaal <span>€464,99</span></h4>
-                                        <h3><span class="normal_text">Totaal bedrag</span> <span>€464,99</span></h3>
-                                    </div>
-                                    <div id="accordion" role="tablist" class="price_method">
-                                        <div class="card">
-                                            <div class="card-header" role="tab" id="headingOne">
-                                                <h5 class="mb-0">
-                                                    <a data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="true" aria-controls="collapseOne">
-                                                    direct bank transfer
-                                                    </a>
-                                                </h5>
-                                            </div>
 
-                                            <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-                                                <div class="card-body">
-                                                    Lorem Ipsum is simply dummy text of the print-ing and typesetting industry. Lorem Ipsum has been the industry's. 
-                                                </div>
-                                            </div>
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Gebruikersnaam* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="Gebruikersnaam" value="Renssommers" style="width: 35%;"><br>
                                         </div>
-                                        <div class="card">
-                                            <div class="card-header" role="tab" id="headingTwo">
-                                                <h5 class="mb-0">
-                                                    <a class="collapsed" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo">
-                                                    cheque payment
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                                                <div class="card-body">
-                                                    Lorem Ipsum is simply dummy text of the print-ing and typesetting industry. Lorem Ipsum has been the industry's. 
-                                                </div>
-                                            </div>
+
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Voornaam* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="Voornaam" value="Rens" style="width: 35%;"><br>
                                         </div>
-                                        <div class="card">
-                                            <div class="card-header" role="tab" id="headingThree">
-                                                <h5 class="mb-0">
-                                                    <a class="collapsed" data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapseThree">
-                                                    cash on delivery
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                                                <div class="card-body">
-                                                    Lorem Ipsum is simply dummy text of the print-ing and typesetting industry. Lorem Ipsum has been the industry's. 
-                                                </div>
-                                            </div>
+
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Achternaam* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="Achternaam" value="Sommers" style="width: 35%;"><br>
                                         </div>
-                                        <div class="card">
-                                            <div class="card-header" role="tab" id="headingfour">
-                                                <h5 class="mb-0">
-                                                    <a class="collapsed" data-toggle="collapse" href="#collapsefour" role="button" aria-expanded="false" aria-controls="collapsefour">
-                                                    paypal
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                            <div id="collapsefour" class="collapse" role="tabpanel" aria-labelledby="headingfour" data-parent="#accordion">
-                                                <div class="card-body">
-                                                    Lorem Ipsum is simply dummy text of the print-ing and typesetting industry. Lorem Ipsum has been the industry's. 
-                                                </div>
-                                            </div>
+
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Woonplaats* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="Woonplaats" value="Doetinchem" style="width: 35%;"><br>
                                         </div>
-                                    </div>
-                                </div>
-                                <button type="submit" value="submit" class="btn subs_btn form-control">Plaats bestelling</button>
+
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Postcode* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="Postcode" value="6911 BV" style="width: 35%;"><br>
+                                        </div>
+
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Straat* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="Straat" value="Fazantjestraat" style="width: 35%;"><br>
+                                        </div>
+
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Huisnummer* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="Postcode" value="15" style="width: 35%;"><br>
+                                        </div>
+
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Telefoonnummer </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="Telefoonnummer" value="0612381487" style="width: 35%;"><br>
+                                        </div>
+
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> E-mailadres* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="E-mailadres" value="sommersrensrens@gmail.com" style="width: 35%;"><br>
+                                        </div>
+
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Wachtwoord* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="Wachtwoord" value="Fazantje123" style="width: 35%;"><br>
+                                        </div>
+                                </form>
+                                <a class="add_cart_btn" href="#" style="margin-top:30px;">Opslaan</a>
+                        </div>
+                        <div class="col-lg-3 float-md-right">
+                            <div class="categories_sidebar">
+                                <aside class="l_widgest l_color_widget">
+                                        <div class="l_w_title">
+                                            <h3>Menu</h3>
+                                        </div>
+                                        <a href="profilepage.html" style="text-decoration: underline;">Account</a><br>
+                                        <a href="profileorders.html">Bestellingen</a>  <br>
+                                        <a href="reviewtoevoegen.html">Review toevoegen</a>  
+                                </aside>
+
+                                <a class="abonneer_btn" href="index.html">Uitloggen</a>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!--================End Register Area =================-->
+        <!--================End Categories Product Area =================-->
         
         <!--================Footer Area =================-->
         <footer class="footer_area">

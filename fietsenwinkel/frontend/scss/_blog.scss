@@ -459,117 +459,17 @@
             }
             &:first-child{
                 a{
-                    background: transparent;
+                    background: lightgrey;
                 }
             }
             &:nth-child(3){
                 a{
-                    background: #ebe1be;
+                    background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet); 
                 }
             }
-            &:nth-child(4){
+            &:nth-child(2){
                 a{
-                    background: #fed533;
-                }
-            }
-            &:nth-child(5){
-                a{
-                    background: #daaf00;
-                }
-            }
-            &:nth-child(6){
-                a{
-                    background: #f36b26;
-                }
-            }
-            &:nth-child(7){
-                a{
-                    background: #f36b26;
-                }
-            }
-            &:nth-child(8){
-                a{
-                    background: #70e606;
-                }
-            }
-            &:nth-child(9){
-                a{
-                    background: #7bba3c;
-                }
-            }
-            &:nth-child(10){
-                a{
-                    background: #1790c8;
-                }
-            }
-            &:nth-child(11){
-                a{
-                    background: #d82a90;
-                }
-            }
-            &:nth-child(12){
-                a{
-                    background: #7f7f00;
-                }
-            }
-            &:nth-child(13){
-                a{
-                    background: #e7352b;
-                }
-            }
-            &:nth-child(14){
-                a{
-                    background: #8d429f;
-                }
-            }
-            &:nth-child(15){
-                a{
-                    background: #770add;
-                }
-            }
-            &:nth-child(16){
-                a{
-                    background: #59a514;
-                }
-            }
-            &:nth-child(17){
-                a{
-                    background: #1cbbb4;
-                }
-            }
-            &:nth-child(18){
-                a{
-                    background: #000000;
-                }
-            }
-            &:nth-child(19){
-                a{
-                    background: #00aeef;
-                }
-            }
-            &:nth-child(20){
-                a{
-                    background: #00a99d;
-                }
-            }
-            &:nth-child(21){
-                a{
-                    background: #e7352b;
-                }
-            }
-            &:nth-child(22){
-                a{
-                    background: #fbf4d9;
-                }
-            }
-            &:nth-child(23){
-                a{
-                    background: #828282;
-                }
-            }
-            &:nth-child(24){
-                a{
-                    background: #c4ff8e;
+                    background: black;
                 }
             }
         }
