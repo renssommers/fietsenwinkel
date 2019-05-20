@@ -690,7 +690,7 @@ i:before {
 .cart_cart a {
   position: relative; }
   .cart_cart a:before {
-    content: "0";
+    content: none !important;
     height: 20px;
     width: 20px;
     border-radius: 50%;
@@ -2585,6 +2585,7 @@ i:before {
   padding-top: 50px; }
 
 .product_details_slider .tp-thumbs {
+  display: none;
   margin-top: 18px; }
   .product_details_slider .tp-thumbs .tp-thumb-mask .tp-thumbs-inner-wrapper .tp-thumb .tp-thumb-over {
     background: transparent; }

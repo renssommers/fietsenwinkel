@@ -544,7 +544,7 @@
     a{
         position: relative;
         &:before{
-            content: "0";
+            content: none !important;
             height: 20px;
             width: 20px;
             border-radius: 50%;
