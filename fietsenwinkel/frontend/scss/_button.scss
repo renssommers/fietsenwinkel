@@ -121,6 +121,31 @@
         color: #fff;
     }
 }
+
+.abonneer_btn{
+    background: #FF9029;
+    margin-top: 10px;
+    border: 1px solid #FF9029;
+    border-radius: 0px;
+    color: #fff;
+    font-family: $pop;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 10px 19px;
+    line-height: 1em;
+    outline: none !important;
+    box-shadow: none !important;
+    @include transition;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-block;
+    &:hover{
+        background: #333333;
+        border-color: #333333;
+        color: #fff;
+    }
+}
+
 .checkout_btn{
     background: #FF9029;
     border: 1px solid #FF9029;

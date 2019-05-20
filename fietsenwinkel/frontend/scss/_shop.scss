@@ -93,7 +93,7 @@
             font-size: 18px;
             font-family: $mon;
             font-weight: 600;
-            color: $baseColor;
+            color: #4599FB;
             @include transition;
             del{
                 font-size: 16px;
@@ -622,7 +622,7 @@
 /* Product Details Slider Area css
 ============================================================================================ */
 .product_details_area{
-    padding-top: 100px;
+    padding-top: 50px;
 }
 .product_details_slider{
     #product_slider{
@@ -1979,7 +1979,7 @@
             span{
                 float: right;
                 font-weight: bold;
-                color: #d42421;
+                color: #4599FB;
                 font-family: $mon;
                 font-size: 24px;
             }
