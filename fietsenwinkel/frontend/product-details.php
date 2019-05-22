@@ -37,6 +37,14 @@
         <![endif]-->
     </head>
     <body>
+            <?php 
+            include 'databasecon.php';
+            $conn = Opencon();
+            $QUERY = "SELECT * FROM producten WHERE product_id = 1";
+            $result = mysqli_query($conn, $QUERY);
+            $row = mysqli_fetch_assoc($result);
+            CloseCon($conn);
+            ?>
         
         <!--================Menu Area =================-->
         <header class="shop_header_area carousel_menu_area">
@@ -156,7 +164,7 @@
                                 <ul>	<!-- SLIDE  -->
                                     <li data-index="rs-137221490" data-transition="scaledownfrombottom" data-slotamount="7"  data-easein="Power3.easeInOut" data-easeout="Power3.easeInOut" data-masterspeed="1500"  data-thumb="img/product/product-details/p-details-tab-1.jpg"  data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Ishtar X Tussilago" data-param1="25/08/2015" data-description="">
                                         <!-- MAIN IMAGE -->
-                                        <img src="img/product/product-details/p-details-big-1.jpg"  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
+                                        <img src=<?php echo $row["product_fotos"]; ?>  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
                                         <!-- LAYERS -->
                                     </li>
                                     <!-- SLIDE  -->
@@ -208,14 +216,13 @@
                                         <!-- LAYERS -->
 
                                     </li>
-                                    SLIDE 
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-5">
                         <div class="product_details_text">
-                            <h2>Dames fietsen model 2</h2>
+                            <h2><?php echo $row["product_naam"]; ?></h2>
                             <!-- <ul class="p_rating">
                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
@@ -227,8 +234,8 @@
                                 <a href="#">5 Reviews</a>
                                 <a href="#">Add your review</a>
                             </div> -->
-                            <h4>€450</h4>
-                            <p>Curabitur semper varius lectus sed consequat. Nam accumsan dapibus sem, sed lobortis nisi porta vitae. Ut quam tortor, facilisis nec laoreet consequat, malesuada a massa. Proin pretium tristique leo et imperdiet.</p>
+                            <h4 style="padding-top: 15px;"><?php echo $row["product_prijs"]; ?></h4>
+                            <p><?php echo $row["product_omschrijving"]; ?></p>
                             <!-- <div class="p_color">
                                 <h4 class="p_d_title">color <span>*</span></h4>
                                 <ul class="color_list">
@@ -256,16 +263,6 @@
                                 </div> -->
                                 <a class="add_cart_btn" href="#">In winkelwagen</a>
                             </div>
-
-                            <div class="specificaties" style="padding-top: 40px;">
-                                <h4>Specificaties</h4>
-                                <TABLE BORDER="1"  WIDTH="50%" HEIGHT="20">
-                                        <TR> <TD style="font-weight: bold;">Categorie</TD> <TD>Dames</TD> </TR>
-                                        <TR> <TD style="font-weight: bold;">Kleur</TD> <TD>Zwart</TD> </TR>
-                                        <TR> <TD style="font-weight: bold;">Merk</TD> <TD>Gazelle</TD> </TR>
-                                        <TR> <TD style="font-weight: bold;">Type</TD> <TD>Oma's fiets</TD> </TR>
-                                </TABLE>
-                            </div>
                             <!-- <div class="shareing_icon">
                                 <h5>share :</h5>
                                 <ul>
@@ -279,6 +276,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="specificaties" style="padding-top: 30px; padding-bottom: 50px;">
+                                <h4 style="padding-bottom: 15px;">Specificaties</h4>
+                                <TABLE BORDER="1"  WIDTH="25%" HEIGHT="20">
+                                        <TR> <TD style="font-weight: bold;">Categorie</TD> <TD><?php echo $row["product_categorie"]; ?></TD> </TR>
+                                        <TR> <TD style="font-weight: bold;">Kleur</TD> <TD> 
+                                        <?php
+                                        if ($row["product_kleur"] == 1) {
+                                            echo "Grijs";
+                                        } elseif ($row["product_kleur"] == 2) {
+                                            echo "Zwart";
+                                        } else {
+                                            echo "Multicolor";
+                                        }
+                                        ?></TD> </TR>
+                                        <TR> <TD style="font-weight: bold;">Merk</TD> <TD><?php echo $row["product_merk"]; ?></TD> </TR>
+                                        <TR> <TD style="font-weight: bold;">Type</TD> <TD><?php echo $row["product_specificaties"]; ?></TD> </TR>
+                                </TABLE>
+                            </div>
             </div>
         </section>
         <!--================End Product Details Area =================-->
