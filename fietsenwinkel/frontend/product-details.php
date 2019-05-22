@@ -40,7 +40,7 @@
             <?php 
             include 'databasecon.php';
             $conn = Opencon();
-            $QUERY = "SELECT * FROM producten WHERE product_id = 1";
+            $QUERY = "SELECT * FROM producten WHERE product_id = " . (empty($_GET['id']) ? 0 : $_GET['id']);
             $result = mysqli_query($conn, $QUERY);
             $row = mysqli_fetch_assoc($result);
             CloseCon($conn);
