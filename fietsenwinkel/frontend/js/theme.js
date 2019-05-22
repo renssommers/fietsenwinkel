@@ -685,9 +685,9 @@
     
     $( "#slider-range" ).slider({
       range: true,
-      min: 0,
-      max: 2500,
-      values: [ 50, 2500 ],
+      min: 50,
+      max: 600,
+      values: [ 50, 600 ],
       slide: function( event, ui ) {
         $( "#amount" ).val( "€" + ui.values[ 0 ] + " - €" + ui.values[ 1 ] );
       }
