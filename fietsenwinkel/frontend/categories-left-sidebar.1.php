@@ -37,6 +37,9 @@
         <![endif]-->
     </head>
     <body>
+
+    <?php include 'databasecon.php'; ?>
+        
         
         <!--================Menu Area =================-->
         <header class="shop_header_area carousel_menu_area">
