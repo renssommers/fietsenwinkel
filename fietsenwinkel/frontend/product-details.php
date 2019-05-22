@@ -94,7 +94,7 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav mr-auto">
                                     <li class="nav-item dropdown submenu">
-                                        <a class="nav-link dropdown-toggle" href="categories-left-sidebar.html">
+                                        <a class="nav-link dropdown-toggle" href="categories-left-sidebar.php">
                                         Dames
                                         </a>
                                         <!-- <ul class="dropdown-menu">
@@ -107,7 +107,7 @@
                                         </ul> -->
                                     </li>
                                     <li class="nav-item dropdown submenu">
-                                        <a class="nav-link dropdown-toggle" href="categories-left-sidebar.1.html">
+                                        <a class="nav-link dropdown-toggle" href="categories-left-sidebar.1.php">
                                         Heren
                                         </a>
                                         <!-- <ul class="dropdown-menu">
@@ -120,7 +120,7 @@
                                         </ul> -->
                                     </li>
                                     <li class="nav-item dropdown submenu">
-                                        <a class="nav-link dropdown-toggle" href="categories-left-sidebar.2.html" >
+                                        <a class="nav-link dropdown-toggle" href="categories-left-sidebar.2.php" >
                                         Kinderen
                                         </a>
                                         <!-- <ul class="dropdown-menu">
@@ -355,9 +355,9 @@
                                         <h3>Categorieën</h3>
                                     </div>
                                     <ul>
-                                        <li><a href="categories-left-sidebar.html">Dames</a></li>
-                                        <li><a href="categories-left-sidebar.1.html">Heren</a></li>
-                                        <li><a href="categories-left-sidebar.2.html">Kinderen</a></li>
+                                        <li><a href="categories-left-sidebar.php">Dames</a></li>
+                                        <li><a href="categories-left-sidebar.1.php">Heren</a></li>
+                                        <li><a href="categories-left-sidebar.2.php">Kinderen</a></li>
                                     </ul>
                                 </aside>
                             </div>

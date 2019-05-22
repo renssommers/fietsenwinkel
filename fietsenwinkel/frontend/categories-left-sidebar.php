@@ -40,7 +40,7 @@
     <?php 
             include 'databasecon.php';
             $conn = Opencon();
-            $QUERY = "SELECT * FROM producten WHERE product_categorie = 'dames'";
+            $QUERY = "SELECT * FROM producten WHERE product_categorie = 'dames'" . (isset($_GET['kleur']) ? " AND product_kleur = " . $_GET['kleur'] : "");
             $result = mysqli_query($conn, $QUERY);
             $row = mysqli_fetch_assoc($result);
             CloseCon($conn);
@@ -94,7 +94,7 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav mr-auto">
                                     <li class="nav-item dropdown submenu active">
-                                        <a class="nav-link dropdown-toggle " href="categories-left-sidebar.html">
+                                        <a class="nav-link dropdown-toggle " href="categories-left-sidebar.php">
                                         Dames
                                         </a>
                                         <!-- <ul class="dropdown-menu">
@@ -107,7 +107,7 @@
                                         </ul> -->
                                     </li>
                                     <li class="nav-item dropdown submenu">
-                                        <a class="nav-link dropdown-toggle" href="categories-left-sidebar.1.html">
+                                        <a class="nav-link dropdown-toggle" href="categories-left-sidebar.1.php">
                                         Heren
                                         </a>
                                         <!-- <ul class="dropdown-menu">
@@ -120,7 +120,7 @@
                                         </ul> -->
                                     </li>
                                     <li class="nav-item dropdown submenu">
-                                        <a class="nav-link dropdown-toggle" href="categories-left-sidebar.2.html">
+                                        <a class="nav-link dropdown-toggle" href="categories-left-sidebar.2.php">
                                         Kinderen
                                         </a>
                                         <!-- <ul class="dropdown-menu">
@@ -208,7 +208,7 @@
                                                     <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
                                                 </ul>
                                                 <h4><?php echo $row["product_naam"]; ?></h4>
-                                                <h5><del></del>  <?php echo $row["product_prijs"]; ?></h5>
+                                                <h5><del></del>  €<?php echo $row["product_prijs"]; ?></h5>
                                             </div>
                                         </div>
                                     </div>
@@ -252,13 +252,18 @@
                                         <div class="l_w_title">
                                             <h3>Kleur</h3>
                                         </div>
-                
+            
                                         <ul>
-                                            <li><a class="grijs" href="#"></a></li>                                    
-                                            <li><a class="zwart" href="#"></a></li>
-                                            <li><a class="multicolor" href="#"></a></li>
+                                            <li><a class="grijs" href="?kleur=1"></a></li>                                    
+                                            <li><a class="zwart" href="?kleur=2"></a></li>
+                                            <li><a class="multicolor" href="?kleur=3"></a></li>
+                                            <br>
+                                            <li><a href="categories-left-sidebar.php"> Reset filter </a></li>
                                         </ul> 
-                                        
+
+
+
+                                    
                                     </aside>
                                 <aside class="l_widgest l_fillter_widget">
                                     <div class="l_w_title">
@@ -267,6 +272,8 @@
                                     <div id="slider-range" class="ui_slider"></div>
                                     <label for="amount">Prijs:</label>
                                     <input type="text" id="amount" readonly>
+                                    <br>
+                                    <a class="abonneer_btn" href="index.html">Filter</a>
                                 </aside>
                                 <!-- <aside class="l_widgest l_menufacture_widget">
                                     <div class="l_w_title">
@@ -328,9 +335,9 @@
                                         <h3>Categorieën</h3>
                                     </div>
                                     <ul>
-                                        <li><a href="categories-left-sidebar.html">Dames</a></li>
-                                        <li><a href="categories-left-sidebar.1.html">Heren</a></li>
-                                        <li><a href="categories-left-sidebar.2.html">Kinderen</a></li>
+                                        <li><a href="categories-left-sidebar.php">Dames</a></li>
+                                        <li><a href="categories-left-sidebar.1.php">Heren</a></li>
+                                        <li><a href="categories-left-sidebar.2.php">Kinderen</a></li>
                                     </ul>
                                 </aside>
                             </div>
