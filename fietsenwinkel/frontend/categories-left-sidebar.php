@@ -252,11 +252,13 @@
                                         <div class="l_w_title">
                                             <h3>Kleur</h3>
                                         </div>
+                
                                         <ul>
-                                            <li><a href="#"></a></li>                                    
-                                            <li><a href="#"></a></li>
-                                            <li><a href="#"></a></li>
+                                            <li><a class="grijs" href="#"></a></li>                                    
+                                            <li><a class="zwart" href="#"></a></li>
+                                            <li><a class="multicolor" href="#"></a></li>
                                         </ul> 
+                                        
                                     </aside>
                                 <aside class="l_widgest l_fillter_widget">
                                     <div class="l_w_title">

@@ -4549,22 +4549,33 @@ i:before {
   .l_color_widget ul li {
     display: inline-block;
     margin-right: 7px; }
-    .l_color_widget ul li a {
+    .l_color_widget ul li .grijs {
       display: inline-block;
       height: 22px;
       width: 22px;
       background: #e5e5e5;
       border-radius: 50%;
-      border: 1px solid #e5e5e5; }
-    .l_color_widget ul li:first-child a {
-      background: lightgrey; }
-    .l_color_widget ul li:nth-child(3) a {
+      border: 1px solid #e5e5e5;
+      background: light-grey; }
+    .l_color_widget ul li .zwart {
+      display: inline-block;
+      height: 22px;
+      width: 22px;
+      background: #e5e5e5;
+      border-radius: 50%;
+      border: 1px solid #e5e5e5;
+      background: black; }
+    .l_color_widget ul li .multicolor {
+      display: inline-block;
+      height: 22px;
+      width: 22px;
+      background: #e5e5e5;
+      border-radius: 50%;
+      border: 1px solid #e5e5e5;
       background-image: -webkit-gradient(linear, left top, right top, from(red), color-stop(orange), color-stop(yellow), color-stop(green), color-stop(blue), color-stop(indigo), to(violet));
       background-image: -webkit-linear-gradient(left, red, orange, yellow, green, blue, indigo, violet);
       background-image: -o-linear-gradient(left, red, orange, yellow, green, blue, indigo, violet);
       background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); }
-    .l_color_widget ul li:nth-child(2) a {
-      background: black; }
 
 .l_menufacture_widget ul {
   margin-top: -7px; }

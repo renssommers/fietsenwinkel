@@ -449,28 +449,33 @@
         li{
             display: inline-block;
             margin-right: 7px;
-            a{
+
+            .grijs {
                 display: inline-block;
                 height: 22px;
                 width: 22px;
                 background: #e5e5e5;
                 border-radius: 50%;
                 border: 1px solid #e5e5e5;
+                background: light-grey;
             }
-            &:first-child{
-                a{
-                    background: lightgrey;
-                }
+            .zwart {
+                display: inline-block;
+                height: 22px;
+                width: 22px;
+                background: #e5e5e5;
+                border-radius: 50%;
+                border: 1px solid #e5e5e5;
+                background: black;
             }
-            &:nth-child(3){
-                a{
-                    background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet); 
-                }
-            }
-            &:nth-child(2){
-                a{
-                    background: black;
-                }
+            .multicolor {
+                display: inline-block;
+                height: 22px;
+                width: 22px;
+                background: #e5e5e5;
+                border-radius: 50%;
+                border: 1px solid #e5e5e5;
+                background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet); 
             }
         }
     }

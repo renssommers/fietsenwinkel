@@ -37,6 +37,14 @@
         <![endif]-->
     </head>
     <body>
+    <?php 
+            include 'databasecon.php';
+            $conn = Opencon();
+            $QUERY = "SELECT * FROM producten WHERE product_categorie = 'heren'";
+            $result = mysqli_query($conn, $QUERY);
+            $row = mysqli_fetch_assoc($result);
+            CloseCon($conn);
+            ?>
         
         <!--================Menu Area =================-->
         <header class="shop_header_area carousel_menu_area">
@@ -98,7 +106,7 @@
                                             <li class="nav-item"><a class="nav-link" href="home-fixed-menu.html">Home Fixed</a></li>
                                         </ul> -->
                                     </li>
-                                    <li class="nav-item dropdown submenu">
+                                    <li class="nav-item dropdown submenu active">
                                         <a class="nav-link dropdown-toggle" href="categories-left-sidebar.1.html">
                                         Heren
                                         </a>
@@ -111,7 +119,7 @@
                                             <li class="nav-item"><a class="nav-link" href="404.html">404</a></li>
                                         </ul> -->
                                     </li>
-                                    <li class="nav-item dropdown submenu active">
+                                    <li class="nav-item dropdown submenu">
                                         <a class="nav-link dropdown-toggle" href="categories-left-sidebar.2.html">
                                         Kinderen
                                         </a>
@@ -150,7 +158,7 @@
         <section class="categories_product_main p_80">
             <div class="container">
                 <div class="col-lg-12" style="padding: 0; text-align:center;">
-                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold;"> Kinder fietsen </h1>
+                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold;"> Heren fietsen </h1>
                 </div>
                 <div class="categories_main_inner">
                     <div class="row row_disable">
@@ -183,143 +191,33 @@
                                     </div> -->
                                 </div>
                             </div>
+                            
                             <div class="categories_product_area">
                                 <div class="row">
-                                    <div class="col-lg-4 col-sm-6">
+                                    <?php 
+                                    while ($row = mysqli_fetch_assoc($result)){
+                                        ?>
+                                        <div class="col-lg-4 col-sm-6">
                                         <div class="l_product_item">
-                                            <div class="l_p_img">
-                                                <img src="img/product/c-product-1.jpg" alt="">
-                                                <h5 class="new">Nieuw</h5>
-                                            </div>
+                                            <a class="l_p_img" href="product-details.php?id=<?php echo $row["product_id"]; ?>">
+                                                <img src=<?php echo $row["product_fotos"]; ?> alt="">
+                                                <!-- <h5 class="new">Nieuw</h5> -->
+                                            </a>
                                             <div class="l_p_text">
                                                <ul>
                                                     <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
                                                 </ul>
-                                                <h4>Travel Bags</h4>
-                                                <h5><del>€45.50</del>  €40</h5>
+                                                <h4><?php echo $row["product_naam"]; ?></h4>
+                                                <h5><del></del>  <?php echo $row["product_prijs"]; ?></h5>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-sm-6">
-                                        <div class="l_product_item">
-                                            <div class="l_p_img">
-                                                <img src="img/product/c-product-2.jpg" alt="">
-                                            </div>
-                                            <div class="l_p_text">
-                                               <ul>
-                                                    <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
-                                                </ul>
-                                                <h4>Summer Dress</h4>
-                                                <h5>€45.50</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-sm-6">
-                                        <div class="l_product_item">
-                                            <div class="l_p_img">
-                                                <img src="img/product/c-product-3.jpg" alt="">
-                                                <h5 class="new">Nieuw</h5>
-                                            </div>
-                                            <div class="l_p_text">
-                                               <ul>
-                                                    <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
-                                                </ul>
-                                                <h4>Nike Shoes</h4>
-                                                <h5><del>€130</del> €110</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-sm-6">
-                                        <div class="l_product_item">
-                                            <div class="l_p_img">
-                                                <img src="img/product/c-product-4.jpg" alt="">
-                                                <h5 class="new">Nieuw</h5>
-                                            </div>
-                                            <div class="l_p_text">
-                                               <ul>
-                                                    <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
-                                                </ul>
-                                                <h4>High Heel</h4>
-                                                <h5><del>€130.50</del>  €110</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-sm-6">
-                                        <div class="l_product_item">
-                                            <div class="l_p_img">
-                                                <img src="img/product/c-product-5.jpg" alt="">
-                                            </div>
-                                            <div class="l_p_text">
-                                               <ul>
-                                                    <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
-                                                </ul>
-                                                <h4>Fossil Watch</h4>
-                                                <h5>€250.50</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-sm-6">
-                                        <div class="l_product_item">
-                                            <div class="l_p_img">
-                                                <img src="img/product/c-product-6.jpg" alt="">
-                                                <h5 class="new">New</h5>
-                                            </div>
-                                            <div class="l_p_text">
-                                               <ul>
-                                                    <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
-                                                </ul>
-                                                <h4>Ricky Shirt</h4>
-                                                <h5>€45.05</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-sm-6">
-                                        <div class="l_product_item">
-                                            <div class="l_p_img">
-                                                <img src="img/product/c-product-7.jpg" alt="">
-                                                <h5 class="new">Nieuw</h5>
-                                            </div>
-                                            <div class="l_p_text">
-                                               <ul>
-                                                    <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
-                                                </ul>
-                                                <h4>Nike Max Air Vapor Power</h4>
-                                                <h5>€45.05</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-sm-6">
-                                        <div class="l_product_item">
-                                            <div class="l_p_img">
-                                                <img src="img/product/c-product-8.jpg" alt="">
-                                            </div>
-                                            <div class="l_p_text">
-                                               <ul>
-                                                    <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
-                                                </ul>
-                                                <h4>Nike Shoes</h4>
-                                                <h5>€45.05</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-sm-6">
-                                        <div class="l_product_item">
-                                            <div class="l_p_img">
-                                                <img src="img/product/c-product-9.jpg" alt="">
-                                                <h5 class="sale">Sale</h5>
-                                            </div>
-                                            <div class="l_p_text">
-                                               <ul>
-                                                    <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
-                                                </ul>
-                                                
-                                                <h4>Summer Dress</h4>
-                                                <h5>€110</h5>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?php
+                                    }
+                                    ?>
+
                                 </div>
-                                <nav aria-label="Page navigation example" class="pagination_area">
+                                <!-- <nav aria-label="Page navigation example" class="pagination_area">
                                   <ul class="pagination">
                                     <li class="page-item"><a class="page-link" href="#">1</a></li>
                                     <li class="page-item"><a class="page-link" href="#">2</a></li>
@@ -329,7 +227,7 @@
                                     <li class="page-item"><a class="page-link" href="#">6</a></li>
                                     <li class="page-item next"><a class="page-link" href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
                                   </ul>
-                                </nav>
+                                </nav> -->
                             </div>
                         </div>
                         <div class="col-lg-3 float-md-right">
