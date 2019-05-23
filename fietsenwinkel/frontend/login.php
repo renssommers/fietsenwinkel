@@ -38,24 +38,69 @@
     </head>
     <body>
         
-        <!--================Menu Area =================-->
         <?php include 'header.php' ?>
-        <!--================End Menu Area =================-->
+        
         
         <!--================login Area =================-->
-        <section class="error_area p_100">
+        <section class="login_area p_100">
             <div class="container">
-                <div class="error_inner">
-                    <h4>404</h4>
-                    <h5>Error</h5>
-                    <p>Sorry, we hebben niet kunnen vinden waar je naar opzoek bent.</p>
-                    <h6>Ga terug naar de <a href="index.html">Home pagina</a></h6>
+                <div class="login_inner">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="login_title">
+                                <h2>Log in</h2>
+                                <p>Voor bestaande klanten.</p>
+                            </div>
+                            <form class="login_form row">
+                                <div class="col-lg-12 form-group">
+                                    <input class="form-control" type="text" placeholder="E-mailadres">
+                                </div>
+                                <div class="col-lg-12 form-group">
+                                    <input class="form-control" type="text" placeholder="Wachtwoord">
+                                </div>
+                                <div class="col-lg-12 form-group">
+                                    <a type="submit" href="profilepage.php" value="submit" class="btn update_btn form-control">Login</a>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="login_title">
+                                <h2>Nieuw bij ChainGang?</h2>
+                                <p>Maak hier gratis uw account aan.</p>
+                            </div>
+                            <form class="login_form row">
+                                <div class="col-lg-6 form-group">
+                                    <input class="form-control" type="text" placeholder="Naam">
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                        <input class="form-control" type="password" placeholder="Achternaam">
+                                    </div>
+                                <div class="col-lg-6 form-group">
+                                    <input class="form-control" type="email" placeholder="E-mailadres">
+                                </div>
+                                <!-- <div class="col-lg-6 form-group">
+                                    <input class="form-control" type="text" placeholder="Gebruikersnaam">
+                                </div> -->
+                                <div class="col-lg-6 form-group">
+                                    <input class="form-control" type="text" placeholder="Telefoonnummer">
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <input class="form-control" type="password" placeholder="Wachtwoord">
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <a type="submit"  href="profilepage.php"  value="submit" class="btn subs_btn form-control">Maak een account aan</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
         <!--================End login Area =================-->
         
-        <?php include 'footer.php' ?>      
+        <?php include 'footer.php' ?>
+        
+        
         
         
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

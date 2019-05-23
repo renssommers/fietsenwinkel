@@ -1,5 +1,5 @@
  <!--================Footer Area =================-->
- <footer class="footer_area">
+        <footer class="footer_area">
             <div class="container">
                 <div class="footer_widgets">
                     <div class="row">

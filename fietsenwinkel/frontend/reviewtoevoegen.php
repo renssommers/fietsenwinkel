@@ -38,24 +38,55 @@
     </head>
     <body>
         
-        <!--================Menu Area =================-->
-        <?php include 'header.php' ?>
+    <?php include 'header.php' ?>
+        
         <!--================End Menu Area =================-->
         
-        <!--================login Area =================-->
-        <section class="error_area p_100">
+        <!--================Categories Product Area =================-->
+        <section class="categories_product_main p_80">
             <div class="container">
-                <div class="error_inner">
-                    <h4>404</h4>
-                    <h5>Error</h5>
-                    <p>Sorry, we hebben niet kunnen vinden waar je naar opzoek bent.</p>
-                    <h6>Ga terug naar de <a href="index.html">Home pagina</a></h6>
+                <div class="col-lg-12" style="padding: 0; text-align:center;">
+                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold;"> Review toevoegen </h1>
+                </div>
+                <div class="categories_main_inner">
+                    <div class="row row_disable">
+                        <div class="col-lg-9 float-md-right">
+                           <p> Schrijf hier uw mening over onze website! </p>
+                           <p style="float:left;"> Beoordeling in sterren: </p>
+                                <select name="Sterren" style="float:left; margin-left: 10px;">
+                                        <option value="Selecteer">Selecteer</option>
+                                        <option value="1">1 ster</option>
+                                        <option value="2">2 sterren</option>
+                                        <option value="3">3 sterren</option>
+                                        <option value="4">4 sterren</option>
+                                        <option value="5">5 sterren</option>
+                                </select>
+                           <textarea rows="4" cols="50" name="comment" form="usrform" style="width:100%;"></textarea>
+                           <a class="add_cart_btn" href="#">Verzenden</a>
+                        </div>
+                        <div class="col-lg-3 float-md-right">
+                            <div class="categories_sidebar">
+                                <aside class="l_widgest l_color_widget">
+                                        <div class="l_w_title">
+                                            <h3>Menu</h3>
+                                        </div>
+                                        <a href="profilepage.php">Account</a><br>
+                                        <a href="profileorders.php">Bestellingen</a>  <br>
+                                        <a href="reviewtoevoegen.php" style="text-decoration: underline;">Review toevoegen</a>  
+                                </aside>
+
+                                <a class="abonneer_btn" href="index.php">Uitloggen</a>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-        <!--================End login Area =================-->
+        <!--================End Categories Product Area =================-->
         
-        <?php include 'footer.php' ?>      
+        <?php include 'footer.php' ?>       
+        
         
         
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

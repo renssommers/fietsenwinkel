@@ -96,7 +96,7 @@
                                 </ul>
                                 <ul class="navbar-nav justify-content-end">
                                     <!-- <li class="search_icon"><a href="#"><i class="icon-magnifier icons"></i></a></li> -->
-									<li class="user_icon"><a href="profilepage.html"><i class="icon-user icons"></i></a></li>
+									<li class="user_icon"><a href="profilepage.php"><i class="icon-user icons"></i></a></li>
 									
 			<!-- Begin van briefje: header user niet ingelogd-> naar loginhtml anders naar profilepagehtml -->
 									<!-- <?php if ($_SESSION['ingelogd']){ ?>
@@ -107,7 +107,7 @@
 									<?php } ?> -->
 									
 
-                                    <li class="cart_cart"><a href="shopping-cart2.html"><i class="icon-handbag icons"></i></a></li>
+                                    <li class="cart_cart"><a href="shopping-cart2.php"><i class="icon-handbag icons"></i></a></li>
                                 </ul>
                             </div>
                         </nav>

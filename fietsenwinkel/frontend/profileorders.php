@@ -38,24 +38,65 @@
     </head>
     <body>
         
-        <!--================Menu Area =================-->
         <?php include 'header.php' ?>
-        <!--================End Menu Area =================-->
         
-        <!--================login Area =================-->
-        <section class="error_area p_100">
+        <!--================Categories Product Area =================-->
+        <section class="categories_product_main p_80">
             <div class="container">
-                <div class="error_inner">
-                    <h4>404</h4>
-                    <h5>Error</h5>
-                    <p>Sorry, we hebben niet kunnen vinden waar je naar opzoek bent.</p>
-                    <h6>Ga terug naar de <a href="index.html">Home pagina</a></h6>
+                <div class="col-lg-12" style="padding: 0; text-align:center;">
+                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold;"> Bestellingen </h1>
+                </div>
+                <div class="categories_main_inner">
+                    <div class="row row_disable">
+                        <div class="col-lg-9 float-md-right">
+                            <div class="Bestelling col-12" style="padding-top: 30px; float:left;">
+                                <div class="col-lg-2" style="float:left;">
+                                    <img src="img/product/cart-product/cart-3.jpg" alt="">
+                                </div>
+                                <div class="col-lg-10" style="float:left;">
+                                    <h3> Dames fiets model 1</h3>
+                                    <p style="padding-top: 10px;">€200</p>
+                                    <p>Bestelnummer: 21987651234</p>
+                                    <p>Status: Betaald</p>
+                                </div>                          
+                            </div>
+                            
+                            <div class="Bestelling col-12" style="padding-top: 30px; float:left;">
+                                    <div class="col-lg-2" style="float:left;">
+                                        <img src="img/product/cart-product/cart-3.jpg" alt="">
+                                    </div>
+                                    <div class="col-lg-10" style="float:left;">
+                                        <h3> Heren fiets model 2</h3>
+                                        <p style="padding-top: 10px;">€450</p>
+                                        <p>Bestelnummer: 21987651295</p>
+                                        <p>Status: Ontvangen</p>
+                                    </div>                          
+                                </div>
+                        </div>
+                        <div class="col-lg-3 float-md-right">
+                            <div class="categories_sidebar">
+                                <aside class="l_widgest l_color_widget">
+                                        <div class="l_w_title">
+                                            <h3>Menu</h3>
+                                        </div>
+                                        <a href="profilepage.php">Account</a><br>
+                                        <a href="profileorders.php" style="text-decoration: underline;">Bestellingen</a>  <br>
+                                        <a href="reviewtoevoegen.php">Review toevoegen</a>  
+                                </aside>
+
+                                <a class="abonneer_btn" href="index.php">Uitloggen</a>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-        <!--================End login Area =================-->
+        <!--================End Categories Product Area =================-->
         
-        <?php include 'footer.php' ?>      
+        <?php include 'footer.php' ?>
+        
+        
         
         
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

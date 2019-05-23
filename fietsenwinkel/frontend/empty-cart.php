@@ -38,24 +38,22 @@
     </head>
     <body>
         
-        <!--================Menu Area =================-->
-        <?php include 'header.php' ?>
-        <!--================End Menu Area =================-->
+    <?php include 'header.php' ?>
         
         <!--================login Area =================-->
-        <section class="error_area p_100">
+        <section class="emty_cart_area p_100">
             <div class="container">
-                <div class="error_inner">
-                    <h4>404</h4>
-                    <h5>Error</h5>
-                    <p>Sorry, we hebben niet kunnen vinden waar je naar opzoek bent.</p>
-                    <h6>Ga terug naar de <a href="index.html">Home pagina</a></h6>
+                <div class="emty_cart_inner">
+                    <i class="icon-handbag icons"></i>
+                    <h3>Uw winkelwagen is leeg!</h3>
                 </div>
             </div>
         </section>
         <!--================End login Area =================-->
         
-        <?php include 'footer.php' ?>      
+        <?php include 'footer.php' ?>
+        
+        
         
         
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
