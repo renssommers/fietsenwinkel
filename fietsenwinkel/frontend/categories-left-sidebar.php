@@ -42,7 +42,6 @@
             $conn = Opencon();
             $QUERY = "SELECT * FROM producten WHERE product_categorie = 'dames'" . (isset($_GET['kleur']) ? " AND product_kleur = " . $_GET['kleur'] : "");
             $result = mysqli_query($conn, $QUERY);
-            $row = mysqli_fetch_assoc($result);
             CloseCon($conn);
             ?>
         
