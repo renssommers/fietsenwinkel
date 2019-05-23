@@ -42,10 +42,10 @@
             $conn = Opencon();
             $QUERY = "SELECT * FROM producten WHERE product_categorie = 'kinderen'" . (isset($_GET['kleur']) ? " AND product_kleur = " . $_GET['kleur'] : "");
             $result = mysqli_query($conn, $QUERY);
+            $row = mysqli_fetch_assoc($result);
             CloseCon($conn);
             ?>
         
-        <!--================Menu Area =================-->
         <?php include 'header.php' ?>
         
         <!--================Categories Product Area =================-->
@@ -85,45 +85,40 @@
                                     </div> -->
                                 </div>
                             </div>
+
+
+
+
+
                             
                             <div class="categories_product_area">
                                 <div class="row">
                                     <?php 
-                                    while ($row = mysqli_fetch_assoc($result)){
-                                        ?>
-                                        <div class="col-lg-4 col-sm-6">
-                                        <div class="l_product_item">
-                                            <a class="l_p_img" href="product-details.php?id=<?php echo $row["product_id"]; ?>">
-                                                <img src=<?php echo $row["product_fotos"]; ?> alt="">
-                                                <!-- <h5 class="new">Nieuw</h5> -->
-                                            </a>
-                                            <div class="l_p_text">
-                                               <ul>
-                                                    <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
-                                                </ul>
-                                                <h4><?php echo $row["product_naam"]; ?></h4>
-                                                <h5><del></del>  €<?php echo $row["product_prijs"]; ?></h5>
+                                        while ($row = mysqli_fetch_assoc($result)){
+                                    ?>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <form method="post" action="shopping-cart2.php&id=<?php echo $row["id"] ?>">   
+                                            <div class="l_product_item">
+                                                <a class="l_p_img" href="product-details.php?id=<?php echo $row["product_id"]; ?>">
+                                                    <img src=<?php echo $row["product_fotos"]; ?> alt="">
+                                                    <!-- <h5 class="new">Nieuw</h5> -->
+                                                </a>
+                                                <div class="l_p_text">
+                                                <ul>
+                                                <input type="submit" name="add" class="add_cart_btn" value="In Winkelwagen">
+                                                    </ul>
+                                                    <h4><?php echo $row["product_naam"]; ?></h4>
+                                                    <h5><del></del>  €<?php echo $row["product_prijs"]; ?></h5>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                     <?php
                                     }
                                     ?>
-
                                 </div>
-                                <!-- <nav aria-label="Page navigation example" class="pagination_area">
-                                  <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">6</a></li>
-                                    <li class="page-item next"><a class="page-link" href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                  </ul>
-                                </nav> -->
                             </div>
-                        </div>
+
                         <div class="col-lg-3 float-md-right">
                             <div class="categories_sidebar">
                                 <!-- <aside class="l_widgest l_p_categories_widget">
