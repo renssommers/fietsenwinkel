@@ -460,7 +460,7 @@
                             </div>
                         </div>
                     </div>
-                    <a class="abonneer_btn" href="reviewtoevoegen.html" style="margin-bottom: 30px; background: #4599FB !important; border: 1px solid #4599FB !important;">Voeg zelf een review toe</a>
+                    <a class="abonneer_btn" href="reviewtoevoegen.php" style="margin-bottom: 30px; background: #4599FB !important; border: 1px solid #4599FB !important;">Voeg zelf een review toe</a>
             </div>
         </section>
             <!--================ End MADELIEF REVIEW =================-->
