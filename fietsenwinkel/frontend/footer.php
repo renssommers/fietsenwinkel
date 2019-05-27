@@ -27,9 +27,23 @@
                                     <h3>Nieuwsbrief</h3>
                                 </div>
                                 <p>Abonneer op onze nieuwsbrief:</p>
-                                <input type="email" id="email" placeholder="E-mailadres" size="30" required>
-                                <a class="abonneer_btn" href="#">Abonneer</a>
+                                <form action="#" method="get">
+                                    <input name="nieuwsbrief" type="email" id="email" placeholder="E-mailadres" size="30" required>
+                                    <input type="submit" class="abonneer_btn" value="Aanmelden"></a>
+                                </form>
                             </aside>
+                            <?php
+                            if (!empty($_GET['nieuwsbrief'])) {
+                                $nieuwsbrief = $_GET['nieuwsbrief'];
+                                $insert = "INSERT INTO nieuwsbrief (nieuwsbrief_id,nieuwsbrief_email)VALUES(Null,'$nieuwsbrief')";
+                                if ($conn->query($insert) === TRUE) {
+                                    //Later popup van maken.
+                                    echo "U bent aangemeld.";
+                                } else {
+                                    echo "Error: " . $insert . "<br>" . $conn->error;
+                                }
+                            }
+                            ?>
                         </div>
                         <div class="col-lg-3 col-md-6 col-12">
                             <aside class="f_widget link_widget f_extra_widget">
