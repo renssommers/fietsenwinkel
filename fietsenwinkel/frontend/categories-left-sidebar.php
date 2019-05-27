@@ -37,8 +37,9 @@
         <![endif]-->
     </head>
     <body>
-    <?php 
+    <?php
             include 'databasecon.php';
+            $db = "mgoossens_chaingang";
             $conn = Opencon();
             $QUERY = "SELECT * FROM producten WHERE product_categorie = 'dames'" . (isset($_GET['kleur']) ? " AND product_kleur = " . $_GET['kleur'] : "");
             $result = mysqli_query($conn, $QUERY);
@@ -346,9 +347,58 @@
                                         <h3>Nieuwsbrief</h3>
                                     </div>
                                     <p>Abonneer op onze nieuwsbrief:</p>
-                                    <input type="email" id="email" placeholder="E-mailadres" size="30" required>
-                                    <a class="abonneer_btn" href="#">Abonneer</a>
+                                    <form action="#" method="get">
+                                        <input name="nieuwsbrief" type="email" id="email" placeholder="E-mailadres" size="30" required>
+                                        <input type="submit" class="abonneer_btn" value="Aanmelden"></a>
+                                    </form>
                                 </aside>
+                                <?php
+
+
+                                    if (empty($_GET['nieuwsbrief'])) {
+                                        $error = "Vull alles in.";
+
+                                    } else {
+                                        $nieuwsbrief = $_GET['nieuwsbrief'];
+                                        $insert = "INSERT INTO nieuwsbrief (nieuwsbrief_email)VALUES($nieuwsbrief)";
+
+                                        if ($insert) {
+                                            $error = "Succesvol";
+                                        } else {
+                                            $error = "Er is iets mis gegaan.";
+                                        }
+                                    }
+
+
+
+                                //         if(!empty($_GET["nieuwsbrief"])){
+//                                    $sql= "INSERT INTO nieuwsbrief (nieuwsbrief_email)
+//			                        VALUES('".$_GET["nieuwsbrief_email"]."', '".$_POST["Achternaam"]."', '".$_POST["bedrijfsnaam"]."', '".$_POST["Email"]."', '".$_POST["Tel_prive"]."', '".$_POST["Tel_zakelijk"]."', '".$_POST["Standplaats"]."')";
+//                                    if(mysqli_query($conn, $sql)){
+//                                        $message1="Contact is toegevoegd";
+//                                        $color="green";
+//                                        $margin="1px";
+//                                    }
+//                                    else{
+//                                        $message1="Contact is niet toegevoegd.";
+//                                        $color="red";
+//                                        $margin="1px";
+//                                    }
+//                                }
+//                                else{
+//                                }
+
+//                                    if ($_GET['nieuwsbrief'])
+//                                    {
+//
+//                                        //wegschrijven naar database
+//                                        //bij succes...
+//                                        //popup bedankt voor uw aanmelding
+//                                        echo "Bedankt voor uw aanmelding";
+//                                    }
+                                ?>
+
+
                             </div>
                             <div class="col-lg-3 col-md-6 col-12">
                                 <aside class="f_widget link_widget f_extra_widget">
