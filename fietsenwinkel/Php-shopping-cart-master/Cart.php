@@ -1,7 +1,24 @@
 <?php
-    session_start();
-    $database_name = "Product_details";
-    $con = mysqli_connect("localhost","root","",$database_name);
+
+	function OpenCon()
+	{
+		$dbhost = "mgoossens.gcmediavormgeving.nl";
+		$dbuser = "mgoossens_chaingang";
+		$dbpass = 'vI$gz4~zlXtL';
+		$db = "mgoossens_chaingang";
+
+	$con = new mysqli($dbhost, $dbuser, $dbpass, $db) or die ("Connect failed:%s\n". $con-> error);
+
+	return $con;
+ 	}
+ 
+	function CloseCon($con)
+	{
+ 	$con -> close();
+     }
+     
+    $con = Opencon();
+
 
     if (isset($_POST["add"])){
         if (isset($_SESSION["cart"])){
@@ -94,7 +111,7 @@
     <div class="container" style="width: 65%">
         <h2>Shopping Cart</h2>
         <?php
-            $query = "SELECT * FROM product ORDER BY id ASC ";
+            $query = "SELECT * FROM producten";
             $result = mysqli_query($con,$query);
             if(mysqli_num_rows($result) > 0) {
 
@@ -106,12 +123,12 @@
                         <form method="post" action="Cart.php?action=add&id=<?php echo $row["id"]; ?>">
 
                             <div class="product">
-                                <img src="<?php echo $row["image"]; ?>" class="img-responsive">
-                                <h5 class="text-info"><?php echo $row["pname"]; ?></h5>
-                                <h5 class="text-danger"><?php echo $row["price"]; ?></h5>
+                            <img src=<?php echo $row["product_fotos"]; ?> alt="" class="img-responsive">
+                                <h5 class="text-info"><?php echo $row["product_naam"]; ?></h5>
+                                <h5 class="text-danger"><?php echo $row["product_omschrijving"]; ?></h5>
                                 <input type="text" name="quantity" class="form-control" value="1">
-                                <input type="hidden" name="hidden_name" value="<?php echo $row["pname"]; ?>">
-                                <input type="hidden" name="hidden_price" value="<?php echo $row["price"]; ?>">
+                                <input type="hidden" name="hidden_name" value="<?php echo $row["product_name"]; ?>">
+                                <input type="hidden" name="hidden_price" value="<?php echo $row["product_prijs"]; ?>">
                                 <input type="submit" name="add" style="margin-top: 5px;" class="btn btn-success"
                                        value="Add to Cart">
                             </div>
