@@ -38,13 +38,22 @@
     </head>
     <body>
     <?php 
-            include 'databasecon.php';
-            $conn = Opencon();
-            $QUERY = "SELECT * FROM producten WHERE product_categorie = 'dames'" . (isset($_GET['kleur']) ? " AND product_kleur = " . $_GET['kleur'] : "");
-            $result = mysqli_query($conn, $QUERY);
-            $row = mysqli_fetch_assoc($result);
-            CloseCon($conn);
-            ?>
+             include 'databasecon.php';
+             $conn = Opencon();
+             if (empty($_GET['price']))
+             {
+                 $QUERY = "SELECT * FROM producten WHERE product_categorie = 'dames'" . (isset($_GET['kleur']) ? " AND product_kleur = " . $_GET['kleur'] : "");
+             }
+             elseif($_GET['price']==1){
+                 $QUERY = "SELECT * FROM producten WHERE product_categorie = 'dames'" . (isset($_GET['kleur']) ? " AND product_kleur = " . $_GET['kleur'] : "") . (isset($_GET['price']) ? " AND product_prijs >= 0 AND product_prijs <= 300 " : "");
+             }
+             elseif($_GET['price']==2){
+                 $QUERY = "SELECT * FROM producten WHERE product_categorie = 'dames'" . (isset($_GET['kleur']) ? " AND product_kleur = " . $_GET['kleur'] : "") . (isset($_GET['price']) ? " AND product_prijs >= 300 AND product_prijs <= 600 " : "");
+             }
+             
+             $result = mysqli_query($conn, $QUERY);
+             CloseCon($conn);
+    ?>
         
         <!--================Menu Area =================-->
         <header class="shop_header_area carousel_menu_area">
@@ -265,15 +274,29 @@
 
                                     
                                     </aside>
-                                <aside class="l_widgest l_fillter_widget">
+                                    <aside class="l_widgest l_fillter_widget">
                                     <div class="l_w_title">
                                         <h3>Prijs</h3>
                                     </div>
-                                    <div id="slider-range" class="ui_slider"></div>
-                                    <label for="amount">Prijs:</label>
-                                    <input type="text" id="amount" readonly>
-                                    <br>
-                                    <a class="abonneer_btn" href="index.html">Filter</a>
+
+                                    <form action="" method="GET">
+                                        <label style="padding:0 20px 0 0;">0-300<input type="radio" name="price" value="1"/></label>
+                                        <label style="padding:0px;">300-600<input type="radio" name="price" value="2"/></label>
+                                        <br><input type="submit" style="margin-top:15px;">
+                                        <br> <a href="categories-left-sidebar.php"> Reset filter </a>
+                                    </form> 
+                                    <?php
+                                    function getQuery($form){
+                                    $query = "SELECT * FROM producten WHERE false";
+                                    if (in_array("1", $form)){
+                                        $query .= " OR price >= 0 AND price <= 300";
+                                    }
+                                    if (in_array("2", $form)){
+                                        $query .= " OR price >= 300 AND price <= 600";
+                                    }
+                                    return $query;
+                                    }
+                                    ?>
                                 </aside>
                                 <!-- <aside class="l_widgest l_menufacture_widget">
                                     <div class="l_w_title">
