@@ -28,7 +28,7 @@
                 $item_array = array(
                     'product_id' => $_GET["id"],
                     'item_name' => $_POST["hidden_name"],
-                    'product_price' => $_POST["hidden_price"],
+                    'product_prijs' => $_POST["hidden_price"],
                     'item_quantity' => $_POST["quantity"],
                 );
                 $_SESSION["cart"][$count] = $item_array;
@@ -41,7 +41,7 @@
             $item_array = array(
                 'product_id' => $_GET["id"],
                 'item_name' => $_POST["hidden_name"],
-                'product_price' => $_POST["hidden_price"],
+                'product_prijs' => $_POST["hidden_price"],
                 'item_quantity' => $_POST["quantity"],
             );
             $_SESSION["cart"][0] = $item_array;
@@ -111,7 +111,7 @@
     <div class="container" style="width: 65%">
         <h2>Shopping Cart</h2>
         <?php
-            $query = "SELECT * FROM producten";
+            $query = "SELECT * FROM producten where product_id = '1'";
             $result = mysqli_query($con,$query);
             if(mysqli_num_rows($result) > 0) {
 
@@ -120,14 +120,13 @@
                     ?>
                     <div class="col-md-3">
 
-                        <form method="post" action="Cart.php?action=add&id=<?php echo $row["id"]; ?>">
+                        <form method="post" action="Cart.php?action=add&id=<?php echo $row["product_id"]; ?>">
 
                             <div class="product">
-                            <img src=<?php echo $row["product_fotos"]; ?> alt="" class="img-responsive">
                                 <h5 class="text-info"><?php echo $row["product_naam"]; ?></h5>
                                 <h5 class="text-danger"><?php echo $row["product_omschrijving"]; ?></h5>
                                 <input type="text" name="quantity" class="form-control" value="1">
-                                <input type="hidden" name="hidden_name" value="<?php echo $row["product_name"]; ?>">
+                                <input type="hidden" name="hidden_name" value="<?php echo $row["product_naam"]; ?>">
                                 <input type="hidden" name="hidden_price" value="<?php echo $row["product_prijs"]; ?>">
                                 <input type="submit" name="add" style="margin-top: 5px;" class="btn btn-success"
                                        value="Add to Cart">
@@ -159,20 +158,20 @@
                         <tr>
                             <td><?php echo $value["item_name"]; ?></td>
                             <td><?php echo $value["item_quantity"]; ?></td>
-                            <td>$ <?php echo $value["product_price"]; ?></td>
+                            <td>&euro; <?php echo $value["product_prijs"]; ?></td>
                             <td>
-                                $ <?php echo number_format($value["item_quantity"] * $value["product_price"], 2); ?></td>
+                                &euro; <?php echo number_format($value["item_quantity"] * $value["product_prijs"], 2); ?></td>
                             <td><a href="Cart.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span
                                         class="text-danger">Remove Item</span></a></td>
 
                         </tr>
                         <?php
-                        $total = $total + ($value["item_quantity"] * $value["product_price"]);
+                        $total = $total + ($value["item_quantity"] * $value["product_prijs"]);
                     }
                         ?>
                         <tr>
                             <td colspan="3" align="right">Total</td>
-                            <th align="right">$ <?php echo number_format($total, 2); ?></th>
+                            <th align="right">&euro; <?php echo number_format($total, 2); ?></th>
                             <td></td>
                         </tr>
                         <?php
