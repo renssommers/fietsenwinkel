@@ -1,5 +1,7 @@
 <?php
 
+    session_start();
+
 	function OpenCon()
 	{
 		$dbhost = "mgoossens.gcmediavormgeving.nl";
@@ -18,6 +20,7 @@
      }
      
     $con = Opencon();
+
 
 
     if (isset($_POST["add"])){
