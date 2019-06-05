@@ -128,7 +128,7 @@
                                 <a href="#">5 Reviews</a>
                                 <a href="#">Add your review</a>
                             </div> -->
-                            <h4 style="padding-top: 15px;"><?php echo $row["product_prijs"]; ?></h4>
+                            <h4 style="padding-top: 15px;">&euro;<?php echo $row["product_prijs"]; ?></h4>
                             <p><?php echo $row["product_omschrijving"]; ?></p>
                             <!-- <div class="p_color">
                                 <h4 class="p_d_title">color <span>*</span></h4>

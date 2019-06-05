@@ -14,30 +14,15 @@
     </execution>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/fietsenwinkel/frontend/categories-left-sidebar.php">
+        <entry file="file://$PROJECT_DIR$/fietsenwinkel/frontend/product-details.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="214" column="8" selection-start-line="214" selection-start-column="8" selection-end-line="214" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fietsenwinkel/frontend/categories-left-sidebar.1.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="208" column="8" selection-start-line="208" selection-start-column="8" selection-end-line="208" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fietsenwinkel/frontend/footer.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
+            <state relative-caret-position="476">
+              <caret line="130" column="65" selection-start-line="130" selection-start-column="65" selection-end-line="130" selection-end-column="65" />
+              <folding>
+                <element signature="e#10697#10703#1#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -60,6 +45,7 @@
         <option value="$PROJECT_DIR$/fietsenwinkel/frontend/404.html" />
         <option value="$PROJECT_DIR$/fietsenwinkel/frontend/footer.php" />
         <option value="$PROJECT_DIR$/fietsenwinkel/frontend/categories-left-sidebar.php" />
+        <option value="$PROJECT_DIR$/fietsenwinkel/frontend/product-details.php" />
       </list>
     </option>
   </component>
@@ -73,6 +59,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -95,7 +82,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -136,18 +122,19 @@
       <workItem from="1558628273014" duration="36000" />
       <workItem from="1558628351968" duration="9000" />
       <workItem from="1558960528886" duration="1968000" />
-      <workItem from="1558962518098" duration="260000" />
+      <workItem from="1558962518098" duration="1079000" />
+      <workItem from="1559559515266" duration="1190000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13527000" />
+    <option name="totallyTimeSpent" value="15536000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20201342" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20469798" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -199,11 +186,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fietsenwinkel/frontend/product-details.php">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/fietsenwinkel/frontend/categories-left-sidebar.1.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="208" column="8" selection-start-line="208" selection-start-column="8" selection-end-line="208" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fietsenwinkel/frontend/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1411" />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fietsenwinkel/frontend/categories-left-sidebar.2.php">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1275" />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fietsenwinkel/frontend/footer.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -212,17 +210,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fietsenwinkel/frontend/categories-left-sidebar.1.php">
+    <entry file="file://$PROJECT_DIR$/fietsenwinkel/frontend/categories-left-sidebar.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="208" column="8" selection-start-line="208" selection-start-column="8" selection-end-line="208" selection-end-column="37" />
+        <state relative-caret-position="491">
+          <caret line="214" column="8" selection-start-line="214" selection-start-column="8" selection-end-line="214" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fietsenwinkel/frontend/categories-left-sidebar.php">
+    <entry file="file://$PROJECT_DIR$/fietsenwinkel/frontend/product-details.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="214" column="8" selection-start-line="214" selection-start-column="8" selection-end-line="214" selection-end-column="8" />
+        <state relative-caret-position="476">
+          <caret line="130" column="65" selection-start-line="130" selection-start-column="65" selection-end-line="130" selection-end-column="65" />
+          <folding>
+            <element signature="e#10697#10703#1#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
