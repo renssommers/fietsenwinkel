@@ -51,9 +51,32 @@
                 <div class="categories_main_inner">
                     <div class="row row_disable">
                         <div class="col-lg-9 float-md-right">
+                        <?php
+                        if (!empty($_GET['reviews'])) {
+                            $nieuwsbrief = $_GET['reviews'];
+                            $insert = "INSERT INTO reviews (review_rating,review_beschrijving)VALUES(Null,'$nieuwsbrief')";
+                        }
+
+                            // include 'databasecon.php';
+                            // $conn = Opencon();
+                            // $QUERY = "SELECT * FROM reviews";
+                           
+                            // $review_rating = $_POST['review_rating'];
+                            // $review_beschrijving = $_POST['review_beschrijving'];
+                            $submit = $_POST['submit'];
+                                if($submit) {
+                                    if ($review_rating&&$review_beschrijving) {
+                                            $insert=mysql_query("INSERT INTO review_beschrijving (review_rating,review_beschrijving) VALUES ('$review_rating', '$review_beschrijving')");
+                                    } else {
+                                        echo "<b>Vul alstublieft alle velden in!</b>";
+                                    }
+                                }
+                        ?>
                            <p> Schrijf hier uw mening over onze website! </p>
                            <p style="float:left;"> Beoordeling in sterren: </p>
-                                <select name="Sterren" style="float:left; margin-left: 10px;">
+                           
+                        <form action="" method="POST">
+                                <select name="review_rating" style="float:left; margin-left: 10px;">
                                         <option value="Selecteer">Selecteer</option>
                                         <option value="1">1 ster</option>
                                         <option value="2">2 sterren</option>
@@ -61,8 +84,9 @@
                                         <option value="4">4 sterren</option>
                                         <option value="5">5 sterren</option>
                                 </select>
-                           <textarea rows="4" cols="50" name="comment" form="usrform" style="width:100%;"></textarea>
-                           <a class="add_cart_btn" href="#">Verzenden</a>
+                           <textarea rows="4" cols="50" name="review_beschrijving" form="usrform" style="width:100%;"></textarea>
+                           <input type="submit" class="add_cart_btn" value="verzenden" name="submit"></a>
+                        </form>
                         </div>
                         <div class="col-lg-3 float-md-right">
                             <div class="categories_sidebar">
