@@ -48,15 +48,64 @@
                 </div>
                 <div class="categories_main_inner">
                     <div class="row row_disable">
+                    <?php 
+                    include 'databasecon.php';
+                    $conn = Opencon();
+                    $QUERY = "SELECT * FROM klanten";
+                    $result = mysqli_query($conn, $QUERY);
+                        if (!empty($_POST)) {
+                            $voornaam = htmlspecialchars($_POST['klant_voornaam']);
+                            $achternaam = htmlspecialchars($_POST['klant_achternaam']);
+                            $woonplaats = htmlspecialchars($_POST['klant_plaats']);
+                            $postcode = htmlspecialchars($_POST['klant_postcode']);
+                            $straat = htmlspecialchars($_POST['klant_straat']);
+                            $huisnummer = htmlspecialchars($_POST['klant_huisnr']);
+                            $telefoonnummer = htmlspecialchars($_POST['klant_telefoon']);
+                            $email = htmlspecialchars($_POST['klant_email']);
+                            $wachtwoord = htmlspecialchars($_POST['klant_wachtwoord']);
+
+                            // $query = "SELECT klant_id FROM klanten WHERE klant_voornaam='$voornaam'";
+
+                            $insert = "UPDATE klanten SET klant_voornaam='$voornaam', klant_achternaam='$achternaam', 
+                            klant_plaats='$woonplaats', klant_postcode='$postcode', 
+                            klant_straat='$straat', klant_huisnr='$huisnummer', 
+                            klant_telefoon='$telefoonnummer', klant_email='$email', 
+                            klant_wachtwoord='$wachtwoord' WHERE klant_id=1";
+                            // $insert = "UPDATE klanten (klant_voornaam,klant_achternaam,klant_plaats,klant_postcode,klant_straat,klant_huisnr,klant_telefoon,klant_email,klant_wachtwoord) 
+                            // VALUES('$voornaam','$achternaam','$woonplaats','$postcode','$straat','$huisnummer','$telefoonnummer','$email','$wachtwoord')";
+
+                            if ($conn->query($insert) === TRUE) {
+                                //Later popup van maken.
+                                echo "<b>U heeft uw profiel aangepast.</b><br><br><br>";
+                                } else {
+                                    echo "Error: " . $insert . "<br>" . $conn->error;
+                                }
+                            }
+
+                    // while ($row = mysqli_fetch_assoc($result)){
+                        $row = mysqli_fetch_assoc($result);
+                    ?>
+
                         <div class="col-lg-9 float-md-right">
-                                <form>
+                                <form action="" method="POST">
                                         <div class="col-lg-2" style="float:left;"> Geslacht </div> 
                                         <div class="col-lg-10" style="float: left;"> 
-                                                <select name="Geslacht">
-                                                        <option value="Selecteer">Selecteer</option>
-                                                        <option value="Man">Man</option>
-                                                        <option value="Vrouw">Vrouw</option>
-                                                </select>
+                                            <select name="Geslacht">
+                                            <?php 
+                                                $geslacht = $row["klant_geslacht"];
+                                                    if ($geslacht == 1) {
+                                            ?>
+                                                <option value="1">Vrouw</option>
+                                                <option value="2">Man</option> 
+                                            <?php
+                                                } else {
+                                            ?>
+                                                <option value="2">Man</option>
+                                                <option value="1">Vrouw</option>
+                                            <?php
+                                            }
+                                            ?>   
+                                            </select>
                                         </div>
 
                                         <!-- <div class="col-lg-2" style="float: left; margin-top: 10px;"> Gebruikersnaam* </div> 
@@ -66,50 +115,52 @@
 
                                         <div class="col-lg-2" style="float: left; margin-top: 10px;"> Voornaam* </div> 
                                         <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
-                                        <input type="text" name="Voornaam" value="Rens" style="width: 35%;"><br>
+                                        <input type="text" name="klant_voornaam" value="<?php echo $row["klant_voornaam"]; ?>" style="width: 35%;" required><br>
                                         </div>
 
                                         <div class="col-lg-2" style="float: left; margin-top: 10px;"> Achternaam* </div> 
                                         <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
-                                        <input type="text" name="Achternaam" value="Sommers" style="width: 35%;"><br>
+                                        <input type="text" name="klant_achternaam" value="<?php echo $row["klant_achternaam"]; ?>" style="width: 35%;" required><br>
                                         </div>
 
                                         <div class="col-lg-2" style="float: left; margin-top: 10px;"> Woonplaats </div> 
                                         <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
-                                        <input type="text" name="Woonplaats" value="Doetinchem" style="width: 35%;"><br>
+                                        <input type="text" name="klant_plaats" value="<?php echo $row["klant_plaats"]; ?>" style="width: 35%;"><br>
                                         </div>
 
                                         <div class="col-lg-2" style="float: left; margin-top: 10px;"> Postcode </div> 
                                         <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
-                                        <input type="text" name="Postcode" value="6911 BV" style="width: 35%;"><br>
+                                        <input type="text" name="klant_postcode" value="<?php echo $row["klant_postcode"]; ?> BV" style="width: 35%;"><br>
                                         </div>
 
                                         <div class="col-lg-2" style="float: left; margin-top: 10px;"> Straat </div> 
                                         <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
-                                        <input type="text" name="Straat" value="Fazantjestraat" style="width: 35%;"><br>
+                                        <input type="text" name="klant_straat" value="<?php echo $row["klant_straat"]; ?>" style="width: 35%;"><br>
                                         </div>
 
                                         <div class="col-lg-2" style="float: left; margin-top: 10px;"> Huisnummer </div> 
                                         <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
-                                        <input type="text" name="Postcode" value="15" style="width: 35%;"><br>
+                                        <input type="text" name="klant_huisnr" value="<?php echo $row["klant_huisnr"]; ?>" style="width: 35%;"><br>
                                         </div>
 
                                         <div class="col-lg-2" style="float: left; margin-top: 10px;"> Telefoonnummer* </div> 
                                         <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
-                                        <input type="text" name="Telefoonnummer" value="0612381487" style="width: 35%;"><br>
+                                        <input type="text" name="klant_telefoon" value="<?php echo $row["klant_telefoon"]; ?>" style="width: 35%;" required><br>
                                         </div>
 
                                         <div class="col-lg-2" style="float: left; margin-top: 10px;"> E-mailadres* </div> 
                                         <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
-                                        <input type="text" name="E-mailadres" value="sommersrensrens@gmail.com" style="width: 35%;"><br>
+                                        <input type="text" name="klant_email" value="<?php echo $row["klant_email"]; ?>" style="width: 35%;" required><br>
                                         </div>
 
                                         <div class="col-lg-2" style="float: left; margin-top: 10px;"> Wachtwoord* </div> 
                                         <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
-                                        <input type="text" name="Wachtwoord" value="Fazantje123" style="width: 35%;"><br>
+                                        <input type="text" name="klant_wachtwoord" value="<?php echo $row["klant_wachtwoord"]; ?>" style="width: 35%;" required><br>
                                         </div>
+                                        <br>
+                                         <input type="submit" class="add_cart_btn" style="cursor: pointer;" value="Opslaan" style="margin-top:30px;" name="submit">
                                 </form>
-                                <a class="add_cart_btn" href="#" style="margin-top:30px;">Opslaan</a>
+                               
                         </div>
                         <div class="col-lg-3 float-md-right">
                             <div class="categories_sidebar">
@@ -127,6 +178,9 @@
                             </div>
                         </div>
                     </div>
+                <?php
+                    // }                    
+                ?>
                 </div>
             </div>
         </section>
