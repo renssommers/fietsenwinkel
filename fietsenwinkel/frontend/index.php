@@ -414,7 +414,30 @@
         <section class="reviews">
             <div class="container" style="padding-bottom: 20px;">
                 <h2 style="float:left; width: 100%; font-size: 24px; font-weight: 600; padding: 55px 0 35px 0;">Wat klanten van ons vinden</h2>
-                
+              
+              
+                                            <!-- <a class="l_p_img" href="product-details.php?id=<?php echo $row["product_id"]; ?>">
+                                                <img src= alt="">
+                                            </a>
+                                            <div class="l_p_text">
+                                               <ul>
+                                                    <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
+                                                </ul>
+                                                <h4><?php echo $row["product_naam"]; ?></h4>
+                                                <h5><del></del>  €<?php echo $row["product_prijs"]; ?></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    -->
+
+                <?php 
+                    include 'databasecon.php';
+                    $conn = Opencon();
+                    $QUERY = "SELECT * FROM reviews ";
+                    $result = mysqli_query($conn, $QUERY);
+                    while ($row = mysqli_fetch_assoc($result)){
+                ?>
+
                 <div class="card" style="margin-bottom: 30px;">
                     <div class="card-body">
                         <div class="row">
@@ -422,44 +445,66 @@
                                 <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
                                 <p class="text-secondary text-center">15 Minutes Ago</p>
                             </div> -->
+
                             <div class="col-md-12">
                                 <p>
-                                    <h4 class="float-left" style=" font-size: 22px; padding-bottom: 10px;">Pieter post</h3>
-                                    <span class="float-right" style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                    <span class="float-right" style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                    <span class="float-right" style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                    <span class="float-right" style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                    <span class="float-right" style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
+                                    <?php 
+                                    $rating = $row["review_rating"];
+                                    if ($rating == 5) {
+                                       ?>
+                                          <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
+                                    <?php
+                                    } elseif ($rating == 4) {
+                                        ?>
+                                          <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
+                                    <?php
+                                    } elseif ($rating == 3) {
+                                        ?>
+                                          <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
+                                    <?php
+                                    } elseif ($rating == 2) {
+                                        ?>
+                                          <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
+                                    <?php
+                                    } else {
+                                        ?>
+                                          <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
+                                          <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
+                                    <?php   
+                                    }
+                                    ?>
+                                    
+                                 
                                </p>
                                <div class="clearfix"></div>
-                                <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                <p><?php echo $row["review_beschrijving"]; ?></p>
                             </div>
+
                         </div>
                     </div>
                 </div>
-
-                <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <!-- <div class="col-md-2">
-                                    <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
-                                    <p class="text-secondary text-center">15 Minutes Ago</p>
-                                </div> -->
-                                <div class="col-md-12">
-                                    <p>
-                                        <h4 class="float-left" style="font-size: 22px; padding-bottom: 10px;">Petra Fazantje</h3>
-                                        <span class="float-right" style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                        <span class="float-right" style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                        <span class="float-right" style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                        <span class="float-right" style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                        <span class="float-right" style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                   </p>
-                                   <div class="clearfix"></div>
-                                    <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <?php
+                                    }
+                            ?>
                     <a class="abonneer_btn" href="reviewtoevoegen.php" style="margin-bottom: 30px; background: #4599FB !important; border: 1px solid #4599FB !important;">Voeg zelf een review toe</a>
             </div>
         </section>
