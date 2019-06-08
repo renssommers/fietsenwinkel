@@ -228,91 +228,35 @@
                 <div class="s_m_title">
                     <h2>Aanbiedingen:</h2>
                 </div>
+
                 <div class="l_product_slider owl-carousel">
-                    <div class="item">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <img src="img/product/Damesfiets1.jpg" alt="">
-                            </div>
-                            <div class="l_p_text">
-                                <ul>
-                                        <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
-                                </ul>
-                                <h4>Dames fiets model 1</h4>
-                                <h5><del>€219,99</del>  €180</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <img src="img/product/Damesfiets2.jpg" alt="">
-                            </div>
-                            <div class="l_p_text">
-                            <ul>
-                                    <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
-                                </ul>
-                                <h4>Dames fiets model 2</h4>
-                                <h5><del>€499,99</del>  €424</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <img src="img/product/Herenfiets1.jpg" alt="">
-                            </div>
-                            <div class="l_p_text">
-                            <ul>
-                                    <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
-                                </ul>
-                                <h4>Heren fiets model 1</h4>
-                                <h5><del>€149</del>  €125</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="l_product_item">
-                            <div class="l_p_img">
-                                <img src="img/product/Herenfiets2.jpg" alt="">
-                            </div>
-                            <div class="l_p_text">
-                            <ul>
-                                    <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
-                                </ul>
-                                <h4>Heren fiets model 2</h4>
-                                <h5><del>€294</del>  €265</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                            <div class="l_product_item">
-                                <div class="l_p_img">
-                                    <img src="img/product/Kinderfiets1.jpg" alt="">
-                                </div>
-                                <div class="l_p_text">
-                                <ul>
-                                        <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
-                                    </ul>
-                                    <h4>Kinder fiets model 1</h4>
-                                    <h5><del>€135</del>  €110</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
+                    <?php 
+                    include 'databasecon.php';
+                    $conn = Opencon();
+                    $QUERY = "SELECT * FROM producten WHERE actie = 1";
+                    $result = mysqli_query($conn, $QUERY);
+                     
+                            while ($row = mysqli_fetch_assoc($result)){
+                                 
+                                  ?>
+                                  <div class="item">
                                 <div class="l_product_item">
-                                    <div class="l_p_img">
-                                        <img src="img/product/Kinderfiets2.jpg" alt="">
-                                    </div>
+                                    <a class="l_p_img" href="product-details.php?id=<?php echo $row["product_id"]; ?>">
+                                        <img src=<?php echo $row["product_fotos"]; ?> alt="">
+                                      
+                                    </a>
                                     <div class="l_p_text">
-                                    <ul>
+                                       <ul>
                                             <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
                                         </ul>
-                                        <h4>Kinder fiets model 2</h4>
-                                        <h5><del>€99,99</del>  €65</h5>
+                                        <h4><?php echo $row["product_naam"]; ?></h4>
+                                        <h5><b style="color:#FF9029; font-weight: lighter; padding-right: 5px;">Actieprijs: </b> €<?php echo $row["product_prijs"]; ?></h5>
                                     </div>
                                 </div>
-                            </div>
+                                  </div>
+                    <?php
+                     }
+                    ?>
                 </div>
             </div>
     </section>
@@ -328,14 +272,10 @@
 
                     <div class="l_product_slider owl-carousel">
                     
-
-                    
-                    <?php 
-                      include 'databasecon.php';
-                      $conn = Opencon();
-                      $QUERY = "SELECT * FROM producten ORDER BY `datum_toegevoegd` DESC LIMIT 10";
-                      $result = mysqli_query($conn, $QUERY);
-                      
+                            <?php 
+                            $QUERY = "SELECT * FROM producten ORDER BY `datum_toegevoegd` DESC LIMIT 10";
+                            $result = mysqli_query($conn, $QUERY);
+                            
                                     while ($row = mysqli_fetch_assoc($result)){
                                           ?>
                                           <div class="item">
