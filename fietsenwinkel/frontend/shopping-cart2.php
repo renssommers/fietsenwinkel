@@ -137,6 +137,9 @@
                                         <?php
                                             }
                                         }
+                                     else {
+                                        echo '<script>window.location="empty-cart.php"</script>';
+                                    }
                                         ?>
                                     </tbody>
                                 </table>

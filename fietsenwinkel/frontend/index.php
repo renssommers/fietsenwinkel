@@ -37,7 +37,40 @@
     </head>
     <body>
     
-        <?php include 'header.php' ?>
+        <?php
+        
+        session_start();
+
+        if (isset($_POST["add"])){
+            if (isset($_SESSION["cart"])){
+                $item_array_id = array_column($_SESSION["cart"],"product_id");
+                if (!in_array($_GET["id"],$item_array_id)){
+                    $count = count($_SESSION["cart"]);
+                    $item_array = array(
+                        'product_id' => $_GET["id"],
+                        'item_name' => $_POST["hidden_name"],
+                        'product_prijs' => $_POST["hidden_price"],
+                        'item_quantity' => $_POST["quantity"],
+                    );
+                    $_SESSION["cart"][$count] = $item_array;
+                    echo '<script>window.location="Cart.php"</script>';
+                }else{
+                    echo '<script>alert("Product is already Added to Cart")</script>';
+                }
+            }else{
+                $item_array = array(
+                    'product_id' => $_GET["id"],
+                    'item_name' => $_POST["hidden_name"],
+                    'product_prijs' => $_POST["hidden_price"],
+                    'item_quantity' => $_POST["quantity"],
+                );
+                $_SESSION["cart"][0] = $item_array;
+            }
+        }
+        
+        include 'header.php';
+        include 'databasecon.php';
+         ?>
         
         <!--================Slider Area =================-->
         <section class="main_slider_area">
@@ -231,7 +264,6 @@
 
                 <div class="l_product_slider owl-carousel">
                     <?php 
-                    include 'databasecon.php';
                     $conn = Opencon();
                     $QUERY = "SELECT * FROM producten WHERE actie = 1";
                     $result = mysqli_query($conn, $QUERY);
@@ -241,17 +273,24 @@
                                   ?>
                                   <div class="item">
                                 <div class="l_product_item">
-                                    <a class="l_p_img" href="product-details.php?id=<?php echo $row["product_id"]; ?>">
-                                        <img src=<?php echo $row["product_fotos"]; ?> alt="">
-                                      
-                                    </a>
-                                    <div class="l_p_text">
-                                       <ul>
-                                            <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
-                                        </ul>
-                                        <h4><?php echo $row["product_naam"]; ?></h4>
-                                        <h5><b style="color:#FF9029; font-weight: lighter; padding-right: 5px;">Actieprijs: </b> €<?php echo $row["product_prijs"]; ?></h5>
-                                    </div>
+                                    <form method="post" action="shopping-cart2.php?action=add&id=<?php echo $row["product_id"]; ?>">
+                                        <a class="l_p_img" href="product-details.php?id=<?php echo $row["product_id"]; ?>">
+                                            <img src=<?php echo $row["product_fotos"]; ?> alt="">
+                                        
+                                        </a>
+                                        <div class="l_p_text">
+                                        <ul>
+                                            <input type="submit" name="add" style="margin-top: 5px;" class="add_cart_btn"
+                                            value="In winkelwagen">
+                                            </ul>
+                                            <h4><?php echo $row["product_naam"]; ?></h4>
+                                            <h5><b style="color:#FF9029; font-weight: lighter; padding-right: 5px;">Actieprijs: </b> €<?php echo $row["product_prijs"]; ?></h5>
+                                            
+                                            
+                                            <input type="hidden" name="hidden_name" value="<?php echo $row["product_naam"]; ?>">
+                                            <input type="hidden" name="hidden_price" value="<?php echo $row["product_prijs"]; ?>">
+                                        </div>
+                                    </form>
                                 </div>
                                   </div>
                     <?php
@@ -272,30 +311,36 @@
 
                     <div class="l_product_slider owl-carousel">
                     
-                            <?php 
-                            $QUERY = "SELECT * FROM producten ORDER BY `datum_toegevoegd` DESC LIMIT 10";
-                            $result = mysqli_query($conn, $QUERY);
-                            
-                                    while ($row = mysqli_fetch_assoc($result)){
-                                          ?>
-                                          <div class="item">
-                                        <div class="l_product_item">
+                    <?php 
+                      $conn = Opencon();
+                      $QUERY = "SELECT * FROM producten ORDER BY `datum_toegevoegd` DESC LIMIT 10";
+                      $result = mysqli_query($conn, $QUERY);
+                      
+                            while ($row = mysqli_fetch_assoc($result)){
+                                    ?>
+                                <div class="item">
+                                     <div class="l_product_item">
+                                     <form method="post" action="shopping-cart2.php?action=add&id=<?php echo $row["product_id"]; ?>">
                                             <a class="l_p_img" href="product-details.php?id=<?php echo $row["product_id"]; ?>">
-                                                <img src=<?php echo $row["product_fotos"]; ?> alt="">
-                                              
+                                            <img src=<?php echo $row["product_fotos"]; ?> alt="">
                                             </a>
                                             <div class="l_p_text">
-                                               <ul>
-                                                    <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
+                                                <ul>
+                                                <input type="submit" name="add" style="margin-top: 5px;" class="add_cart_btn"
+                                                value="In winkelwagen">
                                                 </ul>
                                                 <h4><?php echo $row["product_naam"]; ?></h4>
                                                 <h5><del></del>  €<?php echo $row["product_prijs"]; ?></h5>
+                                                
+                                                <input type="hidden" name="hidden_name" value="<?php echo $row["product_naam"]; ?>">
+                                                <input type="hidden" name="hidden_price" value="<?php echo $row["product_prijs"]; ?>">
                                             </div>
-                                        </div>
-                                          </div>
-                                    <?php
-                                    }
-                                    ?>
+                                        </form>
+                                    </div>
+                                </div>
+                            <?php
+                            }
+                            ?>
                         </div>
                       
 
