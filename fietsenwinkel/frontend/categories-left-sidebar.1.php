@@ -38,6 +38,9 @@
     </head>
     <body>
     <?php 
+
+            session_start();
+
             include 'databasecon.php';
             $conn = Opencon();
             if (empty($_GET['price']))
@@ -50,12 +53,39 @@
             elseif($_GET['price']==2){
                 $QUERY = "SELECT * FROM producten WHERE product_categorie = 'heren'" . (isset($_GET['kleur']) ? " AND product_kleur = " . $_GET['kleur'] : "") . (isset($_GET['price']) ? " AND product_prijs >= 300 AND product_prijs <= 600 " : "");
             }
+
+            if (isset($_POST["add"])){
+                if (isset($_SESSION["cart"])){
+                    $item_array_id = array_column($_SESSION["cart"],"product_id");
+                    if (!in_array($_GET["id"],$item_array_id)){
+                        $count = count($_SESSION["cart"]);
+                        $item_array = array(
+                            'product_id' => $_GET["id"],
+                            'item_name' => $_POST["hidden_name"],
+                            'product_prijs' => $_POST["hidden_price"],
+                            'item_quantity' => $_POST["quantity"],
+                        );
+                        $_SESSION["cart"][$count] = $item_array;
+                        echo '<script>window.location="shopping-cart2.php"</script>';
+                    }else{
+                        echo '<script>alert("Product is already Added to Cart")</script>';
+                    }
+                }else{
+                    $item_array = array(
+                        'product_id' => $_GET["id"],
+                        'item_name' => $_POST["hidden_name"],
+                        'product_prijs' => $_POST["hidden_price"],
+                        'item_quantity' => $_POST["quantity"],
+                    );
+                    $_SESSION["cart"][0] = $item_array;
+                }
+            }
             
             $result = mysqli_query($conn, $QUERY);
             CloseCon($conn);
     ?>
-        
-          <!--================Top Header Area =================-->
+
+  <!--================Top Header Area =================-->
   <header class="shop_header_area carousel_menu_area">
                 <!-- <div class="carousel_top_header row m0">
                     <div class="container">
@@ -102,7 +132,7 @@
     
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item dropdown submenu">
+                                    <li class="nav-item dropdown submenu active">
                                         <a class="nav-link dropdown-toggle" href="categories-left-sidebar.php">
                                         Dames
                                         </a>
@@ -115,7 +145,7 @@
                                             <li class="nav-item"><a class="nav-link" href="home-fixed-menu.html">Home Fixed</a></li>
                                         </ul> -->
                                     </li>
-                                    <li class="nav-item dropdown submenu active">
+                                    <li class="nav-item dropdown submenu">
                                         <a class="nav-link dropdown-toggle" href="categories-left-sidebar.1.php">
                                         Heren
                                         </a>
@@ -172,7 +202,7 @@
                 </div>
             </header>
         <!--================End Menu Area =================-->
-        
+
         <!--================Categories Product Area =================-->
         <section class="categories_product_main p_80">
             <div class="container">
@@ -209,31 +239,38 @@
                                         <a href="#"><i class="icon_grid-3x3"></i></a>
                                     </div> -->
                                 </div>
-                            </div>
+                            </div> 
                             
                             <div class="categories_product_area">
                                 <div class="row">
-                                    <?php 
-                                    while ($row = mysqli_fetch_assoc($result)){
-                                        ?>
-                                        <div class="col-lg-4 col-sm-6">
+                            <?php 
+                                while ($row = mysqli_fetch_array($result)) {
+                                ?>
+                                <div class="col-lg-4 col-sm-6">
+                                <form method="post" action="shopping-cart2.php?action=add&id=<?php echo $row["product_id"]; ?>">
+
                                         <div class="l_product_item">
                                             <a class="l_p_img" href="product-details.php?id=<?php echo $row["product_id"]; ?>">
                                                 <img src=<?php echo $row["product_fotos"]; ?> alt="">
                                                 <!-- <h5 class="new">Nieuw</h5> -->
                                             </a>
                                             <div class="l_p_text">
-                                               <ul>
-                                                    <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
+                                                <ul>
+                                                <input type="submit" name="add" style="margin-top: 5px;" class="add_cart_btn"
+                                                value="In winkelwagen">
                                                 </ul>
                                                 <h4><?php echo $row["product_naam"]; ?></h4>
                                                 <h5><del></del>  €<?php echo $row["product_prijs"]; ?></h5>
+                                                <input type="hidden" name="hidden_name" value="<?php echo $row["product_naam"]; ?>">
+                                                <input type="hidden" name="hidden_price" value="<?php echo $row["product_prijs"]; ?>">
+                                                
                                             </div>
                                         </div>
-                                    </div>
-                                    <?php
-                                    }
-                                    ?>
+                                    </form>
+                                </div>
+                            <?php
+                            }
+                            ?>
 
                                 </div>
                                 <!-- <nav aria-label="Page navigation example" class="pagination_area">
@@ -257,7 +294,7 @@
                                     </div>
                                     <ul class="navbar-nav">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Dames fietsen</a>
+                                            <a class="nav-link" href="#">heren fietsen</a>
                                         </li>
                                         <li class="nav-item">
                                                 <a class="nav-link" href="#">Heren fietsen</a>
@@ -271,15 +308,20 @@
                                         <div class="l_w_title">
                                             <h3>Kleur</h3>
                                         </div>
+            
                                         <ul>
                                             <li><a class="grijs" href="?kleur=1"></a></li>                                    
                                             <li><a class="zwart" href="?kleur=2"></a></li>
                                             <li><a class="multicolor" href="?kleur=3"></a></li>
                                             <br>
-                                            <li><a href="categories-left-sidebar.1.php"> Reset filter </a></li>
+                                            <li><a href="categories-left-sidebar.php"> Reset filter </a></li>
                                         </ul> 
+
+
+
+                                    
                                     </aside>
-                                <aside class="l_widgest l_fillter_widget">
+                                    <aside class="l_widgest l_fillter_widget">
                                     <div class="l_w_title">
                                         <h3>Prijs</h3>
                                     </div>
@@ -289,7 +331,7 @@
                                         <label style="padding:0 20px 0 0;">0-300<input type="radio" name="price" value="1"/></label>
                                         <label style="padding:0px;">300-600<input type="radio" name="price" value="2"/></label>
                                         <br><input type="submit" style="margin-top:15px;">
-                                        <br> <a href="categories-left-sidebar.1.php"> Reset filter </a>
+                                        <br> <a href="categories-left-sidebar.php"> Reset filter </a>
                                     </form> 
                                     <?php
                                     function getQuery($form){
@@ -303,7 +345,7 @@
                                     return $query;
                                     }
                                     ?>
-                                </aside>
+
 
 
                                     <!-- <div id="slider-range" class="ui_slider"></div>
@@ -311,8 +353,7 @@
                                     <input type="text" id="amount" readonly>
                                     <br>
                                     <a class="abonneer_btn" href="index.html">Filter</a> -->
-                               
-
+                                </aside>
                                 <!-- <aside class="l_widgest l_menufacture_widget">
                                     <div class="l_w_title">
                                         <h3>Manufacturer</h3>
@@ -355,12 +396,9 @@
             </div>
         </section>
         <!--================End Categories Product Area =================-->
-        
+
         <?php include 'footer.php' ?>
-        
-        
-        
-        
+
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="js/jquery-3.2.1.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->

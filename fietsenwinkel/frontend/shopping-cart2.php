@@ -36,9 +36,59 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body>
+    <body> 
         
-    <?php include 'header.php' ?>
+    <?php
+
+    
+    session_start();
+    include 'header.php';
+
+
+    if (isset($_POST["add"])){
+        if (isset($_SESSION["cart"])){
+            $item_array_id = array_column($_SESSION["cart"],"product_id");
+            if (!in_array($_GET["id"],$item_array_id)){
+                $count = count($_SESSION["cart"]);
+                $item_array = array(
+                    'product_id' => $_GET["id"],
+                    'item_name' => $_POST["hidden_name"],
+                    'product_prijs' => $_POST["hidden_price"],
+                );
+                $_SESSION["cart"][$count] = $item_array;
+                echo '<script>alert("Product has been added to the cart!")</script>';
+                echo '<script>window.location="shopping-cart2.php"</script>';
+            }else{
+                echo '<script>alert("Product is already Added to Cart")</script>';
+            }
+        }else{
+            $item_array = array(
+                'product_id' => $_GET["id"],
+                'item_name' => $_POST["hidden_name"],
+                'product_prijs' => $_POST["hidden_price"],
+            );
+            $_SESSION["cart"][0] = $item_array;
+        }
+    }
+
+    if (isset($_GET["action"])){
+        if ($_GET["action"] == "delete"){
+            foreach ($_SESSION["cart"] as $keys => $value){
+                if ($value["product_id"] == $_GET["id"]){
+                    unset($_SESSION["cart"][$keys]);
+                    echo '<script>window.location="shopping-cart2.php"</script>';
+                }
+            }
+        }
+    }
+
+    include 'databasecon.php';
+    $conn = Opencon();
+    $QUERY = "SELECT * FROM producten WHERE product_id = " . (empty($_GET['id']) ? 0 : $_GET['id']);
+    $result = mysqli_query($conn, $QUERY);
+    $row = mysqli_fetch_assoc($result);
+    CloseCon($conn);
+    ?>
         
         <!--================Shopping Cart Area =================-->
         <section class="shopping_cart_area p_100">
@@ -52,84 +102,42 @@
                             <div class="table-responsive-md">
                                 <table class="table">
                                     <tbody>
+                                    <?php
+                                    if(!empty($_SESSION["cart"])){
+                                        $total = 0;
+                                        foreach ($_SESSION["cart"] as $key => $value) {
+                                        ?>
                                         <tr>
                                             <th scope="row">
-                                                <img src="img/icon/close-icon.png" alt="">
+                                            <a href="shopping-cart2.php?action=delete&id=<?php echo $value["product_id"]; ?>">
+                                                <img src="img/icon/close-icon.png" alt=""></a>
                                             </th>
                                             <td>
                                                 <div class="media">
                                                     <div class="d-flex">
-                                                        <img src="img/product/cart-product/cart-3.jpg" alt="">
+                                                        <?php
+                                                        if(mysqli_num_rows($result) > 0) {
+                                            
+                                                            while ($row = mysqli_fetch_array($result)) {
+                                                        ?>
+                                                       <img src=<?php echo $row["product_fotos"]; ?>  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
+                                                        <?php
+                                                        $total = $total + ($value["product_prijs"]); 
+                                                        
+                                                            }
+                                                        } ?>
                                                     </div>
                                                     <div class="media-body">
-                                                        <h4>Round Sunglasses</h4>
+                                                    <td><?php echo $value["item_name"]; ?></td>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <!-- <td><p class="red">€150</p></td> -->
-                                            <!-- <td>
-                                                <div class="quantity">
-                                                    <h6>Aantal</h6>
-                                                    <div class="custom">
-                                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
-                                                        <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-                                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
-                                                    </div>
-                                                </div>
-                                            </td> -->
-                                            <td><p>€150</p></td>
+                                            <td>&euro; <?php echo number_format($value["product_prijs"], 2); ?></td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <img src="img/icon/close-icon.png" alt="">
-                                            </th>
-                                            <td>
-                                                <div class="media">
-                                                    <div class="d-flex">
-                                                        <img src="img/product/cart-product/cart-4.jpg" alt="">
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h4>Adidas Trefoil Black </h4>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <!-- <td><p class="red">$150</p></td> -->
-                                            <!-- <td>
-                                                <div class="quantity">
-                                                    <h6>Aantal</h6>
-                                                    <div class="custom">
-                                                        <button onclick="var result = document.getElementById('sst2'); var sst2 = result.value; if( !isNaN( sst2 ) &amp;&amp; sst2 > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
-                                                        <input type="text" name="qty" id="sst2" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-                                                        <button onclick="var result = document.getElementById('sst2'); var sst2 = result.value; if( !isNaN( sst2 )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
-                                                    </div>
-                                                </div>
-                                            </td> -->
-                                            <td><p>€250</p></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                            </th>
-                                        </tr>
-                                        <!-- <tr class="last">
-                                            <th scope="row">
-                                                <img src="img/icon/cart-icon.png" alt="">
-                                            </th>
-                                            <td>
-                                                <div class="media">
-                                                    <div class="d-flex">
-                                                        <h5>Cupon code</h5>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <input type="text" placeholder="Apply cuopon">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td><p class="red"></p></td>
-                                            <td>
-                                                <h3>update cart</h3>
-                                            </td>
-                                            <td></td>
-                                        </tr> -->
+                                        <?php
+                                            }
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -138,39 +146,16 @@
                     <div class="col-lg-4">
                         <div class="cart_totals_area">
                             <h4>Checkout</h4>
-                            <div class="cart_t_list">
-                                <!-- <div class="media">
-                                    <div class="d-flex">
-                                        <h5>Verzending</h5>
-                                    </div>
-                                    <div class="media-body">
-                                        <h6 style="padding-left:10px;">€14,99</h6>
-                                    </div>
-                                </div> -->
-                                <!-- <div class="media">
-                                    <div class="d-flex">
-                                        <h5>Verzending</h5>
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model tex</p>
-                                    </div>
-                                </div> -->
-                                <!-- <div class="media">
-                                    <div class="d-flex">
-                                        
-                                    </div>
-                                    <div class="media-body">
-                                            <strong>Bereken verzendkosten</strong>
-                                    </div>
-                                </div> -->
-                            </div>
                             <div class="total_amount row m0 row_disable">
                                 <div class="float-left">
                                     Totaal
                                 </div>
                                 <div class="float-right">
-                                    €414,99
-                                </div>
+                                <?php
+                                    $total = 0;
+                                    $total = $total += $value["product_prijs"];
+                                    ?>
+                                        <th align="right">&euro; <?php echo number_format($total, 2); ?></th>
                             </div>
                         </div>
                         <a type="submit" value="submit" href="register.php" class="btn subs_btn form-control">Afrekenen</a>

@@ -69,7 +69,6 @@
                         echo '<script>window.location="Cart.php"</script>';
                     }else{
                         echo '<script>alert("Product is already Added to Cart")</script>';
-                        echo '<script>window.location="Cart.php"</script>';
                     }
                 }else{
                     $item_array = array(
@@ -79,18 +78,6 @@
                         'item_quantity' => $_POST["quantity"],
                     );
                     $_SESSION["cart"][0] = $item_array;
-                }
-            }
-        
-            if (isset($_GET["action"])){
-                if ($_GET["action"] == "delete"){
-                    foreach ($_SESSION["cart"] as $keys => $value){
-                        if ($value["product_id"] == $_GET["id"]){
-                            unset($_SESSION["cart"][$keys]);
-                            echo '<script>alert("Product has been Removed...!")</script>';
-                            echo '<script>window.location="Cart.php"</script>';
-                        }
-                    }
                 }
             }
             
@@ -252,31 +239,38 @@
                                         <a href="#"><i class="icon_grid-3x3"></i></a>
                                     </div> -->
                                 </div>
-                            </div>
+                            </div> 
                             
                             <div class="categories_product_area">
                                 <div class="row">
-                                    <?php 
-                                    while ($row = mysqli_fetch_assoc($result)){
-                                        ?>
-                                        <div class="col-lg-4 col-sm-6">
+                            <?php 
+                                while ($row = mysqli_fetch_array($result)) {
+                                ?>
+                                <div class="col-lg-4 col-sm-6">
+                                <form method="post" action="shopping-cart2.php?action=add&id=<?php echo $row["product_id"]; ?>">
+
                                         <div class="l_product_item">
                                             <a class="l_p_img" href="product-details.php?id=<?php echo $row["product_id"]; ?>">
                                                 <img src=<?php echo $row["product_fotos"]; ?> alt="">
                                                 <!-- <h5 class="new">Nieuw</h5> -->
                                             </a>
                                             <div class="l_p_text">
-                                               <ul>
-                                                    <li><a class="add_cart_btn" href="#">In winkelwagen</a></li>
+                                                <ul>
+                                                <input type="submit" name="add" style="margin-top: 5px;" class="add_cart_btn"
+                                                value="In winkelwagen">
                                                 </ul>
                                                 <h4><?php echo $row["product_naam"]; ?></h4>
                                                 <h5><del></del>  €<?php echo $row["product_prijs"]; ?></h5>
+                                                <input type="hidden" name="hidden_name" value="<?php echo $row["product_naam"]; ?>">
+                                                <input type="hidden" name="hidden_price" value="<?php echo $row["product_prijs"]; ?>">
+                                                
                                             </div>
                                         </div>
-                                    </div>
-                                    <?php
-                                    }
-                                    ?>
+                                    </form>
+                                </div>
+                            <?php
+                            }
+                            ?>
 
                                 </div>
                                 <!-- <nav aria-label="Page navigation example" class="pagination_area">

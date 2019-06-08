@@ -38,7 +38,57 @@
     </head>
     <body>
         
-        <?php include 'header.php' ?>
+    <?php
+    
+    session_start();
+    include 'header.php';
+
+
+    if (isset($_POST["add"])){
+        if (isset($_SESSION["cart"])){
+            $item_array_id = array_column($_SESSION["cart"],"product_id");
+            if (!in_array($_GET["id"],$item_array_id)){
+                $count = count($_SESSION["cart"]);
+                $item_array = array(
+                    'product_id' => $_GET["id"],
+                    'item_name' => $_POST["hidden_name"],
+                    'product_prijs' => $_POST["hidden_price"],
+                );
+                $_SESSION["cart"][$count] = $item_array;
+                echo '<script>window.location="categories-left-sidebar.php"</script>';
+            }else{
+                echo '<script>alert("Product is already Added to Cart")</script>';
+                echo '<script>window.location="categories-left-sidebar.php"</script>';
+            }
+        }else{
+            $item_array = array(
+                'product_id' => $_GET["id"],
+                'item_name' => $_POST["hidden_name"],
+                'product_prijs' => $_POST["hidden_price"],
+            );
+            $_SESSION["cart"][0] = $item_array;
+        }
+    }
+
+    if (isset($_GET["action"])){
+        if ($_GET["action"] == "delete"){
+            foreach ($_SESSION["cart"] as $keys => $value){
+                if ($value["product_id"] == $_GET["id"]){
+                    unset($_SESSION["cart"][$keys]);
+                    echo '<script>alert("Product has been Removed...!")</script>';
+                    echo '<script>window.location="categories-left-sidebar.php"</script>';
+                }
+            }
+        }
+    }
+
+    include 'databasecon.php';
+    $conn = Opencon();
+    $QUERY = "SELECT * FROM producten WHERE product_id = " . (empty($_GET['id']) ? 0 : $_GET['id']);
+    $result = mysqli_query($conn, $QUERY);
+    $row = mysqli_fetch_assoc($result);
+    CloseCon($conn);
+    ?>
         
         <!--================Register Area =================-->
         <section class="register_area p_100">
@@ -49,62 +99,32 @@
                             <div class="billing_details">
                                 <h2 class="reg_title">Factuur gegevens</h2>
                                 <form class="billing_inner row">
-                                    <!-- <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="cun">Country <span>*</span></label>
-                                            <select class="selectpicker" id="cun">
-                                                <option>United State America (USA)</option>
-                                                <option>Bangladesh (BAN)</option>
-                                                <option>United State America (USA)</option>
-                                            </select>
-                                        </div>
-                                    </div> -->
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label for="name">Voornaam <span>*</span></label>
-                                            <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="">
+                                            <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label for="last">Achternaam <span>*</span></label>
-                                            <input type="text" class="form-control" id="last" aria-describedby="last">
+                                            <input type="text" class="form-control" id="last" aria-describedby="last" required>
                                         </div>
                                     </div>
-                                    <!-- <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="cname">Company Name <span>*</span></label>
-                                            <select class="selectpicker" id="cname">
-                                                <option>United State America (USA)</option>
-                                                <option>Bangladesh (BAN)</option>
-                                                <option>United State America (USA)</option>
-                                            </select>
-                                        </div>
-                                    </div> -->
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label for="address">Straatnaam + huisnummer <span>*</span></label>
-                                            <input type="text" class="form-control" id="address" aria-describedby="address">
+                                            <input type="text" class="form-control" id="address" aria-describedby="address" required>
                                             <!-- <input type="text" class="form-control" id="address2" aria-describedby="address"> -->
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label for="address">Postcode <span>*</span></label>
-                                                <input type="text" class="form-control" id="address" aria-describedby="address">
+                                                <input type="text" class="form-control" id="address" aria-describedby="address" required>
                                                 <!-- <input type="text" class="form-control" id="address2" aria-describedby="address"> -->
                                             </div>
                                         </div>
-                                    <!-- <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="ctown">City / Town <span>*</span></label>
-                                            <select class="selectpicker" id="ctown">
-                                                <option>United State America (USA)</option>
-                                                <option>Bangladesh (BAN)</option>
-                                                <option>United State America (USA)</option>
-                                            </select>
-                                        </div>
-                                    </div> -->
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label for="email">E-mail <span>*</span></label>
@@ -117,55 +137,6 @@
                                             <input type="text" class="form-control" id="phone" aria-describedby="phone">
                                         </div>
                                     </div>
-                                    <!-- <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <div class="creat_account">
-                                                <input type="checkbox" id="f-option" name="selector">
-                                                <label for="f-option">Ship to a different address?</label>
-                                                <div class="check"></div>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                    <!-- <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="cunt">Country <span>*</span></label>
-                                            <select class="selectpicker" id="cunt">
-                                                <option>United State America (USA)</option>
-                                                <option>Bangladesh (BAN)</option>
-                                                <option>United State America (USA)</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="name2">First Name <span>*</span></label>
-                                            <input type="text" class="form-control" id="name2" aria-describedby="name2" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="last2">Last Name <span>*</span></label>
-                                            <input type="text" class="form-control" id="last2" aria-describedby="last2">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="company">Company Name <span>*</span></label>
-                                            <input type="text" class="form-control" id="company" aria-describedby="company">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="city">City / Town <span>*</span></label>
-                                            <input type="text" class="form-control" id="city" aria-describedby="city">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="order">Order Notes <span>*</span></label>
-                                            <textarea class="form-control" id="order" rows="3"></textarea>
-                                        </div>
-                                    </div> -->
                                 </form>
                             </div>
                         </div>
@@ -174,10 +145,18 @@
                                 <h2 class="reg_title">Uw bestelling</h2>
                                 <div class="payment_list">
                                     <div class="price_single_cost">
-                                        <h5>Mens Casual Shirt <span>€450</span></h5>
-                                        <!-- <h5>Verzendkosten <span>€14,99</span></h5> -->
+                                    <?php
+                                    if(!empty($_SESSION["cart"])){
+                                        $total = 0;
+                                        foreach ($_SESSION["cart"] as $key => $value) {
+                                        ?>
+                                        <h5><?php echo $value["item_name"]; ?><span>€450</span></h5>
                                         <h4>Subtotaal <span>€450</span></h4>
                                         <h3><span class="normal_text">Totaal bedrag</span> <span>€450</span></h3>
+                                        <?php
+                                        }
+                                        }
+                                        ?>
                                     </div>
                                     <div id="accordion" role="tablist" class="price_method">
                                         <div class="card">
