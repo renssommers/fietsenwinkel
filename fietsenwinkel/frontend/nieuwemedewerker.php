@@ -36,23 +36,6 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <style>
-            table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            }
-
-            td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-            }
-
-            tr:nth-child(even) {
-            background-color: #dddddd;
-            }
-        </style>
-
     </head>
 
     <?php
@@ -135,37 +118,10 @@
                             $QUERY = "SELECT * FROM medewerkers";
                             $result = mysqli_query($conn, $QUERY);
                         ?>
-                                <table>
-                                    <tr>
-                                        <th>Naam</th>
-                                        <th>E-mail</th>
-                                        <th>Tel. nummer</th>
-                                        <th>Gebruikersnaam</th>
-                                        <th>Wachtwoord</th>
-                                        <th>Rol</th>
-                                    </tr>
+                               
 
-                                    <?php
-                                      while ($row = mysqli_fetch_assoc($result)){
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $row["medewerker_voornaam"]; ?> <?php echo $row["medewerker_achternaam"]; ?></td>
-                                        <td><?php echo $row["medewerker_email"]; ?></td>
-                                        <td><?php echo $row["medewerker_telefoon"]; ?></td>
-                                        <td><?php echo $row["medewerker_gebruikersnaam"]; ?></td>
-                                        <td><?php echo $row["medewerker_wachtwoord"]; ?></td>
-                                        <td><?php echo $row["medewerker_rol"]; ?></td>
-                                        
-                                        <td style="background-color: white;"> <a href="medewerkerbewerken.php"> <i class="icon-fixed-width icon-pencil"></i> </a> </td>
-                                        <td style="background-color: white;"> <i class="icon-trash icon-large"></i> </td>
-                                    </tr>
-                                        
-                                
-                                    <?php
-                            }
-                        ?>
-                            </table>
-                            <a class="add_cart_btn" href="nieuwemedewerker.php" style="margin-top: 20px;">Voeg nieuwe toe</a>
+
+                            <a class="add_cart_btn" href="medewerkersoverzicht.php" style="margin-top: 20px;">Voeg toe</a>
                         </div>
                     </div>
              

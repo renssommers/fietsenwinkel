@@ -36,23 +36,6 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <style>
-            table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            }
-
-            td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-            }
-
-            tr:nth-child(even) {
-            background-color: #dddddd;
-            }
-        </style>
-
     </head>
 
     <?php
@@ -130,42 +113,78 @@
                         </div>
 
                         <div class="float-left">
-                        <?php
+                        <?php 
+                            include 'databasecon.php';
                             $conn = Opencon();
                             $QUERY = "SELECT * FROM medewerkers";
                             $result = mysqli_query($conn, $QUERY);
-                        ?>
-                                <table>
-                                    <tr>
-                                        <th>Naam</th>
-                                        <th>E-mail</th>
-                                        <th>Tel. nummer</th>
-                                        <th>Gebruikersnaam</th>
-                                        <th>Wachtwoord</th>
-                                        <th>Rol</th>
-                                    </tr>
 
-                                    <?php
-                                      while ($row = mysqli_fetch_assoc($result)){
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $row["medewerker_voornaam"]; ?> <?php echo $row["medewerker_achternaam"]; ?></td>
-                                        <td><?php echo $row["medewerker_email"]; ?></td>
-                                        <td><?php echo $row["medewerker_telefoon"]; ?></td>
-                                        <td><?php echo $row["medewerker_gebruikersnaam"]; ?></td>
-                                        <td><?php echo $row["medewerker_wachtwoord"]; ?></td>
-                                        <td><?php echo $row["medewerker_rol"]; ?></td>
-                                        
-                                        <td style="background-color: white;"> <a href="medewerkerbewerken.php"> <i class="icon-fixed-width icon-pencil"></i> </a> </td>
-                                        <td style="background-color: white;"> <i class="icon-trash icon-large"></i> </td>
-                                    </tr>
-                                        
-                                
-                                    <?php
+                        if (!empty($_POST)) {
+                            $voornaam = htmlspecialchars($_POST['medewerker_voornaam']);
+                            $achternaam = htmlspecialchars($_POST['medewerker_achternaam']);
+                            $email = htmlspecialchars($_POST['medewerker_email']);
+                            $telefoonnummer = htmlspecialchars($_POST['medewerker_telefoon']);
+                            $gebruikersnaam = htmlspecialchars($_POST['medewerker_gebruikersnaam']);
+                            $wachtwoord = htmlspecialchars($_POST['medewerker_wachtwoord']);
+                            $rol = htmlspecialchars($_POST['medewerker_rol']);
+
+                            $insert = "UPDATE medewerkers SET medewerker_voornaam='$voornaam', medewerker_achternaam='$achternaam', 
+                            medewerker_email='$email', medewerker_telefoon='$telefoonnummer', 
+                            medewerker_gebruikersnaam='$gebruikersnaam', medewerker_wachtwoord='$wachtwoord', 
+                            medewerker_rol='$rol' WHERE medewerker_id=1";
+                         
+                            if ($conn->query($insert) === TRUE) {
+                                //Later popup van maken.
+                                echo "<b>U heeft uw profiel aangepast.</b><br><br><br>";
+                                } else {
+                                    echo "Error: " . $insert . "<br>" . $conn->error;
+                                }
                             }
-                        ?>
-                            </table>
-                            <a class="add_cart_btn" href="nieuwemedewerker.php" style="margin-top: 20px;">Voeg nieuwe toe</a>
+                 
+                        $row = mysqli_fetch_assoc($result);
+                    ?>
+                               
+                    <form action="" method="POST">
+                    <div class="col-lg-2" style="float: left; margin-top: 10px;"> Voornaam* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="medewerker_voornaam" value="<?php echo $row["medewerker_voornaam"]; ?>" style="width: 35%;" required><br>
+                                        </div>
+
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Achternaam* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="medewerker_achternaam" value="<?php echo $row["medewerker_achternaam"]; ?>" style="width: 35%;" required><br>
+                                        </div>
+
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> E-mailadres* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="medewerker_email" value="<?php echo $row["medewerker_email"]; ?>" style="width: 35%;" required><br>
+                                        </div>
+
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Telefoonnummer* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="medewerker_telefoon" value="<?php echo $row["medewerker_telefoon"]; ?>" style="width: 35%;" required><br>
+                                        </div>
+
+                                       
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Gebruikersnaam* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="medewerker_gebruikersnaam" value="<?php echo $row["medewerker_gebruikersnaam"]; ?>" style="width: 35%;" required><br>
+                                        </div>
+
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Wachtwoord* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="medewerker_wachtwoord" value="<?php echo $row["medewerker_wachtwoord"]; ?>" style="width: 35%;" required><br>
+                                        </div>
+
+                                        <!-- <div class="col-lg-2" style="float: left; margin-top: 10px;"> Rol* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="medewerker_rol" value="<?php echo $row["medewerker_rol"]; ?>" style="width: 35%;" required><br>
+                                        </div> -->
+
+                                        <br>
+                                         <input type="submit" class="add_cart_btn" style="cursor: pointer;" value="Opslaan" style="margin-top:30px;" name="submit">
+                                </form>
+
                         </div>
                     </div>
              
