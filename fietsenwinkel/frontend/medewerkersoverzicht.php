@@ -129,7 +129,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-9 float-left">
+                        <div class="float-left">
                         <?php
                             $conn = Opencon();
                             $QUERY = "SELECT * FROM medewerkers";
@@ -155,12 +155,17 @@
                                         <td><?php echo $row["medewerker_gebruikersnaam"]; ?></td>
                                         <td><?php echo $row["medewerker_wachtwoord"]; ?></td>
                                         <td><?php echo $row["medewerker_rol"]; ?></td>
+                                        
+                                        <td style="background-color: white;"> <i class="icon-fixed-width icon-pencil"></i> </td>
+                                        <td style="background-color: white;"> <i class="icon-trash icon-large"></i> </td>
                                     </tr>
-
+                                        
+                                
                                     <?php
                             }
                         ?>
                             </table>
+                            <a class="add_cart_btn" href="index.php" style="margin-top: 20px;">Voeg nieuwe toe</a>
                         </div>
                     </div>
              
