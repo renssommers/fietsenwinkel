@@ -40,7 +40,6 @@
             table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
-            width: 100%;
             }
 
             td, th {
@@ -55,6 +54,11 @@
         </style>
 
     </head>
+
+    <?php
+      include 'databasecon.php';
+    ?>
+    
     <body>
         
         <!--================Top Header Area =================-->
@@ -96,21 +100,22 @@
 
         <!--================Categories Product Area =================-->
         <section class="categories_product_main p_80">
-            <div class="container">
+            <div class="container" style="max-width: unset;">
                 <div class="col-lg-12" style="padding: 0; text-align:center;">
-                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Beheer </h1>
+                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Gebruikers overzicht </h1>
                 </div>
                 <div class="categories_main_inner">
                     <div class="row row_disable">
-                   
+                    <div class="col-lg-12">
+                    </div>
                         <div class="col-lg-3 float-md-left">
                             <div class="categories_sidebar">
                                 <aside class="l_widgest l_color_widget">
                                         <div class="l_w_title">
                                             <h3>Menu</h3>
                                         </div>
-                                        <a href="" style="text-decoration: underline;">Medewerkers</a><br>
-                                        <a href="">Gebruikers</a>  <br>
+                                        <a href="medewerkersoverzicht.php">Medewerkers</a><br>
+                                        <a href="gebruikersoverzicht.php" style="text-decoration: underline;">Gebruikers</a>  <br>
                                         <a href="">Fietsen</a>  <br>
                                         <a href="">Klanten</a>  <br>
                                         <a href="">Reviews</a> <br>
@@ -125,45 +130,33 @@
                         </div>
 
                         <div class="col-lg-9 float-left">
-                            
-                        <table>
+                        <?php
+                            $conn = Opencon();
+                            $QUERY = "SELECT * FROM klanten";
+                            $result = mysqli_query($conn, $QUERY);
+                        ?>
+                                <table>
                                     <tr>
-                                        <th>Company</th>
-                                        <th>Contact</th>
-                                        <th>Country</th>
+                                        <th>Naam</th>
+                                        <th>E-mail</th>
+                                        <th>Tel. nummer</th>
+                                        <th>Adresgegevens</th>
                                     </tr>
-                                    <tr>
-                                        <td>Alfreds Futterkiste</td>
-                                        <td>Maria Anders</td>
-                                        <td>Germany</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Centro comercial Moctezuma</td>
-                                        <td>Francisco Chang</td>
-                                        <td>Mexico</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ernst Handel</td>
-                                        <td>Roland Mendel</td>
-                                        <td>Austria</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Island Trading</td>
-                                        <td>Helen Bennett</td>
-                                        <td>UK</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Laughing Bacchus Winecellars</td>
-                                        <td>Yoshi Tannamuri</td>
-                                        <td>Canada</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Magazzini Alimentari Riuniti</td>
-                                        <td>Giovanni Rovelli</td>
-                                        <td>Italy</td>
-                                    </tr>
-                                </table>
 
+                                    <?php
+                                      while ($row = mysqli_fetch_assoc($result)){
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $row["klant_voornaam"]; ?> <?php echo $row["klant_achternaam"]; ?></td>
+                                        <td><?php echo $row["klant_email"]; ?></td>
+                                        <td><?php echo $row["klant_telefoon"]; ?></td>
+                                        <td><?php echo $row["klant_straat"]; ?> <?php echo $row["klant_huisnr"]; ?>, <?php echo $row["klant_postcode"]; ?>, <?php echo $row["klant_plaats"]; ?></td>
+                                    </tr>
+
+                                    <?php
+                            }
+                        ?>
+                            </table>
                         </div>
                     </div>
              
