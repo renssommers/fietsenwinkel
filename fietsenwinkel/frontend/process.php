@@ -1,35 +1,48 @@
 <?php 
-
+session_start();
 include 'databasecon.php';
 $conn = OpenCon();
+$klant ="" 
 
-$error=''; //Variable to Store error message;
-if(isset($_POST['submit'])){
+
+$error=''; 
+
  if(empty($_POST['klant_email']) || empty($_POST['klant_wachtwoord'])){
  $error = "Username or Password is leeg";
- }
- else
+ }  else
+
  {
+
 
 	 $email=$_POST['klant_email'];
 	 $wachtwoord=$_POST['klant_wachtwoord'];
 	 
  }
+
  
- $select = "SELECT * FROM klanten WHERE klant_wachtwoord='$wachtwoord' AND klant_email='$email'";
- if ($conn->query($select)
- {
-	 session_start
+
+ $result = "SELECT * FROM klanten WHERE klant_wachtwoord='$wachtwoord' AND klant_email='$email'";
+ $result = $conn->query()
+
+ if ($result !="") {
+ 	$_SESSION['klant_email'] = $klant['klant_id'];
+ }
+
+
+
+
+ if ($sel->query($select)) {
 	 
-	 $_SESSION['klant_email'] = $row['klant_id'];
-	 //header("Location: welcome.php"); 
- }
- else
+	 
+	 $_SESSION['klant_email'] = $klant['klant_id'];
+	  
+ }  else
+
  {
- 	echo "Username or Password is Invalid";
+ 	echo "email of wachtwoord is niet goed";
  }
+   
  
- }
-}
+
 
 ?>
