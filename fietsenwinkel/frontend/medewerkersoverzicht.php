@@ -134,6 +134,7 @@
                             $conn = Opencon();
                             $QUERY = "SELECT * FROM medewerkers";
                             $result = mysqli_query($conn, $QUERY);
+                            
                         ?>
                                 <table>
                                     <tr>
@@ -154,7 +155,21 @@
                                         <td><?php echo $row["medewerker_telefoon"]; ?></td>
                                         <td><?php echo $row["medewerker_gebruikersnaam"]; ?></td>
                                         <td><?php echo $row["medewerker_wachtwoord"]; ?></td>
-                                        <td><?php echo $row["medewerker_rol"]; ?></td>
+                                        <td> <?php 
+                                                $rol = $row["medewerker_rol"];
+                                                    if ($rol == 1) {
+                                            ?>
+                                               Admin
+                                            <?php
+                                                } elseif ($rol == 2) {
+                                            ?>
+                                              Gewone gebruiker
+                                            <?php
+                                            } else {
+
+                                            }
+                                            ?> 
+                                        </td>
                                         
                                         <td style="background-color: white;"> <a href="medewerkerbewerken.php"> <i class="icon-fixed-width icon-pencil"></i> </a> </td>
                                         <td style="background-color: white;"> <i class="icon-trash icon-large"></i> </td>
@@ -165,7 +180,7 @@
                             }
                         ?>
                             </table>
-                            <a class="add_cart_btn" href="nieuwemedewerker.php" style="margin-top: 20px;">Voeg nieuwe toe</a>
+                            <a class="add_cart_btn" href="medewerkertoevoegen.php" style="margin-top: 20px;">Voeg nieuwe toe</a>
                         </div>
                     </div>
              

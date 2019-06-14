@@ -85,7 +85,7 @@
         <section class="categories_product_main p_80">
             <div class="container" style="max-width: unset;">
                 <div class="col-lg-12" style="padding: 0; text-align:center;">
-                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Medewerkers overzicht </h1>
+                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Medewerker bewerken </h1>
                 </div>
                 <div class="categories_main_inner">
                     <div class="row row_disable">
@@ -112,9 +112,9 @@
                             </div>
                         </div>
 
-                        <div class="float-left">
+                        <div class="float-left col-lg-9">
                         <?php 
-                            include 'databasecon.php';
+                         
                             $conn = Opencon();
                             $QUERY = "SELECT * FROM medewerkers";
                             $result = mysqli_query($conn, $QUERY);
@@ -176,13 +176,32 @@
                                         <input type="text" name="medewerker_wachtwoord" value="<?php echo $row["medewerker_wachtwoord"]; ?>" style="width: 35%;" required><br>
                                         </div>
 
-                                        <!-- <div class="col-lg-2" style="float: left; margin-top: 10px;"> Rol* </div> 
-                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
-                                        <input type="text" name="medewerker_rol" value="<?php echo $row["medewerker_rol"]; ?>" style="width: 35%;" required><br>
-                                        </div> -->
+
+                                        <div class="col-lg-2" style="float:left;  margin-top: 10px;"> Rol </div> 
+                                        <div class="col-lg-10" style="float: left;  margin-top: 10px;"> 
+                                            <select name="rol">
+                                            <?php 
+                                                $rol = $row["medewerker_rol"];
+                                                    if ($rol == 1) {
+                                            ?>
+                                                <option value="1">Admin</option>
+                                                <option value="2">Gewone gebruiker</option> 
+                                            <?php
+                                                } else {
+                                            ?>
+                                                <option value="2">Gewone gebruiker</option>
+                                                <option value="1">Admin</option>
+                                            <?php
+                                            }
+                                            ?>   
+                                            </select>
+                                        </div>
 
                                         <br>
-                                         <input type="submit" class="add_cart_btn" style="cursor: pointer;" value="Opslaan" style="margin-top:30px;" name="submit">
+                                         <input type="submit" class="add_cart_btn" style="cursor: pointer; margin-top:30px;" value="Opslaan" name="submit">
+
+                                         <br>
+                                         <a class="add_cart_btn" style="cursor: pointer; margin-top:30px; background-color: #007bff;" href="medewerkersoverzicht.php">< Terug</a>
                                 </form>
 
                         </div>
