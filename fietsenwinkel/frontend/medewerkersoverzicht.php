@@ -118,7 +118,7 @@
                                         <a href="gebruikersoverzicht.php">Gebruikers</a>  <br>
                                         <a href="">Fietsen</a>  <br>
                                         <a href="">Klanten</a>  <br>
-                                        <a href="">Reviews</a> <br>
+                                        <a href="reviewsbeheren.php">Reviews</a> <br>
                                         <a href="">Aanbieding</a>  <br>
                                         <a href="">Bestellingen</a> <br>
                                         <a href="">Nieuwsbrief</a>
