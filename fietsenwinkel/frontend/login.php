@@ -73,7 +73,7 @@
                                     <input class="form-control" type="text" placeholder="Naam">
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                        <input class="form-control" type="password" placeholder="Achternaam">
+                                        <input class="form-control" type="text" placeholder="Achternaam">
                                     </div>
                                 <div class="col-lg-6 form-group">
                                     <input class="form-control" type="email" placeholder="E-mailadres">
