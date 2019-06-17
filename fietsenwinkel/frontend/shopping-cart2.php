@@ -122,7 +122,8 @@
                                                         ?>
                                                        <img src=<?php echo $row["product_fotos"]; ?>  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
                                                         <?php
-                                                        $total = $total + ($value["product_prijs"]); 
+                                                        
+                                                            $total = $total += $value["product_prijs"];
                                                         
                                                             }
                                                         } ?>
@@ -155,8 +156,7 @@
                                 </div>
                                 <div class="float-right">
                                 <?php
-                                    $total = 0;
-                                    $total = $total += $value["product_prijs"];
+                                    echo $total;
                                     ?>
                                         <th align="right">&euro; <?php echo number_format($total, 2); ?></th>
                             </div>

@@ -56,6 +56,7 @@
                         if (!empty($_POST)) {
                             $voornaam = htmlspecialchars($_POST['klant_voornaam']);
                             $achternaam = htmlspecialchars($_POST['klant_achternaam']);
+                            $geslacht = htmlspecialchars($_POST['klant_geslacht']);
                             $woonplaats = htmlspecialchars($_POST['klant_plaats']);
                             $postcode = htmlspecialchars($_POST['klant_postcode']);
                             $straat = htmlspecialchars($_POST['klant_straat']);
@@ -66,7 +67,7 @@
 
                             // $query = "SELECT klant_id FROM klanten WHERE klant_voornaam='$voornaam'";
 
-                            $insert = "UPDATE klanten SET klant_voornaam='$voornaam', klant_achternaam='$achternaam', 
+                            $insert = "UPDATE klanten SET klant_voornaam='$voornaam', klant_achternaam='$achternaam', klant_geslacht='$geslacht', 
                             klant_plaats='$woonplaats', klant_postcode='$postcode', 
                             klant_straat='$straat', klant_huisnr='$huisnummer', 
                             klant_telefoon='$telefoonnummer', klant_email='$email', 
@@ -95,13 +96,13 @@
                                                 $geslacht = $row["klant_geslacht"];
                                                     if ($geslacht == 1) {
                                             ?>
-                                                <option value="1">Vrouw</option>
-                                                <option value="2">Man</option> 
+                                                <option value="1" name="klant_geslacht">Vrouw</option>
+                                                <option value="2" name="klant_geslacht">Man</option> 
                                             <?php
                                                 } else {
                                             ?>
-                                                <option value="2">Man</option>
-                                                <option value="1">Vrouw</option>
+                                                <option value="2" name="klant_geslacht">Man</option>
+                                                <option value="1" name="klant_geslacht">Vrouw</option>
                                             <?php
                                             }
                                             ?>   

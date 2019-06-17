@@ -49,49 +49,21 @@
                         <div class="col-lg-4">
                             <div class="login_title">
                                 <h2>Log in</h2>
-                                <p>Voor bestaande klanten.</p>
+                                <p>Voor medewerkers.</p>
                             </div>
                             <form class="login_form row">
                                 <div class="col-lg-12 form-group">
-                                    <input class="form-control" type="text" placeholder="E-mailadres">
+                                    <input class="form-control" type="text" placeholder="Gebruikersnaam">
                                 </div>
                                 <div class="col-lg-12 form-group">
                                     <input class="form-control" type="text" placeholder="Wachtwoord">
                                 </div>
                                 <div class="col-lg-12 form-group">
-                                    <a type="submit" href="profilepage.php" value="submit" class="btn update_btn form-control">Login</a>
+                                    <a type="submit" href="medewerkersoverzicht.php" value="submit" class="btn update_btn form-control">Login</a>
                                 </div>
                             </form>
                         </div>
-                        <div class="col-lg-8">
-                            <div class="login_title">
-                                <h2>Nieuw bij ChainGang?</h2>
-                                <p>Maak hier gratis uw account aan.</p>
-                            </div>
-                            <form class="login_form row">
-                                <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="text" placeholder="Naam">
-                                </div>
-                                <div class="col-lg-6 form-group">
-                                        <input class="form-control" type="text" placeholder="Achternaam">
-                                    </div>
-                                <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="email" placeholder="E-mailadres">
-                                </div>
-                                <!-- <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="text" placeholder="Gebruikersnaam">
-                                </div> -->
-                                <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="text" placeholder="Telefoonnummer">
-                                </div>
-                                <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="password" placeholder="Wachtwoord">
-                                </div>
-                                <div class="col-lg-6 form-group">
-                                    <a type="submit"  href="profilepage.php"  value="submit" class="btn subs_btn form-control">Maak een account aan</a>
-                                </div>
-                            </form>
-                        </div>
+                     
                     </div>
                 </div>
             </div>
