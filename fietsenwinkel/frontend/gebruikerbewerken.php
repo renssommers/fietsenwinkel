@@ -85,7 +85,7 @@
         <section class="categories_product_main p_80">
             <div class="container" style="max-width: unset;">
                 <div class="col-lg-12" style="padding: 0; text-align:center;">
-                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Medewerker bewerken </h1>
+                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Gebruiker bewerken </h1>
                 </div>
                 <div class="categories_main_inner">
                     <div class="row row_disable">
@@ -97,10 +97,9 @@
                                         <div class="l_w_title">
                                             <h3>Menu</h3>
                                         </div>
-                                        <a href="medewerkersoverzicht.php" style="text-decoration: underline;">Medewerkers</a><br>
-                                        <a href="gebruikersoverzicht.php">Gebruikers</a>  <br>
+                                        <a href="gebruikersoverzicht.php" style="text-decoration: underline;">Gebruikers</a><br>
+                                        <a href="klantenoverzicht.php">Klanten</a>  <br>
                                         <a href="">Fietsen</a>  <br>
-                                        <a href="">Klanten</a>  <br>
                                         <a href="reviewsbeheren.php">Reviews</a> <br>
                                         <a href="">Aanbieding</a>  <br>
                                         <a href="">Bestellingen</a> <br>
