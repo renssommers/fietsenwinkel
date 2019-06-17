@@ -85,7 +85,7 @@
         <section class="categories_product_main p_80">
             <div class="container" style="max-width: unset;">
                 <div class="col-lg-12" style="padding: 0; text-align:center;">
-                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Medewerker toevoegen </h1>
+                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Gebruiker toevoegen </h1>
                 </div>
                 <div class="categories_main_inner">
                     <div class="row row_disable">
@@ -100,7 +100,6 @@
                                         <a href="medewerkersoverzicht.php" style="text-decoration: underline;">Medewerkers</a><br>
                                         <a href="gebruikersoverzicht.php">Gebruikers</a>  <br>
                                         <a href="">Fietsen</a>  <br>
-                                        <a href="">Klanten</a>  <br>
                                         <a href="reviewsbeheren.php">Reviews</a> <br>
                                         <a href="">Aanbieding</a>  <br>
                                         <a href="">Bestellingen</a> <br>
@@ -196,7 +195,7 @@
                                          <input type="submit" class="add_cart_btn" style="cursor: pointer; margin-top:30px;" value="Opslaan" name="submit">
 
                                          <br>
-                                         <a class="add_cart_btn" style="cursor: pointer; margin-top:30px; background-color: #007bff;" href="medewerkersoverzicht.php">< Terug</a>
+                                         <a class="add_cart_btn" style="cursor: pointer; margin-top:30px; background-color: #007bff;" href="gebruikersoverzicht.php">< Terug</a>
                                 </form>
 
                         </div>

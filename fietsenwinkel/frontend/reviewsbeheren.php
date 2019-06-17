@@ -97,11 +97,10 @@
                                         <div class="l_w_title">
                                             <h3>Menu</h3>
                                         </div>
-                                        <a href="medewerkersoverzicht.php">Medewerkers</a><br>
-                                        <a href="gebruikersoverzicht.php">Gebruikers</a>  <br>
+                                        <a href="gebruikersoverzicht.php">Gebruikers</a><br>
+                                        <a href="klantenoverzicht.php">Klanten</a>  <br>
                                         <a href="">Fietsen</a>  <br>
-                                        <a href="">Klanten</a>  <br>
-                                        <a href="" style="text-decoration: underline;">Reviews</a> <br>
+                                        <a href="reviewsbeheren.php" style="text-decoration: underline;">Reviews</a> <br>
                                         <a href="">Aanbieding</a>  <br>
                                         <a href="">Bestellingen</a> <br>
                                         <a href="">Nieuwsbrief</a>
