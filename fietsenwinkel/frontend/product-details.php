@@ -45,6 +45,38 @@
             $row = mysqli_fetch_assoc($result);
             CloseCon($conn);
             ?>
+
+        <?php
+        
+        session_start();
+
+        if (isset($_POST["add"])){
+            if (isset($_SESSION["cart"])){
+                $item_array_id = array_column($_SESSION["cart"],"product_id");
+                if (!in_array($_GET["id"],$item_array_id)){
+                    $count = count($_SESSION["cart"]);
+                    $item_array = array(
+                        'product_id' => $_GET["id"],
+                        'item_name' => $_POST["hidden_name"],
+                        'product_prijs' => $_POST["hidden_price"],
+                        'item_quantity' => $_POST["quantity"],
+                    );
+                    $_SESSION["cart"][$count] = $item_array;
+                    echo '<script>window.location="Cart.php"</script>';
+                }else{
+                    echo '<script>alert("Product is already Added to Cart")</script>';
+                }
+            }else{
+                $item_array = array(
+                    'product_id' => $_GET["id"],
+                    'item_name' => $_POST["hidden_name"],
+                    'product_prijs' => $_POST["hidden_price"],
+                    'item_quantity' => $_POST["quantity"],
+                );
+                $_SESSION["cart"][0] = $item_array;
+            }
+        }
+         ?>
         
         <?php include 'header.php' ?>
         
@@ -155,7 +187,14 @@
                                     <input type="text" name="qty" id="sst" maxlength="12" value="01" title="Quantity:" class="input-text qty">
                                     <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
                                 </div> -->
-                                <a class="add_cart_btn" href="#">In winkelwagen</a>
+                                <form method="post" action="shopping-cart2.php?action=add&id=<?php echo $row["product_id"]; ?>">
+                                    <ul>
+                                        <input type="submit" name="add" style="margin-top: 5px;" class="add_cart_btn"
+                                        value="In winkelwagen">
+                                    </ul>
+                                    <input type="hidden" name="hidden_name" value="<?php echo $row["product_naam"]; ?>">
+                                    <input type="hidden" name="hidden_price" value="<?php echo $row["product_prijs"]; ?>">
+                                </form>
                             </div>
                             <!-- <div class="shareing_icon">
                                 <h5>share :</h5>

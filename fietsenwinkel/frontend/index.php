@@ -268,31 +268,31 @@
                     $QUERY = "SELECT * FROM producten WHERE actie = 1";
                     $result = mysqli_query($conn, $QUERY);
                      
-                            while ($row = mysqli_fetch_assoc($result)){
-                                 
-                                  ?>
-                                  <div class="item">
-                                <div class="l_product_item">
-                                    <form method="post" action="shopping-cart2.php?action=add&id=<?php echo $row["product_id"]; ?>">
-                                        <a class="l_p_img" href="product-details.php?id=<?php echo $row["product_id"]; ?>">
-                                            <img src=<?php echo $row["product_fotos"]; ?> alt="">
+                        while ($row = mysqli_fetch_assoc($result)){
+                                
+                                ?>
+                                <div class="item">
+                            <div class="l_product_item">
+                                <form method="post" action="shopping-cart2.php?action=add&id=<?php echo $row["product_id"]; ?>">
+                                    <a class="l_p_img" href="product-details.php?id=<?php echo $row["product_id"]; ?>">
+                                        <img src=<?php echo $row["product_fotos"]; ?> alt="">
+                                    
+                                    </a>
+                                    <div class="l_p_text">
+                                    <ul>
+                                        <input type="submit" name="add" style="margin-top: 5px;" class="add_cart_btn"
+                                        value="In winkelwagen">
+                                        </ul>
+                                        <h4><?php echo $row["product_naam"]; ?></h4>
+                                        <h5><b style="color:#FF9029; font-weight: lighter; padding-right: 5px;">Actieprijs: </b> €<?php echo $row["product_prijs"]; ?></h5>
                                         
-                                        </a>
-                                        <div class="l_p_text">
-                                        <ul>
-                                            <input type="submit" name="add" style="margin-top: 5px;" class="add_cart_btn"
-                                            value="In winkelwagen">
-                                            </ul>
-                                            <h4><?php echo $row["product_naam"]; ?></h4>
-                                            <h5><b style="color:#FF9029; font-weight: lighter; padding-right: 5px;">Actieprijs: </b> €<?php echo $row["product_prijs"]; ?></h5>
-                                            
-                                            
-                                            <input type="hidden" name="hidden_name" value="<?php echo $row["product_naam"]; ?>">
-                                            <input type="hidden" name="hidden_price" value="<?php echo $row["product_prijs"]; ?>">
-                                        </div>
-                                    </form>
-                                </div>
-                                  </div>
+                                        
+                                        <input type="hidden" name="hidden_name" value="<?php echo $row["product_naam"]; ?>">
+                                        <input type="hidden" name="hidden_price" value="<?php echo $row["product_prijs"]; ?>">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     <?php
                      }
                     ?>

@@ -91,7 +91,12 @@
     ?>
         
         <!--================Shopping Cart Area =================-->
+        
         <section class="shopping_cart_area p_100">
+        <?php 
+                                    
+            $total= 0;
+            foreach ($_SESSION["cart"] as $key => $value) { ?>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12" style="padding-bottom: 20px;">
@@ -104,43 +109,20 @@
                                     <tbody>
                                     <?php
                                     if(!empty($_SESSION["cart"])){
-                                        $total = 0;
-                                        foreach ($_SESSION["cart"] as $key => $value) {
                                         ?>
                                         <tr>
                                             <th scope="row">
                                             <a href="shopping-cart2.php?action=delete&id=<?php echo $value["product_id"]; ?>">
                                                 <img src="img/icon/close-icon.png" alt=""></a>
                                             </th>
-                                            <td>
-                                                <div class="media">
-                                                    <div class="d-flex">
-                                                        <?php
-                                                        if(mysqli_num_rows($result) > 0) {
-                                            
-                                                            while ($row = mysqli_fetch_array($result)) {
-                                                        ?>
-                                                       <img src=<?php echo $row["product_fotos"]; ?>  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
-                                                        <?php
-                                                        
-                                                            $total = $total += $value["product_prijs"];
-                                                        
-                                                            }
-                                                        } ?>
-                                                    </div>
-                                                    <div class="media-body">
-                                                    <td><?php echo $value["item_name"]; ?></td>
-                                                    </div>
-                                                </div>
-                                            </td>
+                                            <td><?php echo $value["item_name"]; ?></td>
                                             <td>&euro; <?php echo number_format($value["product_prijs"], 2); ?></td>
                                         </tr>
                                         <?php
-                                            }
                                         }
-                                     else {
-                                        echo '<script>window.location="empty-cart.php"</script>';
-                                    }
+                                        else {
+                                            echo '<script>window.location="empty-cart.php"</script>';
+                                        }
                                         ?>
                                     </tbody>
                                 </table>
@@ -156,14 +138,15 @@
                                 </div>
                                 <div class="float-right">
                                 <?php
-                                    echo $total;
-                                    ?>
-                                        <th align="right">&euro; <?php echo number_format($total, 2); ?></th>
+                                ?>
+                                <th align="right">&euro; <?php echo number_format($total, 2); ?></th>
                             </div>
                         </div>
                         <a type="submit" value="submit" href="register.php" class="btn subs_btn form-control">Afrekenen</a>
                     </div>
                 </div>
+            <?php }  
+            ?>
             </div>
         </section>
         <!--================End Shopping Cart Area =================-->
