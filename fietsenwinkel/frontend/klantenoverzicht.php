@@ -114,13 +114,13 @@
                                         <div class="l_w_title">
                                             <h3>Menu</h3>
                                         </div>
-                                        <a href="gebruikersoverzicht.php">Gebruikers</a><br>
+                                        <a href="gebruikersoverzicht.php" >Gebruikers</a><br>
                                         <a href="klantenoverzicht.php" style="text-decoration: underline;">Klanten</a>  <br>
-                                        <a href="">Fietsen</a>  <br>
+                                        <a href="fietsenoverzicht.php">Fietsen</a>  <br>
                                         <a href="reviewsbeheren.php">Reviews</a> <br>
-                                        <a href="">Aanbieding</a>  <br>
-                                        <a href="">Bestellingen</a> <br>
-                                        <a href="">Nieuwsbrief</a>
+                                        <a href="aanbiedingen.php" >Aanbieding</a>  <br>
+                                        <a href="bestellingenbeheren.php">Bestellingen</a> <br>
+                                        <a href="nieuwsbrief.php">Nieuwsbrief</a>
                                 </aside>
 
                                 <a class="abonneer_btn" href="index.php">Uitloggen</a>
