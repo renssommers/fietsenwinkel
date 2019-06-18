@@ -51,8 +51,7 @@
                     <?php 
                     include 'databasecon.php';
                     $conn = Opencon();
-                    $QUERY = "SELECT * FROM klanten";
-                    $result = mysqli_query($conn, $QUERY);
+                   
                         if (!empty($_POST)) {
                             $voornaam = htmlspecialchars($_POST['klant_voornaam']);
                             $achternaam = htmlspecialchars($_POST['klant_achternaam']);
@@ -82,7 +81,8 @@
                                     echo "Error: " . $insert . "<br>" . $conn->error;
                                 }
                             }
-
+                            $QUERY = "SELECT * FROM klanten";
+                            $result = mysqli_query($conn, $QUERY);
                     // while ($row = mysqli_fetch_assoc($result)){
                         $row = mysqli_fetch_assoc($result);
                     ?>

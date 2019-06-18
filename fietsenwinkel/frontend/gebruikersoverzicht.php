@@ -165,13 +165,14 @@
                                               Gewone gebruiker
                                             <?php
                                             } else {
-
+                                                ?>  Gewone gebruiker
+                                                <?php
                                             }
                                             ?> 
                                         </td>
-                                        
-                                        <td style="background-color: white;"> <a href="gebruikerbewerken.php"> <i class="icon-fixed-width icon-pencil"></i> </a> </td>
-                                        <td style="background-color: white;"> <i class="icon-trash icon-large"></i> </td>
+                                        <td style="background-color: white;"> <a href="gebruikerbewerken.php?id=<?php echo $row["medewerker_id"]; ?>"> <i class="icon-fixed-width icon-pencil"></i> </a> </td>
+                                        <td style="background-color: white;"> <a href="gebruikerverwijderen.php?id=<?php echo $row["medewerker_id"]; ?>"> <i class="icon-trash icon-large"></i> </a> </td>
+                                      
                                     </tr>
                                         
                                 

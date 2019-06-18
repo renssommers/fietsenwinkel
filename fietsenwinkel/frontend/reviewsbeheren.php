@@ -123,7 +123,7 @@
                                     while ($row = mysqli_fetch_assoc($result)){
                                 ?>
                                 
-                                <i class="icon-trash icon-large" style="float:left; font-size: 20px; padding: 10px 10px 0 0;"></i> 
+                                <a href="reviewverwijderen.php?id=<?php echo $row["review_id"]; ?>"> <i class="icon-trash icon-large" style="float:left; font-size: 20px; padding: 10px 10px 0 0;"></i> </a>
                                 <div class="card" style="margin-bottom: 30px;">
                                     <div class="card-body">
                                         <div class="row">

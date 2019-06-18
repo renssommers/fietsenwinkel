@@ -97,8 +97,8 @@
                                         <div class="l_w_title">
                                             <h3>Menu</h3>
                                         </div>
-                                        <a href="medewerkersoverzicht.php" style="text-decoration: underline;">Medewerkers</a><br>
-                                        <a href="gebruikersoverzicht.php">Gebruikers</a>  <br>
+                                        <a href="gebruikersoverzicht.php" style="text-decoration: underline;">Gebruikers</a><br>
+                                        <a href="klantenoverzicht.php">Klanten</a>  <br>
                                         <a href="">Fietsen</a>  <br>
                                         <a href="reviewsbeheren.php">Reviews</a> <br>
                                         <a href="">Aanbieding</a>  <br>
@@ -156,7 +156,7 @@
 
                                         <div class="col-lg-2" style="float: left; margin-top: 10px;"> Telefoonnummer* </div> 
                                         <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
-                                        <input type="text" name="medewerker_telefoon" style="width: 35%;" required><br>
+                                        <input type="tel" name="medewerker_telefoon" style="width: 35%;" required><br>
                                         </div>
 
                                        
