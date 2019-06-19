@@ -112,8 +112,53 @@
                         </div>
 
                         <div class="float-left col-lg-9">
-                       
+                        <div class="categories_product_area">
+                                <div class="row">
+                            <?php 
+                                $conn = Opencon();
+                                $QUERY = "SELECT * FROM producten";
+                                $result = mysqli_query($conn, $QUERY);
+                                while ($row = mysqli_fetch_array($result)) {
+                                ?>
+                                <div class="col-lg-3 col-sm-6">
+                                <form method="post">
+                                        <div class="l_product_item" style="float:left;">
+                                            <a class="l_p_img">
+                                                <img src=<?php echo $row["product_fotos"]; ?> alt="">
+                                                <h4 style="font-size: 15px; color: black; margin: 10px 5px;"><?php echo $row["product_naam"]; ?></h4>
+                                                <h5 style="margin: 0 0 10px 5px;"><del></del>  €<?php echo $row["product_prijs"]; ?></h5>
+                                            </a>
+                                            <div style="float:left; width:100%;">
+                                                <div class="specificaties" style="padding-top: 20px;">
+                                                    <TABLE BORDER="1"  WIDTH="100%" HEIGHT="20">
+                                                            <TR> <TD style="font-weight: bold;">Categorie</TD> <TD><?php echo $row["product_categorie"]; ?></TD> </TR>
+                                                            <TR> <TD style="font-weight: bold;">Kleur</TD> <TD> 
+                                                            <?php
+                                                            if ($row["product_kleur"] == 1) {
+                                                                echo "Grijs";
+                                                            } elseif ($row["product_kleur"] == 2) {
+                                                                echo "Zwart";
+                                                            } else {
+                                                                echo "Multicolor";
+                                                            }
+                                                            ?></TD> </TR>
+                                                            <TR> <TD style="font-weight: bold;">Merk</TD> <TD><?php echo $row["product_merk"]; ?></TD> </TR>
+                                                            <TR> <TD style="font-weight: bold;">Type</TD> <TD><?php echo $row["product_specificaties"]; ?></TD> </TR>
+                                                    </TABLE>
+                                                    <div style="margin: 10px;">
+                                                        <a class="add_cart_btn" href="product-details.php?id=<?php echo $row["product_id"]; ?>" style="width:100%; text-align:center;"> Bekijk beschrijving </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </form>
+                                </div>
+                            <?php
+                            }
+                            ?>
 
+                            </div>
                         </div>
                     </div>
              
