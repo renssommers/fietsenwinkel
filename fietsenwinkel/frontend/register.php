@@ -70,17 +70,6 @@
         }
     }
 
-    if (isset($_GET["action"])){
-        if ($_GET["action"] == "delete"){
-            foreach ($_SESSION["cart"] as $keys => $value){
-                if ($value["product_id"] == $_GET["id"]){
-                    unset($_SESSION["cart"][$keys]);
-                    echo '<script>alert("Product has been Removed...!")</script>';
-                    echo '<script>window.location="categories-left-sidebar.php"</script>';
-                }
-            }
-        }
-    }
 
     include 'databasecon.php';
     $conn = Opencon();
@@ -95,132 +84,98 @@
             <div class="container">
                 <div class="register_inner">
                     <div class="row">
-                        <div class="col-lg-7">
-                            <div class="billing_details">
-                                <h2 class="reg_title">Factuur gegevens</h2>
-                                <form class="billing_inner row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="name">Voornaam <span>*</span></label>
-                                            <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="last">Achternaam <span>*</span></label>
-                                            <input type="text" class="form-control" id="last" aria-describedby="last" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="address">Straatnaam + huisnummer <span>*</span></label>
-                                            <input type="text" class="form-control" id="address" aria-describedby="address" required>
-                                            <!-- <input type="text" class="form-control" id="address2" aria-describedby="address"> -->
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
+                        <form action="demo.php" method="post" class="billing_inner row">
+                            <div class="col-lg-7">
+                                <div class="billing_details">
+                                    <h2 class="reg_title">Factuur gegevens</h2>
+                                        <div class="col-lg-12">
                                             <div class="form-group">
-                                                <label for="address">Postcode <span>*</span></label>
-                                                <input type="text" class="form-control" id="address" aria-describedby="address" required>
-                                                <!-- <input type="text" class="form-control" id="address2" aria-describedby="address"> -->
+                                                <label for="name">Voornaam <span>*</span></label>
+                                                <input name="klant_voornaam" type="text" class="form-control" id="name" aria-describedby="name" placeholder="" required>
                                             </div>
                                         </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="email">E-mail <span>*</span></label>
-                                            <input type="email" class="form-control" id="email" aria-describedby="email">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="phone">Telefoonnummer <span>*</span></label>
-                                            <input type="text" class="form-control" id="phone" aria-describedby="phone">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="order_box_price">
-                                <h2 class="reg_title">Uw bestelling</h2>
-                                <div class="payment_list">
-                                    <div class="price_single_cost">
-                                    <?php
-                                    if(!empty($_SESSION["cart"])){
-                                        $total = 0;
-                                        foreach ($_SESSION["cart"] as $key => $value) {
-                                        ?>
-                                        <h5><?php echo $value["item_name"]; ?><span>€450</span></h5>
-                                        <h4>Subtotaal <span>€450</span></h4>
-                                        <h3><span class="normal_text">Totaal bedrag</span> <span>€450</span></h3>
-                                        <?php
-                                        }
-                                        }
-                                        ?>
-                                    </div>
-                                    <div id="accordion" role="tablist" class="price_method">
-                                        <div class="card">
-                                            <div class="card-header" role="tab" id="headingOne">
-                                                <h5 class="mb-0">
-                                                    <a data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="true" aria-controls="collapseOne">
-                                                    direct bank transfer
-                                                    </a>
-                                                </h5>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="last">Achternaam <span>*</span></label>
+                                                <input name="klant_achternaam" type="text" class="form-control" id="last" aria-describedby="last" required>
                                             </div>
-
-                                            <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-                                                <div class="card-body">
-                                                    Lorem Ipsum is simply dummy text of the print-ing and typesetting industry. Lorem Ipsum has been the industry's. 
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="email">E-mail <span>*</span></label>
+                                                <input name="klant_email" type="email" class="form-control" id="email" aria-describedby="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="address">Straatnaam<span>*</span></label>
+                                                <input name="klant_straat" type="text" class="form-control" id="address" aria-describedby="address" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label for="address">Huisnummer<span>*</span></label>
+                                                    <input name="klant_huisnr" type="text" class="form-control" id="address" aria-describedby="address" required>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="card">
-                                            <div class="card-header" role="tab" id="headingTwo">
-                                                <h5 class="mb-0">
-                                                    <a class="collapsed" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo">
-                                                    cheque payment
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                                                <div class="card-body">
-                                                    Lorem Ipsum is simply dummy text of the print-ing and typesetting industry. Lorem Ipsum has been the industry's. 
+                                        <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label for="address">Postcode <span>*</span></label>
+                                                    <input name="klant_postcode" type="text" class="form-control" id="address" aria-describedby="address" required>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="card">
-                                            <div class="card-header" role="tab" id="headingThree">
-                                                <h5 class="mb-0">
-                                                    <a class="collapsed" data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapseThree">
-                                                    cash on delivery
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                                                <div class="card-body">
-                                                    Lorem Ipsum is simply dummy text of the print-ing and typesetting industry. Lorem Ipsum has been the industry's. 
-                                                </div>
+                                        
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="phone">Telefoonnummer <span>*</span></label>
+                                                <input name="klant_telefoon" type="text" class="form-control" id="phone" aria-describedby="phone">
                                             </div>
                                         </div>
-                                        <div class="card">
-                                            <div class="card-header" role="tab" id="headingfour">
-                                                <h5 class="mb-0">
-                                                    <a class="collapsed" data-toggle="collapse" href="#collapsefour" role="button" aria-expanded="false" aria-controls="collapsefour">
-                                                    paypal
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                            <div id="collapsefour" class="collapse" role="tabpanel" aria-labelledby="headingfour" data-parent="#accordion">
-                                                <div class="card-body">
-                                                    Lorem Ipsum is simply dummy text of the print-ing and typesetting industry. Lorem Ipsum has been the industry's. 
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
-                                <a type="submit" value="submit" href="index.php" class="btn subs_btn form-control">Plaats bestelling</a>
                             </div>
-                        </div>
+                            <div class="col-lg-5">
+                                <div class="order_box_price">
+                                    <h2 class="reg_title">Uw bestelling</h2>
+                                    <div class="payment_list">
+                                        <div class="price_single_cost">
+                                        <?php
+                                        if(!empty($_SESSION["cart"])){
+                                            $total = 0;
+                                            foreach ($_SESSION["cart"] as $key => $value) {
+                                            ?>
+                                            <h5><?php echo $value["item_name"]; ?><span><?php echo $value["product_prijs"]; ?></span></h5>
+                                            <h4></h4>
+                                            <h3><span class="normal_text">Totaal bedrag</span> <span>&euro; 
+                                            <?php
+                                            $total = $total += $value['product_prijs'];
+                                            echo number_format($total, 2); ?></span></h3>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+                                        </div>
+                                        <div id="accordion" role="tablist" class="price_method">
+                                            <div class="card">
+                                                <div class="card-header" role="tab" id="headingOne">
+                                                    <h5 class="mb-0">
+                                                        <a data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="true" aria-controls="collapseOne">
+                                                        direct bank transfer
+                                                        </a>
+                                                    </h5>
+                                                </div>
+
+                                                <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        Lorem Ipsum is simply dummy text of the print-ing and typesetting industry. Lorem Ipsum has been the industry's. 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="submit" value="Plaats uw bestelling" class="btn subs_btn form-control">
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

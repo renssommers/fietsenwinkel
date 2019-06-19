@@ -138,6 +138,7 @@
                                 </div>
                                 <div class="float-right">
                                 <?php
+                                $total = $total += $value['product_prijs'];
                                 ?>
                                 <th align="right">&euro; <?php echo number_format($total, 2); ?></th>
                             </div>
