@@ -127,15 +127,21 @@
                             $rol = htmlspecialchars($_POST['medewerker_rol']);
 
                             $insert = "INSERT INTO medewerkers (medewerker_voornaam,medewerker_achternaam,medewerker_email,medewerker_telefoon,medewerker_gebruikersnaam,medewerker_wachtwoord,medewerker_rol)
-                            VALUES('$voornaam','$achternaam','$email','$telefoonnummer','$gebruikersnaam','$wachtwoord','$rol')";
+                            VALUES('$voornaam','$achternaam','$email','$telefoonnummer','$gwebruikersnaam','$wachtwoord','$rol')";
                          
-                            if ($conn->query($insert) === TRUE) {
+                            if ($conn->query($insert) === TRUE) 
+                            {
                                 //Later popup van maken.
-                                echo "<b>U heeft uw profiel aangepast.</b><br><br><br>";
-                                } else {
-                                    echo "Error: " . $insert . "<br>" . $conn->error;
-                                }
+                                ?>
+                                   <script>
+                                      window.location.replace("gebruikersoverzicht.php");
+                                    </script>
+                                <?php
+                                // } else {
+                                //     echo "Error: " . $insert . "<br>" . $conn->error;
+                                // }
                             }
+                        }
                     ?>
                                
                     <form action="" method="POST">
@@ -194,8 +200,8 @@
                                         <br>
                                          <input type="submit" class="add_cart_btn" style="cursor: pointer; margin-top:30px;" value="Opslaan" name="submit">
 
-                                         <br>
-                                         <a class="add_cart_btn" style="cursor: pointer; margin-top:30px; background-color: #007bff;" href="gebruikersoverzicht.php">< Terug</a>
+                                         <!-- <br>
+                                         <a class="add_cart_btn" style="cursor: pointer; margin-top:30px; background-color: #007bff;" href="gebruikersoverzicht.php">< Terug</a> -->
                                 </form>
 
                         </div>
