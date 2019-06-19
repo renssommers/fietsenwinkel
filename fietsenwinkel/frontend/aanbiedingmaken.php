@@ -85,7 +85,7 @@
         <section class="categories_product_main p_80">
             <div class="container" style="max-width: unset;">
                 <div class="col-lg-12" style="padding: 0; text-align:center;">
-                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Aanbiedingen </h1>
+                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Aanbieding maken </h1>
                 </div>
                 <div class="categories_main_inner">
                     <div class="row row_disable">
@@ -112,53 +112,26 @@
                         </div>
 
                         <div class="float-left col-lg-9">
-                        <div class="categories_product_area">
-                                <div class="row">
-                            <?php 
-                                $conn = Opencon();
-                                $QUERY = "SELECT * FROM producten";
-                                $result = mysqli_query($conn, $QUERY);
-                                while ($row = mysqli_fetch_array($result)) {
-                                ?>
-                                <div class="col-lg-3 col-sm-6">
-                                <form method="post">
-                                        <div class="l_product_item" style="float:left;">
-                                            <a class="l_p_img">
-                                                <img src=<?php echo $row["product_fotos"]; ?> alt="">
-                                                <h4 style="font-size: 15px; color: black; margin: 10px 5px;"><?php echo $row["product_naam"]; ?></h4>
-
-                                                <!-- if statement maken -->
-                                                <?php
-                                                $actie = $row["actie"];
-                                                if ($actie == 1) {
-                                                    ?>
-                                                    <h5><b style="color:#FF9029; margin: 0 5px; font-weight: lighter; padding-right: 5px;">Actieprijs: </b> €<?php echo $row["product_prijs"]; ?></h5>
-                                                    <?php
-                                                } else {
-                                                    ?>
-                                                    <h5 style="margin: 0 0 10px 5px;"><del></del>  €<?php echo $row["product_prijs"]; ?></h5>
-                                                <?php
-                                                }
-                                                ?>
-                                            
-                                            
-                                            </a>
-                                            <div style="float:left; width:100%;">
-                                                <div class="specificaties">
-                                                   
-                                                    <div style="margin: 10px;">
-                                                        <a class="add_cart_btn" href="aanbiedingmaken.php?id=<?php echo $row["product_id"]; ?>" style="width:100%; text-align:center;"> Aanbieding maken </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </form>
-                                </div>
-                            <?php
-                            }
-                            ?>
-
+                        
+                        <?php 
+                         
+                            $conn = Opencon();
+                       
+                            $insert = "UPDATE producten SET actie = 1 WHERE product_id=" . (empty($_GET['id']) ? 0 : $_GET['id']);
+                         
+                                if ($conn->query($insert) === TRUE) {
+                                //Later popup van maken.
+                                echo "<br><h3><b>Het product zal nu weergeven worden als een aanbieding!</b></h3>";
+                                } else {
+                                    echo "Error: " . $insert . "<br>" . $conn->error;
+                                }
+                            
+                     ?>
+                        
+                
+                                         <br>
+                                         <a class="add_cart_btn" style="cursor: pointer; margin-top:30px; background-color: #007bff;" href="aanbiedingen.php">< Terug</a>
+                                </form>
 
                         </div>
                     </div>
