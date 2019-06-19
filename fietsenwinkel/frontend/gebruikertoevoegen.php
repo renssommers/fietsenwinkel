@@ -105,15 +105,13 @@
                                         <a href="bestellingenbeheren.php">Bestellingen</a> <br>
                                         <a href="nieuwsbrief.php">Nieuwsbrief</a>
                                 </aside>
-
                                 <a class="abonneer_btn" href="index.php">Uitloggen</a>
-
                             </div>
                         </div>
 
                         <div class="float-left col-lg-9">
                         <?php 
-                         
+
                             $conn = Opencon();
                             $QUERY = "SELECT * FROM medewerkers";
 
@@ -143,7 +141,7 @@
                             }
                         }
                     ?>
-                               
+
                     <form action="" method="POST">
                     <div class="col-lg-2" style="float: left; margin-top: 10px;"> Voornaam* </div> 
                                         <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
