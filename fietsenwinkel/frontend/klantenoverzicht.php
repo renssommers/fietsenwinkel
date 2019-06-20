@@ -102,7 +102,7 @@
         <section class="categories_product_main p_80">
             <div class="container" style="max-width: unset;">
                 <div class="col-lg-12" style="padding: 0; text-align:center;">
-                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Medewerkers overzicht </h1>
+                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Klanten overzicht </h1>
                 </div>
                 <div class="categories_main_inner">
                     <div class="row row_disable">
@@ -114,14 +114,13 @@
                                         <div class="l_w_title">
                                             <h3>Menu</h3>
                                         </div>
-                                        <a href="medewerkersoverzicht.php" style="text-decoration: underline;">Medewerkers</a><br>
-                                        <a href="gebruikersoverzicht.php">Gebruikers</a>  <br>
-                                        <a href="">Fietsen</a>  <br>
-                                        <a href="">Klanten</a>  <br>
+                                        <a href="gebruikersoverzicht.php" >Gebruikers</a><br>
+                                        <a href="klantenoverzicht.php" style="text-decoration: underline;">Klanten</a>  <br>
+                                        <a href="fietsenoverzicht.php">Fietsen</a>  <br>
                                         <a href="reviewsbeheren.php">Reviews</a> <br>
-                                        <a href="">Aanbieding</a>  <br>
-                                        <a href="">Bestellingen</a> <br>
-                                        <a href="">Nieuwsbrief</a>
+                                        <a href="aanbiedingen.php" >Aanbieding</a>  <br>
+                                        <a href="bestellingenbeheren.php">Bestellingen</a> <br>
+                                        <a href="nieuwsbrief.php">Nieuwsbrief</a>
                                 </aside>
 
                                 <a class="abonneer_btn" href="index.php">Uitloggen</a>
@@ -129,58 +128,34 @@
                             </div>
                         </div>
 
-                        <div class="float-left">
+                        <div class="col-lg-9 float-left">
                         <?php
                             $conn = Opencon();
-                            $QUERY = "SELECT * FROM medewerkers";
+                            $QUERY = "SELECT * FROM klanten";
                             $result = mysqli_query($conn, $QUERY);
-                            
                         ?>
                                 <table>
                                     <tr>
                                         <th>Naam</th>
                                         <th>E-mail</th>
                                         <th>Tel. nummer</th>
-                                        <th>Gebruikersnaam</th>
-                                        <th>Wachtwoord</th>
-                                        <th>Rol</th>
+                                        <th>Adresgegevens</th>
                                     </tr>
 
                                     <?php
                                       while ($row = mysqli_fetch_assoc($result)){
                                     ?>
                                     <tr>
-                                        <td><?php echo $row["medewerker_voornaam"]; ?> <?php echo $row["medewerker_achternaam"]; ?></td>
-                                        <td><?php echo $row["medewerker_email"]; ?></td>
-                                        <td><?php echo $row["medewerker_telefoon"]; ?></td>
-                                        <td><?php echo $row["medewerker_gebruikersnaam"]; ?></td>
-                                        <td><?php echo $row["medewerker_wachtwoord"]; ?></td>
-                                        <td> <?php 
-                                                $rol = $row["medewerker_rol"];
-                                                    if ($rol == 1) {
-                                            ?>
-                                               Admin
-                                            <?php
-                                                } elseif ($rol == 2) {
-                                            ?>
-                                              Gewone gebruiker
-                                            <?php
-                                            } else {
-
-                                            }
-                                            ?> 
-                                        </td>
-                                        
-                                        <td style="background-color: white;"> <a href="medewerkerbewerken.php"> <i class="icon-fixed-width icon-pencil"></i> </a> </td>
-                                        <td style="background-color: white;"> <i class="icon-trash icon-large"></i> </td>
+                                        <td><?php echo $row["klant_voornaam"]; ?> <?php echo $row["klant_achternaam"]; ?></td>
+                                        <td><?php echo $row["klant_email"]; ?></td>
+                                        <td><?php echo $row["klant_telefoon"]; ?></td>
+                                        <td><?php echo $row["klant_straat"]; ?> <?php echo $row["klant_huisnr"]; ?>, <?php echo $row["klant_postcode"]; ?>, <?php echo $row["klant_plaats"]; ?></td>
                                     </tr>
-                                        
-                                
+
                                     <?php
                             }
                         ?>
                             </table>
-                            <a class="add_cart_btn" href="medewerkertoevoegen.php" style="margin-top: 20px;">Voeg nieuwe toe</a>
                         </div>
                     </div>
              

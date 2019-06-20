@@ -85,7 +85,7 @@
         <section class="categories_product_main p_80">
             <div class="container" style="max-width: unset;">
                 <div class="col-lg-12" style="padding: 0; text-align:center;">
-                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Reviews beheren </h1>
+                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Gebruiker verwijderen </h1>
                 </div>
                 <div class="categories_main_inner">
                     <div class="row row_disable">
@@ -97,10 +97,10 @@
                                         <div class="l_w_title">
                                             <h3>Menu</h3>
                                         </div>
-                                        <a href="gebruikersoverzicht.php">Gebruikers</a><br>
+                                        <a href="gebruikersoverzicht.php" style="text-decoration: underline;">Gebruikers</a><br>
                                         <a href="klantenoverzicht.php">Klanten</a>  <br>
                                         <a href="fietsenoverzicht.php">Fietsen</a>  <br>
-                                        <a href="reviewsbeheren.php" style="text-decoration: underline;">Reviews</a> <br>
+                                        <a href="reviewsbeheren.php">Reviews</a> <br>
                                         <a href="aanbiedingen.php" >Aanbieding</a>  <br>
                                         <a href="bestellingenbeheren.php">Bestellingen</a> <br>
                                         <a href="nieuwsbrief.php">Nieuwsbrief</a>
@@ -111,84 +111,27 @@
                             </div>
                         </div>
 
-                        <div class="float-left col-lg-8">
-                        <section class="reviews">
-                            <div class="container" style="padding-bottom: 20px;">
+                        <div class="float-left col-lg-9">
+                        
+                        <?php 
+                         
+                            $conn = Opencon();
+                       
+                            $insert = "DELETE FROM medewerkers WHERE medewerker_id=" . (empty($_GET['id']) ? 0 : $_GET['id']);
+                         
+                                if ($conn->query($insert) === TRUE) {
+                                //Later popup van maken.
+                                echo "<br><h3><b>Het account is verwijderd!</b></h3>";
+                                } else {
+                                    echo "Error: " . $insert . "<br>" . $conn->error;
+                                }
                             
-
-                                <?php
-                                   $conn = Opencon();
-                                    $QUERY = "SELECT * FROM reviews ";
-                                    $result = mysqli_query($conn, $QUERY);
-                                    while ($row = mysqli_fetch_assoc($result)){
-                                ?>
-                                
-                                <a href="reviewverwijderen.php?id=<?php echo $row["review_id"]; ?>"> <i class="icon-trash icon-large" style="float:left; font-size: 20px; padding: 10px 10px 0 0;"></i> </a>
-                                <div class="card" style="margin-bottom: 30px;">
-                                    <div class="card-body">
-                                        <div class="row">
-
-                                            <div class="col-md-12">
-                                                <p>
-                                                    <?php 
-                                                    $rating = $row["review_rating"];
-                                                    if ($rating == 5) {
-                                                    ?>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                    <?php
-                                                    } elseif ($rating == 4) {
-                                                        ?>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                    <?php
-                                                    } elseif ($rating == 3) {
-                                                        ?>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                    <?php
-                                                    } elseif ($rating == 2) {
-                                                        ?>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                    <?php
-                                                    } else {
-                                                        ?>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                    <?php   
-                                                    }
-                                                    ?>
-                                                    
-                                                
-                                            </p>
-                                            <div class="clearfix"></div>
-                                                <p><?php echo $row["review_beschrijving"]; ?></p>
-                                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <?php
-                                    }
-                            ?>
-            </div>
-        </section>
+                     ?>
+                        
+                
+                                         <br>
+                                         <a class="add_cart_btn" style="cursor: pointer; margin-top:30px; background-color: #007bff;" href="gebruikersoverzicht.php">< Terug</a>
+                                </form>
 
                         </div>
                     </div>

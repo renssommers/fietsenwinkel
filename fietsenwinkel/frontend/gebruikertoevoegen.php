@@ -85,7 +85,7 @@
         <section class="categories_product_main p_80">
             <div class="container" style="max-width: unset;">
                 <div class="col-lg-12" style="padding: 0; text-align:center;">
-                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Reviews beheren </h1>
+                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Gebruiker toevoegen </h1>
                 </div>
                 <div class="categories_main_inner">
                     <div class="row row_disable">
@@ -97,98 +97,110 @@
                                         <div class="l_w_title">
                                             <h3>Menu</h3>
                                         </div>
-                                        <a href="gebruikersoverzicht.php">Gebruikers</a><br>
+                                        <a href="gebruikersoverzicht.php" style="text-decoration: underline;">Gebruikers</a><br>
                                         <a href="klantenoverzicht.php">Klanten</a>  <br>
                                         <a href="fietsenoverzicht.php">Fietsen</a>  <br>
-                                        <a href="reviewsbeheren.php" style="text-decoration: underline;">Reviews</a> <br>
+                                        <a href="reviewsbeheren.php">Reviews</a> <br>
                                         <a href="aanbiedingen.php" >Aanbieding</a>  <br>
                                         <a href="bestellingenbeheren.php">Bestellingen</a> <br>
                                         <a href="nieuwsbrief.php">Nieuwsbrief</a>
                                 </aside>
-
                                 <a class="abonneer_btn" href="index.php">Uitloggen</a>
-
                             </div>
                         </div>
 
-                        <div class="float-left col-lg-8">
-                        <section class="reviews">
-                            <div class="container" style="padding-bottom: 20px;">
-                            
+                        <div class="float-left col-lg-9">
+                        <?php 
 
-                                <?php
-                                   $conn = Opencon();
-                                    $QUERY = "SELECT * FROM reviews ";
-                                    $result = mysqli_query($conn, $QUERY);
-                                    while ($row = mysqli_fetch_assoc($result)){
+                            $conn = Opencon();
+                            $QUERY = "SELECT * FROM medewerkers";
+
+                        if (!empty($_POST)) {
+                            $voornaam = htmlspecialchars($_POST['medewerker_voornaam']);
+                            $achternaam = htmlspecialchars($_POST['medewerker_achternaam']);
+                            $email = htmlspecialchars($_POST['medewerker_email']);
+                            $telefoonnummer = htmlspecialchars($_POST['medewerker_telefoon']);
+                            $gebruikersnaam = htmlspecialchars($_POST['medewerker_gebruikersnaam']);
+                            $wachtwoord = htmlspecialchars($_POST['medewerker_wachtwoord']);
+                            $rol = htmlspecialchars($_POST['medewerker_rol']);
+
+                            $insert = "INSERT INTO medewerkers (medewerker_voornaam,medewerker_achternaam,medewerker_email,medewerker_telefoon,medewerker_gebruikersnaam,medewerker_wachtwoord,medewerker_rol)
+                            VALUES('$voornaam','$achternaam','$email','$telefoonnummer','$gwebruikersnaam','$wachtwoord','$rol')";
+                         
+                            if ($conn->query($insert) === TRUE) 
+                            {
+                                //Later popup van maken.
                                 ?>
-                                
-                                <a href="reviewverwijderen.php?id=<?php echo $row["review_id"]; ?>"> <i class="icon-trash icon-large" style="float:left; font-size: 20px; padding: 10px 10px 0 0;"></i> </a>
-                                <div class="card" style="margin-bottom: 30px;">
-                                    <div class="card-body">
-                                        <div class="row">
+                                   <script>
+                                      window.location.replace("gebruikersoverzicht.php");
+                                    </script>
+                                <?php
+                                // } else {
+                                //     echo "Error: " . $insert . "<br>" . $conn->error;
+                                // }
+                            }
+                        }
+                    ?>
 
-                                            <div class="col-md-12">
-                                                <p>
-                                                    <?php 
-                                                    $rating = $row["review_rating"];
-                                                    if ($rating == 5) {
-                                                    ?>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                    <?php
-                                                    } elseif ($rating == 4) {
-                                                        ?>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                    <?php
-                                                    } elseif ($rating == 3) {
-                                                        ?>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                    <?php
-                                                    } elseif ($rating == 2) {
-                                                        ?>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                    <?php
-                                                    } else {
-                                                        ?>
-                                                        <span style="font-size: 20px;"><i class="text-warning fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                        <span style="font-size: 20px;"><i class="fa fa-star"></i></span>
-                                                    <?php   
-                                                    }
-                                                    ?>
-                                                    
-                                                
-                                            </p>
-                                            <div class="clearfix"></div>
-                                                <p><?php echo $row["review_beschrijving"]; ?></p>
-                                            </div>
+                    <form action="" method="POST">
+                    <div class="col-lg-2" style="float: left; margin-top: 10px;"> Voornaam* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="medewerker_voornaam" style="width: 35%;" required><br>
+                                        </div>
 
-                        </div>
-                    </div>
-                </div>
-                <?php
-                                    }
-                            ?>
-            </div>
-        </section>
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Achternaam* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="medewerker_achternaam" style="width: 35%;" required><br>
+                                        </div>
+
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> E-mailadres* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="medewerker_email" style="width: 35%;" required><br>
+                                        </div>
+
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Telefoonnummer* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="tel" name="medewerker_telefoon" style="width: 35%;" required><br>
+                                        </div>
+
+                                       
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Gebruikersnaam* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="medewerker_gebruikersnaam" style="width: 35%;" required><br>
+                                        </div>
+
+                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Wachtwoord* </div> 
+                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
+                                        <input type="text" name="medewerker_wachtwoord" style="width: 35%;" required><br>
+                                        </div>
+
+
+                                        <div class="col-lg-2" style="float:left;  margin-top: 10px;"> Rol </div> 
+                                        <div class="col-lg-10" style="float: left;  margin-top: 10px;"> 
+                                            <select name="rol">
+                                            <?php 
+                                                $rol = $row["medewerker_rol"];
+                                                    if ($rol == 1) {
+                                            ?>
+                                                <option value="1">Admin</option>
+                                                <option value="2">Gewone gebruiker</option> 
+                                            <?php
+                                                } else {
+                                            ?>
+                                                <option value="2">Gewone gebruiker</option>
+                                                <option value="1">Admin</option>
+                                            <?php
+                                            }
+                                            ?>   
+                                            </select>
+                                        </div>
+
+                                        <br>
+                                         <input type="submit" class="add_cart_btn" style="cursor: pointer; margin-top:30px;" value="Opslaan" name="submit">
+
+                                         <!-- <br>
+                                         <a class="add_cart_btn" style="cursor: pointer; margin-top:30px; background-color: #007bff;" href="gebruikersoverzicht.php">< Terug</a> -->
+                                </form>
 
                         </div>
                     </div>

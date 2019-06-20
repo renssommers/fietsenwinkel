@@ -59,7 +59,7 @@
                                     <input class="form-control" type="text" placeholder="Wachtwoord">
                                 </div>
                                 <div class="col-lg-12 form-group">
-                                    <a type="submit" href="medewerkersoverzicht.php" value="submit" class="btn update_btn form-control">Login</a>
+                                    <a type="submit" href="gebruikersoverzicht.php" value="submit" class="btn update_btn form-control">Login</a>
                                 </div>
                             </form>
                         </div>

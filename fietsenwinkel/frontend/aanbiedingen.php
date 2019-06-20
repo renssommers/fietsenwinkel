@@ -85,7 +85,7 @@
         <section class="categories_product_main p_80">
             <div class="container" style="max-width: unset;">
                 <div class="col-lg-12" style="padding: 0; text-align:center;">
-                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Medewerker toevoegen </h1>
+                    <h1 style="margin:0; padding-bottom: 40px; color: #09366C; font-weight: bold; text-align:left;"> Aanbiedingen </h1>
                 </div>
                 <div class="categories_main_inner">
                     <div class="row row_disable">
@@ -97,14 +97,13 @@
                                         <div class="l_w_title">
                                             <h3>Menu</h3>
                                         </div>
-                                        <a href="medewerkersoverzicht.php" style="text-decoration: underline;">Medewerkers</a><br>
-                                        <a href="gebruikersoverzicht.php">Gebruikers</a>  <br>
-                                        <a href="">Fietsen</a>  <br>
-                                        <a href="">Klanten</a>  <br>
+                                        <a href="gebruikersoverzicht.php">Gebruikers</a><br>
+                                        <a href="klantenoverzicht.php">Klanten</a>  <br>
+                                        <a href="fietsenoverzicht.php">Fietsen</a>  <br>
                                         <a href="reviewsbeheren.php">Reviews</a> <br>
-                                        <a href="">Aanbieding</a>  <br>
-                                        <a href="">Bestellingen</a> <br>
-                                        <a href="">Nieuwsbrief</a>
+                                        <a href="aanbiedingen.php" style="text-decoration: underline;">Aanbieding</a>  <br>
+                                        <a href="bestellingenbeheren.php">Bestellingen</a> <br>
+                                        <a href="nieuwsbrief.php">Nieuwsbrief</a>
                                 </aside>
 
                                 <a class="abonneer_btn" href="index.php">Uitloggen</a>
@@ -113,91 +112,53 @@
                         </div>
 
                         <div class="float-left col-lg-9">
-                        <?php 
-                         
-                            $conn = Opencon();
-                            $QUERY = "SELECT * FROM medewerkers";
+                        <div class="categories_product_area">
+                                <div class="row">
+                            <?php 
+                                $conn = Opencon();
+                                $QUERY = "SELECT * FROM producten";
+                                $result = mysqli_query($conn, $QUERY);
+                                while ($row = mysqli_fetch_array($result)) {
+                                ?>
+                                <div class="col-lg-3 col-sm-6">
+                                <form method="post">
+                                        <div class="l_product_item" style="float:left;">
+                                            <a class="l_p_img">
+                                                <img src=<?php echo $row["product_fotos"]; ?> alt="">
+                                                <h4 style="font-size: 15px; color: black; margin: 10px 5px;"><?php echo $row["product_naam"]; ?></h4>
 
-                        if (!empty($_POST)) {
-                            $voornaam = htmlspecialchars($_POST['medewerker_voornaam']);
-                            $achternaam = htmlspecialchars($_POST['medewerker_achternaam']);
-                            $email = htmlspecialchars($_POST['medewerker_email']);
-                            $telefoonnummer = htmlspecialchars($_POST['medewerker_telefoon']);
-                            $gebruikersnaam = htmlspecialchars($_POST['medewerker_gebruikersnaam']);
-                            $wachtwoord = htmlspecialchars($_POST['medewerker_wachtwoord']);
-                            $rol = htmlspecialchars($_POST['medewerker_rol']);
-
-                            $insert = "INSERT INTO medewerkers (medewerker_voornaam,medewerker_achternaam,medewerker_email,medewerker_telefoon,medewerker_gebruikersnaam,medewerker_wachtwoord,medewerker_rol)
-                            VALUES('$voornaam','$achternaam','$email','$telefoonnummer','$gebruikersnaam','$wachtwoord','$rol')";
-                         
-                            if ($conn->query($insert) === TRUE) {
-                                //Later popup van maken.
-                                echo "<b>U heeft uw profiel aangepast.</b><br><br><br>";
-                                } else {
-                                    echo "Error: " . $insert . "<br>" . $conn->error;
-                                }
-                            }
-                    ?>
-                               
-                    <form action="" method="POST">
-                    <div class="col-lg-2" style="float: left; margin-top: 10px;"> Voornaam* </div> 
-                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
-                                        <input type="text" name="medewerker_voornaam" style="width: 35%;" required><br>
-                                        </div>
-
-                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Achternaam* </div> 
-                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
-                                        <input type="text" name="medewerker_achternaam" style="width: 35%;" required><br>
-                                        </div>
-
-                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> E-mailadres* </div> 
-                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
-                                        <input type="text" name="medewerker_email" style="width: 35%;" required><br>
-                                        </div>
-
-                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Telefoonnummer* </div> 
-                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
-                                        <input type="text" name="medewerker_telefoon" style="width: 35%;" required><br>
-                                        </div>
-
-                                       
-                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Gebruikersnaam* </div> 
-                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
-                                        <input type="text" name="medewerker_gebruikersnaam" style="width: 35%;" required><br>
-                                        </div>
-
-                                        <div class="col-lg-2" style="float: left; margin-top: 10px;"> Wachtwoord* </div> 
-                                        <div class="col-lg-10" style="float: left; margin-top: 10px;"> 
-                                        <input type="text" name="medewerker_wachtwoord" style="width: 35%;" required><br>
-                                        </div>
-
-
-                                        <div class="col-lg-2" style="float:left;  margin-top: 10px;"> Rol </div> 
-                                        <div class="col-lg-10" style="float: left;  margin-top: 10px;"> 
-                                            <select name="rol">
-                                            <?php 
-                                                $rol = $row["medewerker_rol"];
-                                                    if ($rol == 1) {
-                                            ?>
-                                                <option value="1">Admin</option>
-                                                <option value="2">Gewone gebruiker</option> 
-                                            <?php
+                                                <!-- if statement maken -->
+                                                <?php
+                                                $actie = $row["actie"];
+                                                if ($actie == 1) {
+                                                    ?>
+                                                    <h5><b style="color:#FF9029; margin: 0 5px; font-weight: lighter; padding-right: 5px;">Actieprijs: </b> €<?php echo $row["product_prijs"]; ?></h5>
+                                                    <?php
                                                 } else {
-                                            ?>
-                                                <option value="2">Gewone gebruiker</option>
-                                                <option value="1">Admin</option>
-                                            <?php
-                                            }
-                                            ?>   
-                                            </select>
+                                                    ?>
+                                                    <h5 style="margin: 0 0 10px 5px;"><del></del>  €<?php echo $row["product_prijs"]; ?></h5>
+                                                <?php
+                                                }
+                                                ?>
+                                            
+                                            
+                                            </a>
+                                            <div style="float:left; width:100%;">
+                                                <div class="specificaties">
+                                                   
+                                                    <div style="margin: 10px;">
+                                                        <a class="add_cart_btn" href="aanbiedingmaken.php?id=<?php echo $row["product_id"]; ?>" style="width:100%; text-align:center;"> Aanbieding maken </a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+                                        
+                                    </form>
+                                </div>
+                            <?php
+                            }
+                            ?>
 
-                                        <br>
-                                         <input type="submit" class="add_cart_btn" style="cursor: pointer; margin-top:30px;" value="Opslaan" name="submit">
-
-                                         <br>
-                                         <a class="add_cart_btn" style="cursor: pointer; margin-top:30px; background-color: #007bff;" href="medewerkersoverzicht.php">< Terug</a>
-                                </form>
 
                         </div>
                     </div>

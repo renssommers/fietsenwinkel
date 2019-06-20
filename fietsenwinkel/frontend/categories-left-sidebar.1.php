@@ -342,7 +342,7 @@
                                     if (in_array("2", $form)){
                                         $query .= " OR price >= 300 AND price <= 600";
                                     }
-                                    retzurn $query;
+                                    return $query;
                                     }
                                     ?>
 
