@@ -45,114 +45,40 @@
             $row = mysqli_fetch_assoc($result);
             CloseCon($conn);
             ?>
+
+        <?php
         
-        <!--================Menu Area =================-->
-        <header class="shop_header_area carousel_menu_area">
-                <!-- <div class="carousel_top_header row m0">
-                    <div class="container">
-                        <div class="carousel_top_h_inner">
-                            <div class="float-md-left">
-                                <div class="top_header_left">
-                                    <div class="selector">
-                                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                                          <option value='yt' data-image="img/icon/flag-1.png" data-imagecss="flag yt" data-title="English">English</option>
-                                          <option value='yu' data-image="img/icon/flag-1.png" data-imagecss="flag yu" data-title="Bangladesh">Bangla</option>
-                                          <option value='yt' data-image="img/icon/flag-1.png" data-imagecss="flag yt" data-title="English">English</option>
-                                          <option value='yu' data-image="img/icon/flag-1.png" data-imagecss="flag yu" data-title="Bangladesh">Bangla</option>
-                                        </select>
-                                    </div>
-                                    <select class="selectpicker usd_select">
-                                        <option>USD</option>
-                                        <option>$</option>
-                                        <option>$</option>
-                                        <option>EURO</option>
-                                        // hoi test iedereen
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="float-md-right">
-                                <div class="top_header_middle">
-                                    <a href="#"><i class="fa fa-phone"></i> Call Us: <span>+84 987 654 321</span></a>
-                                    <a href="#"><i class="fa fa-envelope"></i> Email: <span>support@yourdomain.com</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-        <!--================End Top Header Area =================-->
+        session_start();
+
+        if (isset($_POST["add"])){
+            if (isset($_SESSION["cart"])){
+                $item_array_id = array_column($_SESSION["cart"],"product_id");
+                if (!in_array($_GET["id"],$item_array_id)){
+                    $count = count($_SESSION["cart"]);
+                    $item_array = array(
+                        'product_id' => $_GET["id"],
+                        'item_name' => $_POST["hidden_name"],
+                        'product_prijs' => $_POST["hidden_price"],
+                        'item_quantity' => $_POST["quantity"],
+                    );
+                    $_SESSION["cart"][$count] = $item_array;
+                    echo '<script>window.location="Cart.php"</script>';
+                }else{
+                    echo '<script>alert("Product is already Added to Cart")</script>';
+                }
+            }else{
+                $item_array = array(
+                    'product_id' => $_GET["id"],
+                    'item_name' => $_POST["hidden_name"],
+                    'product_prijs' => $_POST["hidden_price"],
+                    'item_quantity' => $_POST["quantity"],
+                );
+                $_SESSION["cart"][0] = $item_array;
+            }
+        }
+         ?>
         
-        <!--================Menu Area =================-->
-        <div class="carousel_menu_inner">
-                    <div class="container">
-                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                            <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt=""></a>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-    
-                            </button>
-    
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item dropdown submenu">
-                                        <a class="nav-link dropdown-toggle" href="categories-left-sidebar.php">
-                                        Dames
-                                        </a>
-                                        <!-- <ul class="dropdown-menu">
-                                            <li class="nav-item"><a class="nav-link" href="index.html">Home Simple</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="home-carousel.html">Home Carousel</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="home-fullwidth.html">Home Full Width</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="home-parallax.html">Home Parallax</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="home-sidebar.html">Home Boxed</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="home-fixed-menu.html">Home Fixed</a></li>
-                                        </ul> -->
-                                    </li>
-                                    <li class="nav-item dropdown submenu">
-                                        <a class="nav-link dropdown-toggle" href="categories-left-sidebar.1.php">
-                                        Heren
-                                        </a>
-                                        <!-- <ul class="dropdown-menu">
-                                            <li class="nav-item"><a class="nav-link" href="compare.html">Compare</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="checkout.html">Checkout Method</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="register.html">Checkout Register</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="track.html">Track</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="404.html">404</a></li>
-                                        </ul> -->
-                                    </li>
-                                    <li class="nav-item dropdown submenu">
-                                        <a class="nav-link dropdown-toggle" href="categories-left-sidebar.2.php" >
-                                        Kinderen
-                                        </a>
-                                        <!-- <ul class="dropdown-menu">
-                                            <li class="nav-item"><a class="nav-link" href="categories-no-sidebar-2column.html">Prodcut No Sidebar</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="categories-no-sidebar-3column.html">Prodcut Two Column</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="categories-no-sidebar-4column.html">Product Grid</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="categories-left-sidebar.html">Categories Left Sidebar</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="categories-right-sidebar.html">Categories Right Sidebar</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="categories-grid-left-sidebar.html">Categories Grid Sidebar</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="product-details.html">Prodcut Details 01</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="product-details2.html">Prodcut Details 02</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="product-details3.html">Prodcut Details 03</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="shopping-cart.html">Shopping Cart 01</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="shopping-cart2.html">Shopping Cart 02</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="empty-cart.html">Empty Cart</a></li>
-                                        </ul> -->
-                                    </li>
-                                    <!-- <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">lookbook</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> -->
-                                </ul>
-                                <ul class="navbar-nav justify-content-end">
-                                    <!-- <li class="search_icon"><a href="#"><i class="icon-magnifier icons"></i></a></li> -->
-                                    <li class="user_icon"><a href="profilepage.html"><i class="icon-user icons"></i></a></li>
-                                    <li class="cart_cart"><a href="shopping-cart2.html"><i class="icon-handbag icons"></i></a></li>
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-            </header>
-        <!--================End Menu Area =================-->
+        <?php include 'header.php' ?>
         
         <!--================Product Details Area =================-->
         <section class="product_details_area">
@@ -234,7 +160,7 @@
                                 <a href="#">5 Reviews</a>
                                 <a href="#">Add your review</a>
                             </div> -->
-                            <h4 style="padding-top: 15px;"><?php echo $row["product_prijs"]; ?></h4>
+                            <h4 style="padding-top: 15px;">&euro;<?php echo $row["product_prijs"]; ?></h4>
                             <p><?php echo $row["product_omschrijving"]; ?></p>
                             <!-- <div class="p_color">
                                 <h4 class="p_d_title">color <span>*</span></h4>
@@ -261,7 +187,14 @@
                                     <input type="text" name="qty" id="sst" maxlength="12" value="01" title="Quantity:" class="input-text qty">
                                     <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
                                 </div> -->
-                                <a class="add_cart_btn" href="#">In winkelwagen</a>
+                                <form method="post" action="shopping-cart2.php?action=add&id=<?php echo $row["product_id"]; ?>">
+                                    <ul>
+                                        <input type="submit" name="add" style="margin-top: 5px;" class="add_cart_btn"
+                                        value="In winkelwagen">
+                                    </ul>
+                                    <input type="hidden" name="hidden_name" value="<?php echo $row["product_naam"]; ?>">
+                                    <input type="hidden" name="hidden_price" value="<?php echo $row["product_prijs"]; ?>">
+                                </form>
                             </div>
                             <!-- <div class="shareing_icon">
                                 <h5>share :</h5>
@@ -338,60 +271,7 @@
         </section> -->
         <!--================End Product Details Area =================-->
         
-        <!--================Footer Area =================-->
-        <footer class="footer_area">
-                <div class="container">
-                    <div class="footer_widgets">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6 col-12">
-                                <aside class="f_widget f_about_widget">
-                                    <img src="img/logo.png" alt="">
-                                    <p>ChainGang fietsenwinkel, de beste fietsen passend bij uw wensen.</p>
-                                </aside>
-                            </div>
-                            <div class="col-lg-2 col-md-6 col-12">
-                                <aside class="f_widget link_widget f_info_widget">
-                                    <div class="f_w_title">
-                                        <h3>Categorieën</h3>
-                                    </div>
-                                    <ul>
-                                        <li><a href="categories-left-sidebar.php">Dames</a></li>
-                                        <li><a href="categories-left-sidebar.1.php">Heren</a></li>
-                                        <li><a href="categories-left-sidebar.2.php">Kinderen</a></li>
-                                    </ul>
-                                </aside>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <aside class="f_widget link_widget f_service_widget">
-                                    <div class="f_w_title">
-                                        <h3>Nieuwsbrief</h3>
-                                    </div>
-                                    <p>Abonneer op onze nieuwsbrief:</p>
-                                    <input type="email" id="email" placeholder="E-mailadres" size="30" required>
-                                    <a class="abonneer_btn" href="#">Abonneer</a>
-                                </aside>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <aside class="f_widget link_widget f_extra_widget">
-                                    <div class="f_w_title">
-                                        <h3>Contact</h3>
-                                    </div>
-                                    <ul>
-                                        <li>J.F. Kennedylaan 49</li>
-                                        <li>7001 EA Doetinchem</li>
-                                        <li> </li>
-                                        <li>Tel: 0314 353 500</li>
-                                        <li>E-mail: info@chaingang.nl</li>
-                                    </ul>
-                                </aside>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        <!--================End Footer Area =================-->
-        
-        
+        <?php include 'footer.php' ?>
         
         
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

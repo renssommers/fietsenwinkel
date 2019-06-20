@@ -2150,7 +2150,7 @@ i:before {
       font-weight: 600;
       color: #000;
       padding-bottom: 5px;
-      padding-top: 16px;
+      padding-top: 5px !important;
       -webkit-transition: all 400ms linear 0s;
       -o-transition: all 400ms linear 0s;
       transition: all 400ms linear 0s; }

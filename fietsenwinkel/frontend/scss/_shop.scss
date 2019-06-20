@@ -86,9 +86,10 @@
             font-weight: 600;
             color: #000;
             padding-bottom: 5px;
-            padding-top: 16px;
+            padding-top: 5px !important;
             @include transition;
         }
+        
         h5{
             font-size: 18px;
             font-family: $mon;
