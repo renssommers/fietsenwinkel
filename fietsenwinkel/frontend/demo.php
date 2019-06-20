@@ -69,5 +69,32 @@ if ($conn->query($insert) === TRUE) {
     }
 }
 ?>
+
+<?php
+
+$QUERY = "SELECT * FROM bestellingen";
+
+if (!empty($_POST)) {
+    $voornaam = htmlspecialchars($_POST['klant_voornaam']);
+    $achternaam = htmlspecialchars($_POST['klant_achternaam']);
+    $email = htmlspecialchars($_POST['klant_email']);
+    $straat = htmlspecialchars($_POST['klant_straat']);
+    $huisnr = htmlspecialchars($_POST['klant_huisnr']);
+    $postcode = htmlspecialchars($_POST['klant_postcode']);
+    $telefoon = htmlspecialchars($_POST['klant_telefoon']);
+
+$insert = "INSERT INTO klanten (klant_voornaam,klant_achternaam,klant_email,klant_straat,klant_huisnr,klant_postcode,klant_telefoon)
+VALUES('$voornaam','$achternaam','$email','$telefoon','$huisnr','$postcode','$telefoon')";
+
+if ($conn->query($insert) === TRUE) {
+    //Later popup van maken.
+    echo "<b>Uw bestelling is succesvol</b>";
+    } else {
+        echo "Error: " . $insert . "<br>" . $conn->error;
+    }
+}
+
+
+?>
 </body>
 </html>

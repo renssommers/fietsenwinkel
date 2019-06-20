@@ -138,21 +138,25 @@
                                     <h2 class="reg_title">Uw bestelling</h2>
                                     <div class="payment_list">
                                         <div class="price_single_cost">
+
+
                                         <?php
                                         if(!empty($_SESSION["cart"])){
-                                            $total = 0;
-                                            foreach ($_SESSION["cart"] as $key => $value) {
-                                            ?>
-                                            <h5><?php echo $value["item_name"]; ?><span><?php echo $value["product_prijs"]; ?></span></h5>
-                                            <h4></h4>
-                                            <h3><span class="normal_text">Totaal bedrag</span> <span>&euro; 
-                                            <?php
-                                            $total = $total += $value['product_prijs'];
-                                            echo number_format($total, 2); ?></span></h3>
-                                            <?php
-                                                }
-                                            }
-                                            ?>
+                                        $total = 0;
+                                        foreach ($_SESSION["cart"] as $key => $value) {
+                                        ?>
+                                                <h5><?php echo $value["item_name"]; ?><span><?php echo $value["product_prijs"]; ?></span></h5>
+                                                <h4></h4>
+                                        <?php
+                                        $total = $total += $value['product_prijs'];
+                                        }
+                                        ?><h3><span class="normal_text">Totaal bedrag</span> <span>&euro; <?php
+                                        }else {
+                                            echo '<script>window.location="empty-cart.php"</script>';
+                                        }
+
+                                        echo number_format($total, 2); ?></span></h3>
+
                                         </div>
                                         <div id="accordion" role="tablist" class="price_method">
                                             <div class="card">
