@@ -38,7 +38,11 @@
     </head>
     <body>
         
-        <?php include 'header.php' ?>
+        <?php
+        session_start(); 
+        include 'header.php';
+        ?>
+
 
         <!--================Categories Product Area =================-->
         <section class="categories_product_main p_80">
@@ -49,6 +53,11 @@
                 <div class="categories_main_inner">
                     <div class="row row_disable">
                     <?php 
+                        echo "Welcome " . $_SESSION['klant_email'];
+
+                        echo "<a href='logout.php'>Logout</a>";
+                        ?> <br> <?php 
+
                     include 'databasecon.php';
                     $conn = Opencon();
                     $QUERY = "SELECT * FROM klanten";
@@ -91,7 +100,7 @@
                                 <form action="" method="POST">
                                         <div class="col-lg-2" style="float:left;"> Geslacht </div> 
                                         <div class="col-lg-10" style="float: left;"> 
-                                            <select name="Geslacht">
+                                            <select name="klant_geslacht">
                                             <?php 
                                                 $geslacht = $row["klant_geslacht"];
                                                     if ($geslacht == 1) {
@@ -174,7 +183,7 @@
                                         <a href="reviewtoevoegen.php">Review toevoegen</a>  
                                 </aside>
 
-                                <a class="abonneer_btn" href="index.php">Uitloggen</a>
+                                <a class="abonneer_btn" href='logout.php'>Uitloggen</a>
 
                             </div>
                         </div>
