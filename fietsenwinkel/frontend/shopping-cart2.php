@@ -82,6 +82,11 @@
         }
     }
 
+    if(!empty($_SESSION["cart"])){
+    } elseif(empty($_SESSION["cart"]))  {
+        echo '<script>window.location="empty-cart.php"</script>';
+    }
+
     include 'databasecon.php';
     $conn = Opencon();
     $QUERY = "SELECT * FROM producten WHERE product_id = " . (empty($_GET['id']) ? 0 : $_GET['id']);
@@ -93,15 +98,17 @@
         <!--================Shopping Cart Area =================-->
         
         <section class="shopping_cart_area p_100">
-        <?php 
-                                    
+        
+        <div class="container">
+            <div class="col-lg-12" style="padding-bottom: 20px;">
+                <h3>Uw artikelen</h3>
+            </div>
+        </div>
+        <?php                       
             $total= 0;
             foreach ($_SESSION["cart"] as $key => $value) { ?>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12" style="padding-bottom: 20px;">
-                         <h3>Uw artikelen</h3>
-                    </div>
                     <div class="col-lg-8">
                         <div class="cart_items">
                             <div class="table-responsive-md">
@@ -120,34 +127,32 @@
                                         </tr>
                                         <?php
                                         }
-                                        else {
-                                            echo '<script>window.location="empty-cart.php"</script>';
-                                        }
                                         ?>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="cart_totals_area">
-                            <h4>Checkout</h4>
-                            <div class="total_amount row m0 row_disable">
-                                <div class="float-left">
-                                    Totaal
-                                </div>
-                                <div class="float-right">
-                                <?php
-                                $total = $total += $value['product_prijs'];
-                                ?>
-                                <th align="right">&euro; <?php echo number_format($total, 2); ?></th>
+                </div>
+            <?php
+            $total = $total += $value['product_prijs'];
+            }  
+            ?>
+            <div class="col-lg-4">
+                <div class="container">
+                    <div class="cart_totals_area">
+                        <h4>Checkout</h4>
+                        <div class="total_amount row m0 row_disable">
+                            <div class="float-left">
+                                Totaal
                             </div>
+                            <div class="float-right">
+                            <th align="right">&euro; <?php echo number_format($total, 2); ?></th>
+                        </div>
                         </div>
                         <a type="submit" value="submit" href="register.php" class="btn subs_btn form-control">Afrekenen</a>
                     </div>
                 </div>
-            <?php }  
-            ?>
             </div>
         </section>
         <!--================End Shopping Cart Area =================-->
