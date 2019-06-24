@@ -13,12 +13,14 @@
 		 
 		 if ( count($row) > 0) {
 
-		 	if ( isset($_POST['remember']) ) {
-		 		setcookie('klant_email', $email, time()+60*60*7);
+		 	//if ( isset($_POST['remember']) ) {
+		 	//	setcookie('klant_email', $email, time()+60*60*7);
 
-		 	}
+		 	//}
 		 	session_start();
 		 	$_SESSION['klant_email'] = $email;
+		 	$_SESSION['klant_wachtwoord'] = $pass;
+		 	
 		 	header("location: profilepage.php");
 		 } else {
 		 	echo "Email of Wachtwoord is niet goed.<br> durk <a href='login.php'> hier </a> om opnieuw te proberen";

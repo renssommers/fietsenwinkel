@@ -37,8 +37,16 @@
         <![endif]-->
     </head>
     <body>
+        <?php 
+        include 'header.php';
+
+
+        if(isset($_SESSION['Login'])&&!empty($_SESSION['Login'])){
+            header("Location: profilepage.php");
         
-        <?php include 'header.php' ?>
+            }
+        ?>
+        
         
         
         <!--================login Area =================-->

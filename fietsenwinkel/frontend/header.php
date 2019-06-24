@@ -104,5 +104,18 @@
                         </nav>
                     </div>
                 </div>
-            </header>
+                <?php
+                //session_start();
+                if (isset($_SESSION['klant_email']) && $_SESSION['klant_wachtwoord']) {
+                    echo "Welcome to the member's area, " . $_SESSION['klant_email'] . "!";
+                } else {
+                    if (!$_SERVER['PHP_SELF'] == "/fietsenwinkel/fietsenwinkel/frontend/login.php")   {               ?>
+
+                    <script>
+                        window.location.replace("login.php");
+                    </script>
+                    <?php }
+                }
+                ?>
+                </header>
         <!--================End Menu Area =================-->
