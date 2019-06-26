@@ -42,17 +42,14 @@ if (isset($_POST["add"])){
 include 'databasecon.php';
 $conn = Opencon();
 ?>
-
-<h1>test</h1>
     
-<?php
+<!-- <?php
 
 $QUERY = "SELECT * FROM klanten";
 
 if (!empty($_POST)) {
     $voornaam = htmlspecialchars($_POST['klant_voornaam']);
     $achternaam = htmlspecialchars($_POST['klant_achternaam']);
-    $email = htmlspecialchars($_POST['klant_email']);
     $straat = htmlspecialchars($_POST['klant_straat']);
     $huisnr = htmlspecialchars($_POST['klant_huisnr']);
     $postcode = htmlspecialchars($_POST['klant_postcode']);
@@ -62,12 +59,38 @@ $insert = "INSERT INTO klanten (klant_voornaam,klant_achternaam,klant_email,klan
 VALUES('$voornaam','$achternaam','$email','$telefoon','$huisnr','$postcode','$telefoon')";
 
 if ($conn->query($insert) === TRUE) {
+    echo '<script>alert("Bestelling Geplaatst")</script>';
+    echo '<script>window.location="empty-cart.php"</script>';
+    session_destroy();
+    } else {
+        echo "Error: " . $insert . "<br>" . $conn->error;
+    }
+}
+?> -->
+
+<?php
+
+$QUERY = "SELECT * FROM bestellingen";
+
+if (!empty($_SESSION["cart"])) {
+    $id = htmlspecialchars($_POST['bestelling_id']);
+    $product_id = htmlspecialchars($_POST['product_id']);
+    $klant_id = htmlspecialchars($_POST['klant_id']);
+    $bestelling_bedr = htmlspecialchars($_POST['bestelling_bedrag']);
+    $bestelling_stat = htmlspecialchars($_POST['bestelling_status']);
+
+$insert = "INSERT INTO bestellingen (bestelling_id,product_id,klant_id,bestelling_bedrag,bestelling_status,klant_postcode,klant_telefoon)
+VALUES('$id','$product_id','$klant_id','$bestelling_bedr','$bestelling_stat')";
+
+if ($conn->query($insert) === TRUE) {
     //Later popup van maken.
     echo "<b>Uw bestelling is succesvol</b>";
     } else {
         echo "Error: " . $insert . "<br>" . $conn->error;
     }
 }
+
+
 ?>
 </body>
 </html>

@@ -96,16 +96,7 @@
                                 </ul>
                                 <ul class="navbar-nav justify-content-end">
                                     <!-- <li class="search_icon"><a href="#"><i class="icon-magnifier icons"></i></a></li> -->
-									<li class="user_icon"><a href="profilepage.php"><i class="icon-user icons"></i></a></li>
-									
-			<!-- Begin van briefje: header user niet ingelogd-> naar loginhtml anders naar profilepagehtml -->
-									<!-- <?php if ($_SESSION['ingelogd']){ ?>
-                                        <li class="user_icon"><a href="profilepage.php"><i class="icon-user icons"></i></a></li>
-										<?php } 
-                                    else{ ?>
-                                        <li class="user_icon"><a href="login.php"><i class="icon-user icons"></i></a></li>
-									<?php } ?>
-									 -->
+									<li class="user_icon"><a href="login.php"><i class="icon-user icons"></i></a></li>
 
                                     <li class="cart_cart"><a href="shopping-cart2.php"><i class="icon-handbag icons"></i></a></li>
                                 </ul>
@@ -113,5 +104,18 @@
                         </nav>
                     </div>
                 </div>
-            </header>
+                <?php
+                //session_start();
+                if (isset($_SESSION['klant_email']) && $_SESSION['klant_wachtwoord']) {
+                    echo "Welcome to the member's area, " . $_SESSION['klant_email'] . "!";
+                } else {
+                    if (!$_SERVER['PHP_SELF'] == "/fietsenwinkel/fietsenwinkel/frontend/login.php")   {               ?>
+
+                    <script>
+                        window.location.replace("login.php");
+                    </script>
+                    <?php }
+                }
+                ?>
+                </header>
         <!--================End Menu Area =================-->

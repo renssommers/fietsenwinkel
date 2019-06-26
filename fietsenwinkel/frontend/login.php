@@ -37,8 +37,16 @@
         <![endif]-->
     </head>
     <body>
+        <?php 
+        include 'header.php';
+
+
+        if(isset($_SESSION['Login'])&&!empty($_SESSION['Login'])){
+            header("Location: profilepage.php");
         
-        <?php include 'header.php' ?>
+            }
+        ?>
+        
         
         
         <!--================login Area =================-->
@@ -51,15 +59,16 @@
                                 <h2>Log in</h2>
                                 <p>Voor bestaande klanten.</p>
                             </div>
-                            <form class="login_form row">
+                            <form action="validate.php" method="post" class="login_form row" >
                                 <div class="col-lg-12 form-group">
-                                    <input class="form-control" type="text" placeholder="E-mailadres">
+                                    <input class="form-control" type="text" name="klant_email" placeholder="E-mailadres">
                                 </div>
                                 <div class="col-lg-12 form-group">
-                                    <input class="form-control" type="text" placeholder="Wachtwoord">
+                                    <input class="form-control" type="password" name="klant_wachtwoord" placeholder="Wachtwoord">
                                 </div>
                                 <div class="col-lg-12 form-group">
-                                    <a type="submit" href="profilepage.php" value="submit" class="btn update_btn form-control">Login</a>
+                                    <input type="submit" name="Login" value="Login" class="btn update_btn form-control">
+                                    
                                 </div>
                             </form>
                         </div>
