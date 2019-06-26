@@ -111,10 +111,70 @@
                             </div>
                         </div>
 
-                        <div class="float-left col-lg-9">
-                       
-
+                        <div class="col-lg-9" style="float:left; padding-left: 0; padding-bottom: 30px;">
+                            <div class="cart_items">
+                                <div class="table-responsive-md">
+                                    <table class="table">
+                                        <tbody>
+                                        <?php
+                                        $conn = Opencon();
+                                        $QUERY = "SELECT * FROM producten WHERE product_id = " . (empty($_GET['id']) ? 0 : $_GET['id']);
+                                        $result = mysqli_query($conn, $QUERY);
+                                        $row = mysqli_fetch_assoc($result);
+                                        CloseCon($conn);
+                                            ?>
+                                            <h3 style="padding:0;"> bestelling id nr </h3>
+                                            <tr>
+                                                <th scope="row">
+                                                <a href="shopping-cart2.php?action=delete&id=<?php echo $value["product_id"]; ?>">
+                                                    <img src="img/icon/close-icon.png" alt=""></a>
+                                                </th>
+                                                <td>item naam</td>
+                                                <td>&euro; prijs </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                <a href="shopping-cart2.php?action=delete&id=<?php echo $value["product_id"]; ?>">
+                                                    <img src="img/icon/close-icon.png" alt=""></a>
+                                                </th>
+                                                <td>item naam</td>
+                                                <td>&euro; prijs </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="col-lg-9" style="float:left; padding-left: 0; padding-bottom: 30px;">
+                            <div class="cart_items">
+                                <div class="table-responsive-md">
+                                    <table class="table">
+                                        <tbody>
+                                        <?php
+                                        $conn = Opencon();
+                                        $QUERY = "SELECT * FROM producten WHERE product_id = " . (empty($_GET['id']) ? 0 : $_GET['id']);
+                                        $result = mysqli_query($conn, $QUERY);
+                                        $row = mysqli_fetch_assoc($result);
+                                        CloseCon($conn);
+                                            ?>
+                                            <h3 style="padding:0;"> bestelling id nr </h3>
+                                            <tr>
+                                                <th scope="row">
+                                                <a href="shopping-cart2.php?action=delete&id=<?php echo $value["product_id"]; ?>">
+                                                    <img src="img/icon/close-icon.png" alt=""></a>
+                                                </th>
+                                                <td>item naam</td>
+                                                <td>&euro; prijs </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
                     </div>
              
                 </div>
