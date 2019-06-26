@@ -104,7 +104,7 @@
                 <h3>Uw artikelen</h3>
             </div>
         </div>
-        <?php                       
+        <?php
             $total= 0;
             foreach ($_SESSION["cart"] as $key => $value) { ?>
             <div class="container">
