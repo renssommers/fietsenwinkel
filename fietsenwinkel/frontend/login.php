@@ -77,24 +77,21 @@
                                 <h2>Nieuw bij ChainGang?</h2>
                                 <p>Maak hier gratis uw account aan.</p>
                             </div>
-                            <form class="login_form row">
+                            <form class="login_form row" action="toevoegen.php">
                                 <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="text" placeholder="Naam">
+                                    <input class="form-control" type="text" placeholder="Naam" name="voornaam">
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                        <input class="form-control" type="text" placeholder="Achternaam">
+                                        <input class="form-control" type="text" placeholder="Achternaam" name="achternaam">
                                     </div>
                                 <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="email" placeholder="E-mailadres">
-                                </div>
-                                <!-- <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="text" placeholder="Gebruikersnaam">
-                                </div> -->
-                                <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="text" placeholder="Telefoonnummer">
+                                    <input class="form-control" type="email" placeholder="E-mailadres" name="email">
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                    <input class="form-control" type="password" placeholder="Wachtwoord">
+                                    <input class="form-control" type="text" placeholder="Telefoonnummer" name="telefoon">
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <input class="form-control" type="password" placeholder="Wachtwoord" name="wachtwoord">
                                 </div>
                                 <div class="col-lg-6 form-group">
                                     <a type="submit"  href="profilepage.php"  value="submit" class="btn subs_btn form-control">Maak een account aan</a>

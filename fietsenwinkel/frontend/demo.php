@@ -42,8 +42,8 @@ if (isset($_POST["add"])){
 include 'databasecon.php';
 $conn = Opencon();
 ?>
-    
-<!-- <?php
+
+<?php 
 
 $QUERY = "SELECT * FROM klanten";
 
@@ -66,21 +66,19 @@ if ($conn->query($insert) === TRUE) {
         echo "Error: " . $insert . "<br>" . $conn->error;
     }
 }
-?> -->
+?>
 
 <?php
 
 $QUERY = "SELECT * FROM bestellingen";
 
 if (!empty($_SESSION["cart"])) {
-    $id = htmlspecialchars($_POST['bestelling_id']);
-    $product_id = htmlspecialchars($_POST['product_id']);
     $klant_id = htmlspecialchars($_POST['klant_id']);
-    $bestelling_bedr = htmlspecialchars($_POST['bestelling_bedrag']);
+    $bestelling_bedr = htmlspecialchars($_POST['product_prijs']);
     $bestelling_stat = htmlspecialchars($_POST['bestelling_status']);
 
-$insert = "INSERT INTO bestellingen (bestelling_id,product_id,klant_id,bestelling_bedrag,bestelling_status,klant_postcode,klant_telefoon)
-VALUES('$id','$product_id','$klant_id','$bestelling_bedr','$bestelling_stat')";
+$insert = "INSERT INTO bestellingen (klant_id,product_prijs,bestelling_status)
+VALUES('$klant_id','$bestelling_bedr','$bestelling_stat')";
 
 if ($conn->query($insert) === TRUE) {
     //Later popup van maken.
@@ -89,7 +87,6 @@ if ($conn->query($insert) === TRUE) {
         echo "Error: " . $insert . "<br>" . $conn->error;
     }
 }
-
 
 ?>
 </body>

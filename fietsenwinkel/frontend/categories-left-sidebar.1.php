@@ -43,6 +43,7 @@
 
             include 'databasecon.php';
             $conn = Opencon();
+            
             if (empty($_GET['price']))
             {
                 $QUERY = "SELECT * FROM producten WHERE product_categorie = 'heren'" . (isset($_GET['kleur']) ? " AND product_kleur = " . $_GET['kleur'] : "");
