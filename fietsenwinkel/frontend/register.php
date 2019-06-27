@@ -145,15 +145,19 @@
                                         $total = 0;
                                         foreach ($_SESSION["cart"] as $key => $value) {
                                         ?>
-                                                <h5><?php echo $value["item_name"]; ?><span><?php echo $value["product_prijs"]; ?></span></h5>
+                                                <h5><?php echo $value["item_name"]; ?><span>&euro;<?php echo $value["product_prijs"]; ?></span></h5>
                                                 <h4></h4>
+                                                <input type="hidden" name="hidden_name" value="<?php echo $row["product_naam"]; ?>">
+                                                <input type="hidden" name="hidden_price" value="<?php echo $row["product_prijs"]; ?>">
+                                                
                                         <?php
                                         $total = $total += $value['product_prijs'];
+
                                         }
                                         ?><h3><span class="normal_text">Totaal bedrag</span> <span>&euro; <?php
                                         }else {
                                             echo '<script>window.location="empty-cart.php"</script>';
-                                        }
+                                        } 
 
                                         echo number_format($total, 2); ?></span></h3>
 

@@ -43,16 +43,13 @@ include 'databasecon.php';
 $conn = Opencon();
 ?>
 
-<h1>test</h1>
-    
-<?php
+<?php 
 
 $QUERY = "SELECT * FROM klanten";
 
 if (!empty($_POST)) {
     $voornaam = htmlspecialchars($_POST['klant_voornaam']);
     $achternaam = htmlspecialchars($_POST['klant_achternaam']);
-    $email = htmlspecialchars($_POST['klant_email']);
     $straat = htmlspecialchars($_POST['klant_straat']);
     $huisnr = htmlspecialchars($_POST['klant_huisnr']);
     $postcode = htmlspecialchars($_POST['klant_postcode']);
@@ -62,8 +59,9 @@ $insert = "INSERT INTO klanten (klant_voornaam,klant_achternaam,klant_email,klan
 VALUES('$voornaam','$achternaam','$email','$telefoon','$huisnr','$postcode','$telefoon')";
 
 if ($conn->query($insert) === TRUE) {
-    //Later popup van maken.
-    echo "<b>Uw bestelling is succesvol</b>";
+    echo '<script>alert("Bestelling Geplaatst")</script>';
+    echo '<script>window.location="empty-cart.php"</script>';
+    session_destroy();
     } else {
         echo "Error: " . $insert . "<br>" . $conn->error;
     }
@@ -74,17 +72,13 @@ if ($conn->query($insert) === TRUE) {
 
 $QUERY = "SELECT * FROM bestellingen";
 
-if (!empty($_POST)) {
-    $voornaam = htmlspecialchars($_POST['klant_voornaam']);
-    $achternaam = htmlspecialchars($_POST['klant_achternaam']);
-    $email = htmlspecialchars($_POST['klant_email']);
-    $straat = htmlspecialchars($_POST['klant_straat']);
-    $huisnr = htmlspecialchars($_POST['klant_huisnr']);
-    $postcode = htmlspecialchars($_POST['klant_postcode']);
-    $telefoon = htmlspecialchars($_POST['klant_telefoon']);
+if (!empty($_SESSION["cart"])) {
+    $klant_id = htmlspecialchars($_POST['klant_id']);
+    $bestelling_bedr = htmlspecialchars($_POST['product_prijs']);
+    $bestelling_stat = htmlspecialchars($_POST['bestelling_status']);
 
-$insert = "INSERT INTO klanten (klant_voornaam,klant_achternaam,klant_email,klant_straat,klant_huisnr,klant_postcode,klant_telefoon)
-VALUES('$voornaam','$achternaam','$email','$telefoon','$huisnr','$postcode','$telefoon')";
+$insert = "INSERT INTO bestellingen (klant_id,product_prijs,bestelling_status)
+VALUES('$klant_id','$bestelling_bedr','$bestelling_stat')";
 
 if ($conn->query($insert) === TRUE) {
     //Later popup van maken.
@@ -93,7 +87,6 @@ if ($conn->query($insert) === TRUE) {
         echo "Error: " . $insert . "<br>" . $conn->error;
     }
 }
-
 
 ?>
 </body>

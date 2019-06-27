@@ -104,7 +104,7 @@
                 <h3>Uw artikelen</h3>
             </div>
         </div>
-        <?php                       
+        <?php
             $total= 0;
             foreach ($_SESSION["cart"] as $key => $value) { ?>
             <div class="container">
@@ -157,7 +157,14 @@
         </section>
         <!--================End Shopping Cart Area =================-->
         
-        <?php include 'footer.php' ?>
+        <?php include 'footer.php';
+        if (isset($_SESSION['cart']))
+        {
+        echo $_SESSION['item_name'];
+        // You can use $_SESSION['session_email'] to insert the email wherever you want just like a simple variable
+        }
+        ?>
+        
         
         
         
